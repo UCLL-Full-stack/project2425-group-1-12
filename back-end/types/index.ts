@@ -1,3 +1,4 @@
+import { Build } from "../model/build";
 import { Order } from "../model/order";
 import { Part } from "../model/part";
 import { User } from "../model/user";
@@ -22,6 +23,7 @@ type PartInput = {
 
 type OrderInput = {
     id?: number;
+    builds: Build[];
     price: number;
     orderStatus: string;
     orderDate: Date;

@@ -1,4 +1,9 @@
-import { User as UserPrisma } from "@prisma/client";
+import {
+    User as UserPrisma,
+    Order as OrderPrisma,
+    Part as PartPrisma,
+    Build as BuildPrisma,
+} from "@prisma/client";
 import { Order } from "./order";
 
 
@@ -8,7 +13,7 @@ export class User {
     private email: string;
     private password: string;
     private address: string;
-    private orders: Order[] = [];
+    private orders: Order[];
 
     constructor(user: {
         id?: number;
@@ -16,6 +21,7 @@ export class User {
         email: string;
         password: string;
         address: string;
+        orders?: Order[];
     }) {
         this.validate(user)
 
@@ -24,6 +30,13 @@ export class User {
         this.email = user.email;
         this.password = user.password;
         this.address = user.address;
+
+        // If orders is not given, orders will be set as an empty list
+        if (!user.orders) {
+            this.orders = []
+        } else {
+            this.orders = user.orders;
+        }
     }
 
     validate(user: {
@@ -45,15 +58,42 @@ export class User {
         }
     }
 
-    static from ({ id, name, email, password, address }: UserPrisma) {
+    static from ({
+        id,
+        name,
+        email,
+        password,
+        address,
+        orders,
+    }: UserPrisma & {
+        orders: (OrderPrisma & { builds: (BuildPrisma & { parts: PartPrisma[] })[] })[],
+    }): User {
         return new User({
             id,
             name,
             email,
             password,
             address,
-        })
+            orders: orders ? orders.map((order) => Order.fromShallow(order)) : [],
+        });
     }
+
+    static fromShallow({
+        id,
+        name,
+        email,
+        address,
+    }: UserPrisma): User {
+        return new User({
+            id,
+            name,
+            email,
+            password: '********', // For passing validation checks upon user creation
+            address,
+            orders: [], // No orders reference in shallow conversion
+        });
+    }
+
 
     private validateEmail(email: string): boolean {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -61,6 +101,7 @@ export class User {
     }
 
     public getOrderSummaries() {
+        if (!this.orders) return [];
         return this.orders.map(order => order.getSummary());
     }
 

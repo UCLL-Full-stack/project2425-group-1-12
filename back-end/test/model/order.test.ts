@@ -15,7 +15,7 @@ const price = 1100;
 const orderStatus = 'preparing';
 const orderDate = new Date();
 
-const user = new User({ name: 'John Doe', email: 'john.doe@example.com', password: 'password', address: 'John Doe Avenue 76'});
+const user = new User({ name: 'John Doe', email: 'john.doe@example.com', password: 'password', address: 'John Doe Avenue 76' });
 
 test('given: valid values for order, when: order is created, then: order is created with those values', () => {
     // given
@@ -39,17 +39,6 @@ test('given: order with empty orderStatus, when: order is created, then: an erro
 
     // then
     expect(order).toThrow('OrderStatus cannot be empty');
-});
-
-test('given: order with empty builds array, when: order is created, then: an error is thrown', () => {
-    // given
-    const emptyBuilds: never[] = [];
-
-    // when
-    const order = () => new Order({ builds: emptyBuilds, price, orderStatus, orderDate, user });
-
-    // then
-    expect(order).toThrow('Order must have at least 1 build');
 });
 
 test('given: order with negative price, when: order is created, then: an error is thrown', () => {

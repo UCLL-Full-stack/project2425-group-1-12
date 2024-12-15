@@ -18,7 +18,7 @@ const createOrder = async ( orderInput: OrderInput ): Promise<Order> => {
     if (!user) throw new Error('User not found');
 
     const order = new Order({
-        builds: [],
+        builds: orderInput.builds,
         price: orderInput.price,
         orderStatus: orderInput.orderStatus,
         orderDate: orderInput.orderDate,

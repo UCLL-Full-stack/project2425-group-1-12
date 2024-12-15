@@ -4,7 +4,9 @@ import bcrypt from 'bcrypt';
 
 const getAllUsers = async (): Promise<User[]> => {
     try {
-        const userPrisma = await database.user.findMany();
+        const userPrisma = await database.user.findMany({
+            include: { orders: { include: { builds: { include: { parts: true }, }, }, }, },
+        });
         return userPrisma.length > 0 ? userPrisma.map(User.from) : [];
     } catch (error) {
         console.error(error);
@@ -16,6 +18,7 @@ const getUserById = async ({ id }: { id: number }): Promise<User | null> => {
     try {
         const userPrisma = await database.user.findUnique({
             where: { id },
+            include: { orders: { include: { builds: { include: { parts: true }, }, }, }, },
         });
         return userPrisma ? User.from(userPrisma) : null;
     } catch (error) {
@@ -28,6 +31,7 @@ const getUserByEmail = async ({ email }: { email: string }): Promise<User | null
     try {
         const userPrisma = await database.user.findUnique({
             where: { email },
+            include: { orders: { include: { builds: { include: { parts: true }, }, }, }, },
         });
         return userPrisma ? User.from(userPrisma) : null;
     } catch (error) {
@@ -46,6 +50,7 @@ const registerUser = async ({ user }: { user: User }): Promise<User> => {
                 address: user.getAddress(),
                 orders: { create: [] },
             },
+            include: { orders: { include: { builds: { include: { parts: true }, }, }, }, },
         });
 
         return User.from(userPrisma);
@@ -59,5 +64,6 @@ export default {
     getAllUsers,
     getUserById,
     getUserByEmail,
+    // updateUser,
     registerUser,
 };

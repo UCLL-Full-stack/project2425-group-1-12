@@ -78,6 +78,9 @@ const getOrderById = async ({ id }: { id: number }): Promise<Order | null> => {
 
 const createOrder = async (order: Order): Promise<Order> => {
     try {
+        const user = order.getUser();
+        if (!user) throw new Error('Cannot create error without user');
+
         const orderPrisma = await database.order.create({
             data: {
                 builds: {
@@ -87,7 +90,7 @@ const createOrder = async (order: Order): Promise<Order> => {
                 orderStatus: order.getOrderStatus(),
                 orderDate: order.getOrderDate(),
                 user: {
-                    connect: { id: order.getUser().getId() },
+                    connect: { id: user.getId() },
                 },
             },
             include: {

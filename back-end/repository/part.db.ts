@@ -31,7 +31,7 @@ const getPartByName = async ({ name } : { name: string }): Promise<Part | null> 
                 name: {
                     contains: name,
                     mode: 'insensitive', // case insensitive
-                }
+                },
             },
         });
         return partPrisma ? Part.from(partPrisma) : null;
@@ -39,10 +39,10 @@ const getPartByName = async ({ name } : { name: string }): Promise<Part | null> 
         console.error(error);
         throw new Error('Database error. See server log for details.');
     }
-}
+};
 
 export default {
     getAllParts,
     getPartById,
     getPartByName,
-}
+};

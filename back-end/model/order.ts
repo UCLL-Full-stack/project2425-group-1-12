@@ -13,7 +13,7 @@ export class Order {
     private price: number;
     private orderStatus: string;
     private orderDate: Date;
-    private user: User;
+    private user?: User;
 
     constructor(order: {
         id?: number;
@@ -21,9 +21,9 @@ export class Order {
         price: number;
         orderStatus: string;
         orderDate: Date;
-        user: User;
+        user?: User;
     }) {
-        this.validate(order)
+        this.validate(order);
 
         this.id = order.id;
         this.builds = order.builds;
@@ -38,22 +38,16 @@ export class Order {
         price: number;
         orderStatus: string;
         orderDate: Date ;
-        user: User;
+        user?: User;
     }) {
         if (!order.orderStatus) {
             throw new Error('OrderStatus cannot be empty');
-        }
-        if (order.builds.length == 0) {
-            throw new Error('Order must have at least 1 build')
         }
         if (order.price <= 0) {
             throw new Error('Order must have positive and non zero price')
         }
         if (new Date(order.orderDate) > new Date()) {
             throw new Error('Order date cannot be in the future');
-        }
-        if (!order.user) {
-            throw new Error('Order must be associated with a user');
         }
     }
 
@@ -65,8 +59,8 @@ export class Order {
         orderDate,
         user,
     }: OrderPrisma & {
-        user: UserPrisma,
-        builds: (BuildPrisma & {parts: PartPrisma[] })[]
+        user?: UserPrisma,
+        builds: (BuildPrisma & {parts: PartPrisma[] })[],
     }): Order {
         return new Order({
             id,
@@ -74,7 +68,24 @@ export class Order {
             price,
             orderStatus,
             orderDate,
-            user: User.from(user),
+            user: user ? User.fromShallow(user) : undefined,
+        });
+    }
+
+    static fromShallow({
+        id,
+        builds,
+        price,
+        orderStatus,
+        orderDate,
+    }: OrderPrisma & { builds: (BuildPrisma & {parts: PartPrisma[] })[] }): Order {
+        return new Order({
+            id,
+            builds: builds.map((build) => Build.from(build)),
+            price,
+            orderStatus,
+            orderDate,
+            user: undefined, // No user reference in shallow conversion
         });
     }
 
@@ -85,7 +96,6 @@ export class Order {
             price: this.price,
             orderStatus: this.orderStatus,
             orderDate: this.orderDate,
-            userId: this.user.getId(),
         }
     }
 
@@ -109,7 +119,7 @@ export class Order {
         return this.orderDate;
     }
 
-    getUser(): User {
+    getUser(): User | undefined {
         return this.user;
     }
 }
