@@ -44,7 +44,7 @@ const registerUser = async ({ user }: { user: User }): Promise<User> => {
                 email: user.getEmail(),
                 password: await bcrypt.hash(user.getPassword(), 12),
                 address: user.getAddress(),
-                orders: { create: [] }, // Empty order list when creating user
+                orders: { create: [] },
             },
         });
 

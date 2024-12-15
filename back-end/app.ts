@@ -1,5 +1,5 @@
 import * as dotenv from 'dotenv';
-import express from 'express';
+import express, { NextFunction } from 'express';
 import cors from 'cors';
 import * as bodyParser from 'body-parser';
 import swaggerJSDoc from 'swagger-jsdoc';
@@ -8,6 +8,8 @@ import { partRouter } from './controller/part.routes';
 import { buildRouter } from './controller/build.routes';
 import { orderRouter } from './controller/order.routes';
 import { userRouter } from './controller/user.routes';
+import { stat } from 'fs';
+import { expressjwt } from 'express-jwt';
 
 const app = express();
 dotenv.config();
@@ -34,6 +36,14 @@ const swaggerOpts = {
 const swaggerSpec = swaggerJSDoc(swaggerOpts);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+app.use(
+    expressjwt({
+        secret: process.env.JWT_SECRET || 'default_secret',
+        algorithms: ['HS256']
+    }).unless({
+        path: ['/api-docs', /^\/api-docs\/.*/, 'users/login','/users/register','/status']
+    })
+)
 
 app.get('/status', (req, res) => {
     res.json({ message: 'Back-end is running...' });
