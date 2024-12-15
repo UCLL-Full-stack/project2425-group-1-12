@@ -16,15 +16,24 @@
  *            name:
  *              type: string
  *              description: User full name.
+ *              example: John Doe
  *            email:
  *              type: string
  *              description: User email.
+ *              example: john.doe@mail.com
  *            password:
  *              type: string
  *              description: User password.
+ *              example: password
  *            address:
  *              type: string
  *              description: User address.
+ *              example: john doe avenue 25
+ *            orders:
+ *              type: array
+ *              description: List of orders
+ *              items:
+ *                  $ref: '#/components/schemas/Order'
  */
 import express, { NextFunction, Request, Response } from 'express';
 import userService from '../service/user.service';

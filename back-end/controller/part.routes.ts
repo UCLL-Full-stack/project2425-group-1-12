@@ -16,15 +16,19 @@
  *            name:
  *              type: string
  *              description: Part name.
+ *              example: RTX 3060
  *            brand:
  *              type: string
  *              description: Part brand.
+ *              example: CoolBrand
  *            type:
  *              type: string
  *              description: Part type.
+ *              example: GPU
  *            price:
  *              type: number
  *              description: Part price.
+ *              example: 300
  */
 import express, { NextFunction, Request, Response } from 'express';
 import partService from '../service/part.service';

@@ -13,14 +13,19 @@
  *            id:
  *              type: number
  *              format: int64
- *            parts:
- *              type: array
- *              description: List of parts in build
  *            price:
  *              type: number
  *              description: Build price
+ *              example: 800
  *            preBuild:
  *              type: boolean
+ *              description: Prebuilt
+ *              example: false
+ *            parts:
+ *              type: array
+ *              description: List of parts in build
+ *              items:
+ *                  $ref: '#/components/schemas/Part'
  */
 import express, { NextFunction, Request, Response } from 'express';
 import buildService from '../service/build.service';
