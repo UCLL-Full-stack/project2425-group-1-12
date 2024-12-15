@@ -1,11 +1,12 @@
 import React from 'react';
-import Header from '@components/header';
+import Header from '@components/General/header';
+import BuildForm from '@components/Forms/BuildsForm';
 
 const PcBuilder: React.FC = () => {
   return (
     <div>
     <Header />
-      <h1>PcBuilderPage</h1>
+    <BuildForm />
     </div>
   );
 };

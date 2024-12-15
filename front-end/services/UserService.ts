@@ -43,5 +43,27 @@ export const UserService = {
                 throw new Error('It aint work, idk why.');
             }
         }
+    },
+
+    updateUser: async (user: User) => {
+        try {
+            const res = await fetch(apiUrl + "/users/update", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(user),
+            });
+            if (!res.ok) {
+                throw new Error('Registration failed');
+            }
+            return await res.json();
+        } catch (error) {
+            if (error instanceof Error) {
+                throw new Error(`Error: ${error.message}`);
+            } else {
+                throw new Error('It aint work, idk why.');
+            }
+        }
     }
 };
