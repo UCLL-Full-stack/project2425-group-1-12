@@ -6,6 +6,8 @@ const getAllUsers = async (): Promise<User[]> => {
     return await userDB.getAllUsers();
 };
 
+// TODO: change these get users to Promise<User | null>
+
 const getUserById = async (id: number): Promise<User> => {
     const user = await userDB.getUserById({ id });
     if (!user) throw new Error(`User with id ${id} not found`);

@@ -1,5 +1,5 @@
 import { Order } from "../model/order";
-import { OrderInput, UserInput } from "../types";
+import { OrderInput } from "../types";
 import orderDB from "../repository/order.db";
 import userDB from "../repository/user.db";
 
