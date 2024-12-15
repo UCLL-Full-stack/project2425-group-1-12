@@ -1,0 +1,38 @@
+.inputFieldContainer {
+  margin: 0;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.inputFieldTitle {
+  font-size: 16px;
+  margin-bottom: 0;
+  color: #333;
+}
+
+.inputField {
+  margin: 0;
+  font-size: 16px;
+  padding: 5px 0;
+  border: none;
+  border-bottom: 1px solid #000;
+  outline: none;
+  color: #333;
+  background: transparent;
+  transition: border-color 0.3s ease;
+}
+
+.focused {
+  border-bottom-color: #0c7aef;
+}
+
+.editable {
+  cursor: text;
+}
+
+.nonEditable {
+  cursor: not-allowed;
+  opacity: 0.6;
+}

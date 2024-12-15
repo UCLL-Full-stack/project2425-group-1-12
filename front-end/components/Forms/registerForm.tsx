@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../styles/loginForm.module.css';
-import { User } from "@types"; 
+import { User, Order } from "@types"; 
 
 interface RegisterFormProps {
     onRegister: (user: User) => void;
@@ -11,10 +11,11 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [address, setAddress] = useState('');
+    const [orders, setOrders] = useState<Order[]>([]);
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
-        const newUser: User = { name, email, password, address };
+        const newUser: User = { name, email, password, address, orders };
         onRegister(newUser);
     };
 

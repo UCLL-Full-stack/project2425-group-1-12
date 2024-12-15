@@ -10,13 +10,17 @@
   align-items: center;
 }
 
+.logoutLink {
+  all: unset;
+  cursor: pointer;
+}
 .accountLink,
 .logoutLink,
 .pcBuilderLink,
 .ordersLink {
-  margin: 0 1rem; /* Space between the links */
-  text-decoration: none; /* Remove the underline */
-  color: black; /* Set a color for the links */
+  margin: 0 1rem;
+  text-decoration: none;
+  color: black;
 }
 
 .pcBuilderLink,

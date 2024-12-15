@@ -1,7 +1,20 @@
+import { useRouter } from 'next/router';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import styles from '../../styles/header.module.css';
 import Link from 'next/link';
-import styles from '../styles/header.module.css';
 
 const Header: React.FC = () => {
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    try {
+      await AsyncStorage.removeItem('loggedInUser');
+      router.push('/');
+    } catch (error) {
+      console.error('Failed to logout', error);
+    }
+  };
+
   return (
     <header className={styles.headerContainer}>
       <nav className={styles.navContainer}>
@@ -15,7 +28,7 @@ const Header: React.FC = () => {
         </div>
         
         <div>
-          <Link href="" className={styles.logoutLink}>Logout</Link>
+          <button onClick={handleLogout} className={styles.logoutLink}>Logout</button>
         </div>
       </nav>
     </header>

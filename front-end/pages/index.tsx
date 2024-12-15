@@ -1,36 +1,25 @@
-import React, { useState } from 'react';
-import LoginForm from '@components/loginForm';
-import { UserService } from '@services/UserService';
-import Header from '@components/header';
+import React, { useState, useEffect } from 'react';
+import LoginForm from '@components/Forms/loginForm';
+import { useRouter } from 'next/router';
 
 const Home: React.FC = () => {
     const [user, setUser] = useState<{ name: string } | null>(null);
+    const router = useRouter();
 
-    const handleLogin = async (email: string, password: string) => {
-        try {
-            const userData = await UserService.getUserByEmail(email);
-            if (userData.password === password) {
-                setUser({ name: userData.name });
-            } else {
-                alert('Invalid password');
+    useEffect(() => {
+        const fetchLoggedInUser = async () => {
+            const loggedInUser = localStorage.getItem('loggedInUser');
+            if (loggedInUser) {
+                setUser(JSON.parse(loggedInUser));
+                router.push('/account');
             }
-        } catch (error: unknown) {
-            if (error instanceof Error) {
-                alert(error.message);
-            } else {
-                alert('An unknown error occurred');
-            }
-        }
-    };
+        };
+
+        fetchLoggedInUser();
+    }, [router]);
 
     return (
-        <div>
-            {user ? (
-                <><Header /><h1>Hello {user.name}</h1></>
-            ) : (
-                <LoginForm onLogin={handleLogin} />
-            )}
-        </div>
+        <LoginForm />
     );
 };
 
