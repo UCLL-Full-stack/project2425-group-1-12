@@ -168,14 +168,14 @@ userRouter.post('/register', async (req: Request, res: Response, next: NextFunct
     }
 });
 
-userRouter.post('/login',async(req:Request,res:Response,next:NextFunction) => {
+userRouter.post('/login', async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const userInput = <UserInput>req.body;
-        const response = await userService.authenticate(userInput);
+        const { email, password } = req.body;
+        const response = await userService.authenticate( email, password );
         res.status(200).json({message: 'Authentication succesful', ...response});
     } catch(error) {
         next(error);
     }
-})
+});
 
 export { userRouter };

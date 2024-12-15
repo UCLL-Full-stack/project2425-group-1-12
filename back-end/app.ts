@@ -22,7 +22,12 @@ app.use(
         secret: `${process.env.JWT_SECRET}`,
         algorithms: ['HS256']
     }).unless({
-        path: ['/api-docs', /^\/api-docs\/.*/, 'users/login','/users/register','/status']
+        path: [
+            '/api-docs',
+            /^\/api-docs\/.*/,
+            '/users/login',
+            '/users/register',
+            '/status']
     })
 );
 

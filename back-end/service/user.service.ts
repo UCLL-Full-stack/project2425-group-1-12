@@ -37,7 +37,7 @@ const registerUser = async (userInput: UserInput): Promise<AuthenticationRespons
     };
 };
 
-const authenticate = async ({email,password}: UserInput): Promise<AuthenticationResponse> => {
+const authenticate = async (email: string, password: string): Promise<AuthenticationResponse> => {
     const user = await getUserByEmail(email);
     const isValidPasswd = await bcrypt.compare(password,user.getPassword())
     if (!isValidPasswd) {
