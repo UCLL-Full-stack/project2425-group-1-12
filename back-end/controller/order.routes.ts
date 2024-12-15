@@ -16,20 +16,24 @@
  *            builds:
  *              type: array
  *              description: List of builds in order
+ *              items:
+ *                  $ref: '#/components/schemas/Build'
  *            price:
  *              type: number
  *              description: Order price
+ *              example: 800
  *            orderStatus:
  *              type: string
  *              description: Order status
+ *              example: shipping
  *            orderDate:
  *              type: string
  *              format: date-time
  *              description: Order date
+ *              example: 2024-12-15T14:43:50.521Z
  */
 import express, { NextFunction, Request, Response } from 'express';
 import orderService from '../service/order.service';
-import { OrderInput } from '../types';
 
 const orderRouter = express.Router();
 
