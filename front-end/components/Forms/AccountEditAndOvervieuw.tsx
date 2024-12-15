@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import InputField from '@components/General/inputField';
 import { faUserPen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -32,7 +31,7 @@ const AccountForm: React.FC<AccountFormProps> = ({ user, setUser }) => {
     try {
       const updatedUser = await UserService.updateUser(user);
       setUser(updatedUser);
-      await AsyncStorage.setItem('loggedInUser', JSON.stringify(updatedUser));
+      localStorage.setItem('loggedInUser', JSON.stringify(updatedUser));
       alert('Account updated successfully');
       setIsEditable(false);
     } catch (error) {
@@ -42,20 +41,20 @@ const AccountForm: React.FC<AccountFormProps> = ({ user, setUser }) => {
 
   const handleUpdatePassword = async () => {
     if (newPassword !== confirmPassword) {
-      alert('New passwords dont match!!!');
+      alert('New passwords don\'t match!');
       return;
     }
 
-    if (currentPassword != user.password) {
-        alert('Current password is not ur password!');
-        return;
+    if (currentPassword !== user.password) {
+      alert('Current password is incorrect!');
+      return;
     }
 
     try {
       const updatedUser = { ...user, password: newPassword };
       await UserService.updateUser(updatedUser);
       setUser(updatedUser);
-      await AsyncStorage.setItem('loggedInUser', JSON.stringify(updatedUser));
+      localStorage.setItem('loggedInUser', JSON.stringify(updatedUser));
       alert('Password updated successfully');
       setCurrentPassword('');
       setNewPassword('');
@@ -129,10 +128,10 @@ const AccountForm: React.FC<AccountFormProps> = ({ user, setUser }) => {
             secure
             onChange={(event) => setConfirmPassword(event.target.value)}
           />
-          <CustomButton label="Update Password" onPress={handleUpdatePassword}/>
+          <CustomButton label="Update Password" onPress={handleUpdatePassword} />
         </>
       )}
-      <CustomButton label="Update Account" onPress={handleUpdateAccount}/>
+      <CustomButton label="Update Account" onPress={handleUpdateAccount} />
     </div>
   );
 };

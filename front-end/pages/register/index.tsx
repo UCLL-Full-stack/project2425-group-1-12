@@ -8,9 +8,8 @@ import { Order } from '@types';
 const RegisterPage: React.FC = () => {
     const router = useRouter();
 
-    const handleRegister = async (userData: { name: string; email: string; password: string; address: string, orders: Order[] }) => {
+    const handleRegister = async () => {
         try {
-            await UserService.registerUser(userData);
             router.push('/');
         } catch (error: unknown) {
             if (error instanceof Error) {

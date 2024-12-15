@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import Header from '@components/General/header';
 import { useRouter } from 'next/router';
 import { User } from '@types';
@@ -16,9 +15,9 @@ const Account: React.FC = () => {
 
   const router = useRouter();
 
-  const fetchUserData = async () => {
+  const fetchUserData = () => {
     try {
-      const loggedInUser = await AsyncStorage.getItem('loggedInUser');
+      const loggedInUser = localStorage.getItem('loggedInUser');
       if (loggedInUser) {
         const userObj = JSON.parse(loggedInUser);
         setUser(userObj);
@@ -26,7 +25,7 @@ const Account: React.FC = () => {
         router.push('/');
       }
     } catch (error) {
-      console.error('Failed to load user data from AsyncStorage', error);
+      console.error('Failed to load user data from localStorage', error);
     }
   };
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import styles from '../styles/loginForm.module.css';
+import styles from '../../styles/loginForm.module.css';
 import { User, Order } from "@types"; 
+import { UserService } from '@services/UserService';
 
 interface RegisterFormProps {
     onRegister: (user: User) => void;
@@ -13,10 +14,18 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
     const [address, setAddress] = useState('');
     const [orders, setOrders] = useState<Order[]>([]);
 
-    const handleSubmit = (event: React.FormEvent) => {
+    const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         const newUser: User = { name, email, password, address, orders };
         onRegister(newUser);
+
+        try {
+            const registeredUser = await UserService.registerUser(newUser);
+            localStorage.setItem('loggedInUser', JSON.stringify(registeredUser));
+            alert('Registration successful!');
+        } catch (error) {
+            alert(`Error: ${error instanceof Error ? error.message : 'Unknown error'}`);
+        }
     };
 
     return (

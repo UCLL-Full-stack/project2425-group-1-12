@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'next/router';
 import { UserService } from '@services/UserService';
 import styles from '../../styles/loginForm.module.css';
@@ -17,7 +16,7 @@ const LoginForm: React.FC = () => {
         try {
             const userData = await UserService.getUserByEmail(email);
             if (userData.password === password) {
-                await AsyncStorage.setItem('loggedInUser', JSON.stringify(userData));
+                localStorage.setItem('loggedInUser', JSON.stringify(userData));
                 router.push('/account');
             } else {
                 setError('Invalid email or password');
