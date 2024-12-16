@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import LoginForm from '@components/Forms/loginForm';
+import LoginForm from '@components/forms/loginForm';
 
 const Home: React.FC = () => {
     const [user, setUser] = useState<{ name: string } | null>(null);

@@ -6,6 +6,7 @@ export type User = {
     address: string;
     orders: Order[];
 }
+
 export type Part = {
     id?: number;
     name: string;
@@ -13,12 +14,14 @@ export type Part = {
     type: string;
     price: number;
 }
+
 export type Build = {
     id?: number;
     parts: Part[];
     price: number;
     preBuild: boolean;
 }
+
 export type Order = {
     id?: number;
     builds: Build[];
