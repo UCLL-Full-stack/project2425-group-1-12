@@ -32,7 +32,7 @@ export const UserService = {
             if (!res.ok) {
                 throw new Error('Registration failed');
             }
-            return await res.json();
+            return true;
         } catch (error) {
             if (error instanceof Error) {
                 throw new Error(`Error: ${error.message}`);

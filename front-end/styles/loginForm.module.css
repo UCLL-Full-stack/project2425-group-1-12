@@ -15,11 +15,12 @@
 .formContainer h4 {
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 2vh;
 }
 
 .buttons {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;

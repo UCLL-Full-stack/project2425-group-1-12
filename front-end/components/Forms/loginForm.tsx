@@ -11,18 +11,26 @@ const LoginForm: React.FC = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const router = useRouter();
 
-    const handleLogin = async (e: React.FormEvent) => {
-        console.log('Hello???')
+    const handleRegisterRouting = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            if (password != confirmPassword) {
-                alert('Passwords are not identical')
+            router.push('/register')
+        } catch(error) {
+            alert(error)
+        }
+    }
+    const handleLogin = async (e: React.FormEvent) => {
+        e.preventDefault();
+        try {
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
                 return;
             }
-            const userInput = {email, password};
-            UserService.login(userInput);
+            const userInput = { email, password };
+            const user = await UserService.login(userInput);
+            router.push('/account');
         } catch (error) {
-            alert(error)
+            alert(error instanceof Error ? error.message : 'An unknown error occurred during login.');
         }
     };
 
@@ -31,23 +39,31 @@ const LoginForm: React.FC = () => {
             <h4>Login</h4>
             <InputField
             title="Email:"
-            label={'Enter email'}
+            label="Enter email"
             value={email}
+            onChange={(e) => setEmail(e.target.value)}
             />
             <InputField
             title="Password:"
-            label={'Enter password'}
+            label="Enter password"
             value={password}
+            onChange={(e) => setPassword(e.target.value)}
             />
             <InputField
             title="Confirm password:"
-            label={'Re-enter password'}
+            label="Re-enter password"
             value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             />
             <div className='buttons'>
             <CustomButton
              label='Login'
              onPress={handleLogin}/>
+
+             <CustomButton
+             label='Register An Account'
+             onPress={handleRegisterRouting}
+             />
             </div>
         </div>
     );
