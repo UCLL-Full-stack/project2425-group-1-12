@@ -38,6 +38,7 @@ type OrderInput = {
 
 type BuildInput = {
     id?: number;
+    name: string;
     parts: Part[];
     price: number;
     preBuild: boolean;

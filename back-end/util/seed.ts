@@ -93,6 +93,7 @@ const main = async () => {
 
     const build1 = await prisma.build.create({
         data: {
+            name: 'Budget Gaming PC',
             price: 700,
             preBuild: true,
             parts: {
@@ -103,6 +104,7 @@ const main = async () => {
 
     const build2 = await prisma.build.create({
         data: {
+            name: 'AMD Powerhouse',
             price: 2050,
             preBuild: false,
             parts: {

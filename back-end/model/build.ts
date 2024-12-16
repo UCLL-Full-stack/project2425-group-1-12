@@ -6,12 +6,14 @@ import { Part } from "./part";
 
 export class Build {
     private id?: number;
+    private name: string;
     private parts: Part[];
     private price: number;
     private preBuild: boolean;
 
     constructor(build: {
         id?: number;
+        name: string;
         parts: Part[];
         price: number;
         preBuild: boolean;
@@ -19,6 +21,7 @@ export class Build {
         this.validate(build)
 
         this.id = build.id;
+        this.name = build.name;
         this.parts = build.parts;
         this.price = build.price;
         this.preBuild = build.preBuild;
@@ -26,6 +29,7 @@ export class Build {
 
     validate(build: {
         id?: number;
+        name: string;
         parts: Part[];
         price: number;
         preBuild: boolean;
@@ -40,12 +44,14 @@ export class Build {
 
     static from ({
         id,
+        name,
         price,
         preBuild,
         parts
     }: BuildPrisma & { parts: PartPrisma[] }): Build {
         return new Build({
             id,
+            name,
             price,
             preBuild,
             parts: parts.map((part) => Part.from(part)),
