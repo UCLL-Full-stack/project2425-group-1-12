@@ -16,11 +16,7 @@ export const UserService = {
             }
             return await res.json();
         } catch (error) {
-            if (error instanceof Error) {
-                throw new Error(`Error fetching user: ${error.message}`);
-            } else {
-                throw new Error('An unknown error occurred while fetching the user.');
-            }
+            throw new Error(`Error fetching user: ${error}`);
         }
     },
 

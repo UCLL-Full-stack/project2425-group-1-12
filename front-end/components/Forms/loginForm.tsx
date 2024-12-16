@@ -2,58 +2,49 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { UserService } from '@services/UserService';
 import styles from '../../styles/loginForm.module.css';
+import InputField from '@components/uiComponents/InputField';
+import CustomButton from '@components/uiComponents/CustomButton';
 
 const LoginForm: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState<string | null>(null);
+    const [confirmPassword, setConfirmPassword] = useState('');
     const router = useRouter();
 
     const handleLogin = async (e: React.FormEvent) => {
+        console.log('Hello???')
         e.preventDefault();
-        setError(null);
-
         try {
+            if (password != confirmPassword) {
+                alert('Passwords are not identical')
+                return;
+            }
             const userInput = {email, password};
             UserService.login(userInput);
-        } catch (error: unknown) {
-            setError(error instanceof Error ? error.message : 'An unknown error occurred');
+        } catch (error) {
+            alert(error)
         }
     };
 
     return (
-        <div className={styles.container}>
-            <form className={styles.loginForm} onSubmit={handleLogin}>
-                <div className={styles.formGroup}>
-                    <label className={styles.label} htmlFor="email">Email:</label>
-                    <input
-                        className={styles.input}
-                        type="email"
-                        id="email"
-                        placeholder="Enter your email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className={styles.formGroup}>
-                    <label className={styles.label} htmlFor="password">Password:</label>
-                    <input
-                        className={styles.input}
-                        type="password"
-                        id="password"
-                        placeholder="Enter your password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                {error && <p className={styles.error}>{error}</p>}
-                <button className={styles.button} type="submit">Login</button>
-                <div className={styles.registerLink}>
-                    <p>Don't have an account? <a href="/register">Register</a></p>
-                </div>
-            </form>
+        <div className={styles.loginFormContainer}>
+            <h4>Login</h4>
+            <InputField
+            title="Email:"
+            label={'Enter email'}
+            value={email}
+            />
+            <InputField
+            title="Password:"
+            label={'Enter password'}
+            value={password}
+            />
+            <InputField
+            title="Confirm password:"
+            label={'Re-enter password'}
+            value={confirmPassword}
+            />
+            <button onClick={handleLogin} />
         </div>
     );
 };
