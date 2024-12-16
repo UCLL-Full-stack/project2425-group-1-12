@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import RegisterForm from '@components/Forms/registerForm';
+import RegisterForm from '@components/forms/RegisterForm';
 import { UserService } from '@services/UserService';
-import Header from '@components/General/header';
+import Header from '@components/header';
 import { Order } from '@types';
 
 const RegisterPage: React.FC = () => {

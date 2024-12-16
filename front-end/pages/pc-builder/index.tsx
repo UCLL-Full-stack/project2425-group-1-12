@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from '@components/General/header';
-import BuildForm from '@components/Forms/BuildsForm';
+import Header from '@components/header';
+import BuildForm from '@components/forms/BuildsForm';
 
 const PcBuilder: React.FC = () => {
   return (

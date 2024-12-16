@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import InputField from '@components/General/inputField';
+import InputField from '@components/uiComponents/InputField';
 import { faUserPen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { User } from '@types';
-import CustomDropdown from '@components/General/customDropdown';
-import CustomButton from '@components/General/customButton';
+import CustomDropdown from '@components/uiComponents/CustomDropdown';
+import CustomButton from '@components/uiComponents/CustomButton';
 import { UserService } from '@services/UserService';
 
 interface AccountFormProps {

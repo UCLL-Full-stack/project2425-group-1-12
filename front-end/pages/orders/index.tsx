@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '@components/General/header';
+import Header from '@components/header';
 
 const Orders: React.FC = () => {
   return (

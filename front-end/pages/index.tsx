@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import LoginForm from '@components/Forms/loginForm';
+import LoginForm from '@components/forms/LoginForm';
 import { useRouter } from 'next/router';
 
 const Home: React.FC = () => {

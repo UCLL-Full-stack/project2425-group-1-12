@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Header from '@components/General/header';
+import Header from '@components/header';
 import { useRouter } from 'next/router';
 import { User } from '@types';
-import AccountForm from '@components/Forms/AccountEditAndOvervieuw';
+import AccountForm from '@components/forms/AccountEditAndOverview';
 
 const Account: React.FC = () => {
   const [user, setUser] = useState<User>({
