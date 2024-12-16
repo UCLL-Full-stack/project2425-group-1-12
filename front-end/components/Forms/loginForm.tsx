@@ -27,7 +27,7 @@ const LoginForm: React.FC = () => {
     };
 
     return (
-        <div className={styles.loginFormContainer}>
+        <div className={styles.formContainer}>
             <h4>Login</h4>
             <InputField
             title="Email:"
@@ -44,7 +44,11 @@ const LoginForm: React.FC = () => {
             label={'Re-enter password'}
             value={confirmPassword}
             />
-            <button onClick={handleLogin} />
+            <div className='buttons'>
+            <CustomButton
+             label='Login'
+             onPress={handleLogin}/>
+            </div>
         </div>
     );
 };

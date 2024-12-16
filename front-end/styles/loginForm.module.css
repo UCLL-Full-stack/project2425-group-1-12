@@ -1,4 +1,4 @@
-.loginFormContainer {
+.formContainer {
     margin-top: 10vh;
     max-width: 20vw;
     display: flex;
@@ -12,7 +12,15 @@
     margin-right: auto;
 }
 
-.loginFormContainer h4 {
+.formContainer h4 {
     margin-left: auto;
     margin-right: auto;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
