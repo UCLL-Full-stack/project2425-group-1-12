@@ -3,12 +3,14 @@ import { Build } from "../../model/build";
 import { Part } from "../../model/part";
 import { User } from "../../model/user";
 
-const part1 = new Part({ name: 'Ryzen 5600X', brand: 'AMD', type: 'CPU', price: 150})
-const part2 = new Part({ name: 'RTX 3060', brand: 'NVIDIA', type: 'GPU', price: 200})
-const parts = [part1, part2]
+const part1 = new Part({ name: 'Ryzen 5600X', brand: 'AMD', type: 'CPU', price: 150});
+const part2 = new Part({ name: 'RTX 3060', brand: 'NVIDIA', type: 'GPU', price: 200});
+const parts = [part1, part2];
 
-const build1 = new Build({ parts, price: 500, preBuild: false })
-const build2 = new Build({ parts, price: 600, preBuild: true })
+const name = "test build";
+
+const build1 = new Build({ name, parts, price: 500, preBuild: false });
+const build2 = new Build({ name, parts, price: 600, preBuild: true });
 
 const builds = [build1, build2];
 const price = 1100;
