@@ -7,9 +7,13 @@ const BuildCard: React.FC<Build> = ({ name, parts, price, preBuild }) => {
   return (
     <div className={styles.buildCard}>
       <h2 className={styles.buildTitle}>{name}</h2>
-        Prebuild? {preBuild ? <>True</> : <>False</>}
-        Total Price: {price}
-        {parts.map((part) => (<PartCard key={part.id} {...part} />))}
+      {parts.map((part) => (<PartCard key={part.id} {...part} />))}
+      <div className={styles.buildTotalPrice}>
+        <div>Totale Prijs: </div>
+        <div><b>€{price}</b></div>
+        <div>Is Prebuilt:</div>
+        <div><b>{preBuild ? <>Ja</> : <>Nee</>}</b></div>
+      </div>
     </div>
   );
 };
