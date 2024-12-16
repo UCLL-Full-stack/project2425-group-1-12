@@ -70,7 +70,7 @@ export const UserService = {
 
     login: async (userInput: { email: string; password: string; }) => {
         try {
-            const res = await fetch(apiUrl + "/login", {
+            const res = await fetch(apiUrl + "/users/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

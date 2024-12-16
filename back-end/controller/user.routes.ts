@@ -34,11 +34,24 @@
  *              description: List of orders
  *              items:
  *                  $ref: '#/components/schemas/Order'
+ *      AuthenticationResponse:
+ *          type: object
+ *          properties:
+ *            token:
+ *              type: string
+ *              description: User full name.
+ *            email:
+ *              type: string
+ *              description: User email.
+ *              example: john.doe@mail.com
+ *            name:
+ *              type: string
+ *              description: User name.
+ *              example: John Doe
  */
 import express, { NextFunction, Request, Response } from 'express';
 import userService from '../service/user.service';
-import { UserInput } from '../types';
-import { User } from '@prisma/client';
+import { LoginCredentials, UserInput } from '../types';
 
 const userRouter = express.Router();
 
@@ -168,12 +181,40 @@ userRouter.post('/register', async (req: Request, res: Response, next: NextFunct
     }
 });
 
+/**
+ * @swagger
+ * /users/login:
+ *  post:
+ *      summary: Login a user.
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      type: object
+ *                      properties:
+ *                          email:
+ *                              type: string
+ *                              description: The user's email
+ *                              example: "john.doe@gmail.com"
+ *                          password:
+ *                              type: string
+ *                              description: The user's password
+ *                              example: "passwordWith8Characters"
+ *      responses:
+ *          200:
+ *              description: Registered a user object.
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          $ref: '#/components/schemas/AuthenticationResponse'
+ */
 userRouter.post('/login', async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { email, password } = req.body;
-        const response = await userService.authenticate( email, password );
+        const loginCredentials = <LoginCredentials>req.body;
+        const response = await userService.authenticate( loginCredentials );
         res.status(200).json({message: 'Authentication succesful', ...response});
-    } catch(error) {
+    } catch (error) {
         next(error);
     }
 });

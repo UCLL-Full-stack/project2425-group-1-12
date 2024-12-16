@@ -1,5 +1,5 @@
 import { User } from '../model/user';
-import { AuthenticationResponse, UserInput } from '../types';
+import { AuthenticationResponse, LoginCredentials, UserInput } from '../types';
 import userDB from '../repository/user.db';
 import bcrypt from 'bcrypt';
 import { generateJwtToken } from '../util/jwt';
@@ -37,17 +37,16 @@ const registerUser = async (userInput: UserInput): Promise<AuthenticationRespons
     };
 };
 
-const authenticate = async (email: string, password: string): Promise<AuthenticationResponse> => {
-    const user = await getUserByEmail(email);
-    const isValidPasswd = await bcrypt.compare(password,user.getPassword())
-    if (!isValidPasswd) {
-        throw new Error('Incorrect password');
-    }
+const authenticate = async (loginCredentials: LoginCredentials): Promise<AuthenticationResponse> => {
+    const user = await getUserByEmail(loginCredentials.email);
+
+    const isValidPasswd = await bcrypt.compare(loginCredentials.password, user.getPassword());
+    if (!isValidPasswd) throw new Error('Incorrect password');
 
     return {
-        token: generateJwtToken(email),
-        email,
-        name : `${user.getName()}`
+        token: generateJwtToken( loginCredentials.email ),
+        email: loginCredentials.email,
+        name : `${user.getName()}`,
     };
 };
 
