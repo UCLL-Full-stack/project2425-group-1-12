@@ -1,8 +1,14 @@
 import { Build } from "../model/build";
 import { Order } from "../model/order";
 import { Part } from "../model/part";
-import { User } from "../model/user";
 
+type Role = 'admin' | 'staff' | 'user';
+
+type AuthenticationResponse = {
+    token: string;
+    email: string;
+    name: string;
+}
 
 type UserInput = {
     id?: number;
@@ -37,9 +43,17 @@ type BuildInput = {
     preBuild: boolean;
 }
 
+type LoginCredentials = {
+    email: string;
+    password: string;
+}
+
 export {
+    Role,
+    AuthenticationResponse,
     UserInput,
     PartInput,
     OrderInput,
     BuildInput,
+    LoginCredentials,
 }

@@ -1,6 +1,8 @@
 import { User } from '../model/user';
-import { UserInput } from '../types';
+import { AuthenticationResponse, LoginCredentials, UserInput } from '../types';
 import userDB from '../repository/user.db';
+import bcrypt from 'bcrypt';
+import { generateJwtToken } from '../util/jwt';
 
 const getAllUsers = async (): Promise<User[]> => {
     return await userDB.getAllUsers();
@@ -20,17 +22,38 @@ const getUserByEmail = async (email: string): Promise<User> => {
     return user;
 };
 
-const registerUser = async ( userInput: UserInput ): Promise<User> => {
+const registerUser = async (userInput: UserInput): Promise<AuthenticationResponse> => {
     const existingUser = await userDB.getUserByEmail({ email: userInput.email.toLowerCase() });
-    if (existingUser) { // Checking for duplicate accounts
-        throw new Error(`User with email ${userInput.email} already exist`);
+    if (existingUser) {
+        throw new Error(`User with email ${userInput.email} already exists`);
     }
 
     const user = new User(userInput);
-    return await userDB.registerUser({ user });
+    await userDB.registerUser({ user });
+    const token = generateJwtToken(userInput.email);
+    console.log(token)
+    return {
+        token,
+        email: userInput.email,
+        name: `${userInput.name}`,
+    };
+};
+
+const authenticate = async (loginCredentials: LoginCredentials): Promise<AuthenticationResponse> => {
+    const user = await getUserByEmail(loginCredentials.email);
+
+    const isValidPasswd = await bcrypt.compare(loginCredentials.password, user.getPassword());
+    if (!isValidPasswd) throw new Error('Incorrect password');
+
+    return {
+        token: generateJwtToken( loginCredentials.email ),
+        email: loginCredentials.email,
+        name : `${user.getName()}`,
+    };
 };
 
 export default {
+    authenticate,
     getAllUsers,
     getUserById,
     getUserByEmail,

@@ -14,13 +14,8 @@ const LoginForm: React.FC = () => {
         setError(null);
 
         try {
-            const userData = await UserService.getUserByEmail(email);
-            if (userData.password === password) {
-                localStorage.setItem('loggedInUser', JSON.stringify(userData));
-                router.push('/account');
-            } else {
-                setError('Invalid email or password');
-            }
+            const userInput = {email, password};
+            UserService.login(userInput);
         } catch (error: unknown) {
             setError(error instanceof Error ? error.message : 'An unknown error occurred');
         }
