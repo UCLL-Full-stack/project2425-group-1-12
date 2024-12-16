@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../../styles/header.module.css';
 import Link from 'next/link';
 
@@ -8,7 +7,7 @@ const Header: React.FC = () => {
 
   const handleLogout = async () => {
     try {
-      await AsyncStorage.removeItem('loggedInUser');
+      await localStorage.removeItem('loggedInUser');
       router.push('/');
     } catch (error) {
       console.error('Failed to logout', error);
@@ -21,12 +20,12 @@ const Header: React.FC = () => {
         <div>
           <Link href="/account" className={styles.accountLink}>Account</Link>
         </div>
-        
+
         <div className={styles.middleLinks}>
           <Link href="/pc-builder" className={styles.pcBuilderLink}>PC Builder</Link>
           <Link href="/orders" className={styles.ordersLink}>Orders</Link>
         </div>
-        
+
         <div>
           <button onClick={handleLogout} className={styles.logoutLink}>Logout</button>
         </div>
