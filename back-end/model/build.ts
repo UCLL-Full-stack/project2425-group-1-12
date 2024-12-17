@@ -74,4 +74,8 @@ export class Build {
         return this.preBuild;
     }
 
+    getName(): string {
+        return this.name;
+    }
+
 }
