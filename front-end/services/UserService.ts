@@ -5,20 +5,28 @@ const apiUrl = "http://localhost:3000";
 export const UserService = {
     getUserByEmail: async (email: string) => {
         try {
-            const res = await fetch(apiUrl + `/users/email/${email}`, {
-                method: "GET",
-                headers: {
-                    "Accept": "application/json",
-                },
-            });
-            if (!res.ok) {
-                throw new Error(`User not found: ${email}`);
-            }
-            return await res.json();
+          const tokenData = localStorage.getItem('loggedInUser');
+          let token: string | null = null;
+          let email: string | null = null;
+          if(tokenData){
+            token = JSON.parse(tokenData).token;
+            email = JSON.parse(tokenData).email;
+          }
+          const res = await fetch(apiUrl + `/users/email/${email}`, {
+            method: "GET",
+            headers: {
+              "Accept": "application/json",
+              "Authorization": `Bearer ${token}`,
+            },
+          });
+          if (!res.ok) {
+            throw new Error(`User not found: ${email}`);
+          }
+          return await res.json();
         } catch (error) {
-            throw new Error(`Error fetching user: ${error}`);
+          throw new Error(`Error fetching user: ${error}`);
         }
-    },
+      },
 
     registerUser: async (user: User) => {
         try {
@@ -44,10 +52,16 @@ export const UserService = {
 
     updateUser: async (user: User) => {
         try {
+            const tokenData = localStorage.getItem('loggedInUser');
+            let token: string | null = null;
+            if(tokenData){
+              token = JSON.parse(tokenData).token;
+            }
             const res = await fetch(apiUrl + "/users/update", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
                 },
                 body: JSON.stringify(user),
             });

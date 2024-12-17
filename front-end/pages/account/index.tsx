@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Header from '@components/header';
 import { useRouter } from 'next/router';
 import { User } from '@types';
+import { UserService } from '@services/UserService';
 import AccountForm from '@components/Forms/AccountEditAndOverview';
 
 const Account: React.FC = () => {
@@ -15,17 +16,19 @@ const Account: React.FC = () => {
 
   const router = useRouter();
 
-  const fetchUserData = () => {
+  const fetchUserData = async () => {
     try {
       const loggedInUser = localStorage.getItem('loggedInUser');
       if (loggedInUser) {
-        const userObj = JSON.parse(loggedInUser);
+        const { email } = JSON.parse(loggedInUser);
+        const userObj = await UserService.getUserByEmail(email);
         setUser(userObj);
       } else {
         router.push('/');
       }
     } catch (error) {
-      console.error('Failed to load user data from localStorage', error);
+      console.error('Failed to fetch user data', error);
+      router.push('/');
     }
   };
 
