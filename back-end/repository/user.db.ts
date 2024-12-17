@@ -1,4 +1,5 @@
 import { User } from '../model/user';
+import { UpdateUserInput } from '../types';
 import database from './database';
 import bcrypt from 'bcrypt';
 
@@ -60,10 +61,40 @@ const registerUser = async ({ user }: { user: User }): Promise<User> => {
     }
 };
 
+const updateUser = async (updateData: UpdateUserInput): Promise<User> => {
+    try {
+        const currentUser = await database.user.findUnique({
+            where: { email: updateData.email.toLowerCase() },
+        });
+        const updatedUserData: any = {};
+        if (updateData.name) {
+            updatedUserData.name = updateData.name;
+        }
+        if (updateData.address) {
+            updatedUserData.address = updateData.address;
+        }
+        if (updateData.password) {
+            updatedUserData.password = await bcrypt.hash(updateData.password, 12);
+        }
+
+        const updatedUserPrisma = await database.user.update({
+            where: {email: updateData.email.toLowerCase()},
+            data: updatedUserData,
+            include: { orders: { include: { builds: { include: { parts: true }, }, }, }, },
+        })
+
+
+        return User.from(updatedUserPrisma);
+    } catch (error) {
+        console.error(error);
+        throw new Error('Database error. See server log for details.');
+    }
+};
+
 export default {
     getAllUsers,
     getUserById,
     getUserByEmail,
-    // updateUser,
+    updateUser,
     registerUser,
 };

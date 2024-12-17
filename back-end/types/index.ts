@@ -48,6 +48,13 @@ type LoginCredentials = {
     password: string;
 }
 
+type UpdateUserInput = {
+    email: string
+    name?:string
+    address?:string
+    password?:string
+}
+
 export {
     Role,
     AuthenticationResponse,
@@ -56,4 +63,5 @@ export {
     OrderInput,
     BuildInput,
     LoginCredentials,
+    UpdateUserInput,
 }

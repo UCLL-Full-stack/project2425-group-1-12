@@ -1,57 +1,58 @@
 /**
  * @swagger
- *   components:
- *    securitySchemes:
+ * components:
+ *   securitySchemes:
  *     bearerAuth:
- *      type: http
- *      scheme: bearer
- *      bearerFormat: JWT
- *    schemas:
- *      User:
- *          type: object
- *          properties:
- *            id:
- *              type: number
- *              format: int64
- *            name:
- *              type: string
- *              description: User full name.
- *              example: John Doe
- *            email:
- *              type: string
- *              description: User email.
- *              example: john.doe@mail.com
- *            password:
- *              type: string
- *              description: User password.
- *              example: password
- *            address:
- *              type: string
- *              description: User address.
- *              example: john doe avenue 25
- *            orders:
- *              type: array
- *              description: List of orders
- *              items:
- *                  $ref: '#/components/schemas/Order'
- *      AuthenticationResponse:
- *          type: object
- *          properties:
- *            token:
- *              type: string
- *              description: User full name.
- *            email:
- *              type: string
- *              description: User email.
- *              example: john.doe@mail.com
- *            name:
- *              type: string
- *              description: User name.
- *              example: John Doe
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
+ *   schemas:
+ *     User:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: number
+ *           format: int64
+ *         name:
+ *           type: string
+ *           description: User full name.
+ *           example: John Doe
+ *         email:
+ *           type: string
+ *           description: User email.
+ *           example: john.doe@mail.com
+ *         password:
+ *           type: string
+ *           description: User password.
+ *           example: password
+ *         address:
+ *           type: string
+ *           description: User address.
+ *           example: john doe avenue 25
+ *         orders:
+ *           type: array
+ *           description: List of orders
+ *           items:
+ *             $ref: '#/components/schemas/Order'
+ *     AuthenticationResponse:
+ *       type: object
+ *       properties:
+ *         token:
+ *           type: string
+ *           description: User full name.
+ *         email:
+ *           type: string
+ *           description: User email.
+ *           example: john.doe@mail.com
+ *         name:
+ *           type: string
+ *           description: User name.
+ *           example: John Doe
  */
 import express, { NextFunction, Request, Response } from 'express';
 import userService from '../service/user.service';
-import { LoginCredentials, UserInput } from '../types';
+import { LoginCredentials, UpdateUserInput, UserInput } from '../types';
+import { User } from '../model/user';
 
 const userRouter = express.Router();
 
@@ -60,6 +61,8 @@ const userRouter = express.Router();
  * /users:
  *   get:
  *     summary: Get a list of all users.
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: A list of users.
@@ -68,7 +71,7 @@ const userRouter = express.Router();
  *             schema:
  *               type: array
  *               items:
- *                  $ref: '#/components/schemas/User'
+ *                 $ref: '#/components/schemas/User'
  */
 userRouter.get('/', async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -82,22 +85,24 @@ userRouter.get('/', async (req: Request, res: Response, next: NextFunction) => {
 /**
  * @swagger
  * /users/{id}:
- *  get:
- *      summary: Get a user by id.
- *      parameters:
- *          - in: path
- *            name: id
- *            schema:
- *              type: integer
- *              required: true
- *              description: The user id.
- *      responses:
- *          200:
- *              description: A user object.
- *              content:
- *                  application/json:
- *                      schema:
- *                          $ref: '#/components/schemas/User'
+ *   get:
+ *     summary: Get a user by id.
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: The user id.
+ *     responses:
+ *       200:
+ *         description: A user object.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
  */
 userRouter.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -111,22 +116,24 @@ userRouter.get('/:id', async (req: Request, res: Response, next: NextFunction) =
 /**
  * @swagger
  * /users/email/{email}:
- *  get:
- *      summary: Get a user by email.
- *      parameters:
- *          - in: path
- *            name: email
- *            schema:
- *              type: string
- *              required: true
- *              description: The user email.
- *      responses:
- *          200:
- *              description: A user object.
- *              content:
- *                  application/json:
- *                      schema:
- *                          $ref: '#/components/schemas/User'
+ *   get:
+ *     summary: Get a user by email.
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: email
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The user email.
+ *     responses:
+ *       200:
+ *         description: A user object.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
  */
 userRouter.get('/email/:email', async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -140,36 +147,30 @@ userRouter.get('/email/:email', async (req: Request, res: Response, next: NextFu
 /**
  * @swagger
  * /users/register:
- *  post:
- *      summary: Register a user.
- *      requestBody:
- *          required: true
- *          content:
- *              application/json:
- *                  schema:
- *                      type: object
- *                      properties:
- *                          name:
- *                              type: string
- *                              description: The user's name
- *                          email:
- *                              type: string
- *                              description: The user's email
- *                              example: "john.doe@gmail.com"
- *                          password:
- *                              type: string
- *                              description: The user's password
- *                              example: "passwordWith8Characters"
- *                          address:
- *                              type: string
- *                              description: The user's address
- *      responses:
- *          201:
- *              description: Registered a user object.
- *              content:
- *                  application/json:
- *                      schema:
- *                          $ref: '#/components/schemas/User'
+ *   post:
+ *     summary: Register a user.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *               address:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Registered a user object.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
  */
 userRouter.post('/register', async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -184,8 +185,44 @@ userRouter.post('/register', async (req: Request, res: Response, next: NextFunct
 /**
  * @swagger
  * /users/login:
- *  post:
- *      summary: Login a user.
+ *   post:
+ *     summary: Login a user.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Login successful.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/AuthenticationResponse'
+ */
+userRouter.post('/login', async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const loginCredentials = <LoginCredentials>req.body;
+        const response = await userService.authenticate(loginCredentials);
+        res.status(200).json({ message: 'Authentication successful', ...response });
+    } catch (error) {
+        next(error);
+    }
+});
+
+/**
+ * @swagger
+ * /users/updateUser:
+ *  put:
+ *      summary: Update a user's information.
+ *      security:
+ *          - bearerAuth: []
  *      requestBody:
  *          required: true
  *          content:
@@ -196,24 +233,30 @@ userRouter.post('/register', async (req: Request, res: Response, next: NextFunct
  *                          email:
  *                              type: string
  *                              description: The user's email
- *                              example: "john.doe@gmail.com"
+ *                          name:
+ *                              type: string
+ *                              description: The user's name (optional for update)
+ *                          address:
+ *                              type: string
+ *                              description: The user's address (optional for update)
  *                          password:
  *                              type: string
- *                              description: The user's password
- *                              example: "passwordWith8Characters"
+ *                              description: The user's password (optional for update)
  *      responses:
  *          200:
- *              description: Registered a user object.
+ *              description: Updated user object.
  *              content:
  *                  application/json:
  *                      schema:
- *                          $ref: '#/components/schemas/AuthenticationResponse'
+ *                          $ref: '#/components/schemas/User'
+ *          401:
+ *              description: Unauthorized.
  */
-userRouter.post('/login', async (req: Request, res: Response, next: NextFunction) => {
+userRouter.put('/updateUser', async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const loginCredentials = <LoginCredentials>req.body;
-        const response = await userService.authenticate( loginCredentials );
-        res.status(200).json({message: 'Authentication succesful', ...response});
+        const updateData = <UpdateUserInput>req.body;
+        const result = await userService.updateUser(updateData);
+        res.status(200).json(result);
     } catch (error) {
         next(error);
     }
