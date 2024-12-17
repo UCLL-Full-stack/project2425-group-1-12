@@ -16,11 +16,7 @@ export const UserService = {
             }
             return await res.json();
         } catch (error) {
-            if (error instanceof Error) {
-                throw new Error(`Error fetching user: ${error.message}`);
-            } else {
-                throw new Error('An unknown error occurred while fetching the user.');
-            }
+            throw new Error(`Error fetching user: ${error}`);
         }
     },
 
@@ -36,7 +32,7 @@ export const UserService = {
             if (!res.ok) {
                 throw new Error('Registration failed');
             }
-            return await res.json();
+            return true;
         } catch (error) {
             if (error instanceof Error) {
                 throw new Error(`Error: ${error.message}`);

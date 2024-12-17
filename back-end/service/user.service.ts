@@ -8,8 +8,6 @@ const getAllUsers = async (): Promise<User[]> => {
     return await userDB.getAllUsers();
 };
 
-// TODO: change these get users to Promise<User | null>
-
 const getUserById = async (id: number): Promise<User> => {
     const user = await userDB.getUserById({ id });
     if (!user) throw new Error(`User with id ${id} not found`);
@@ -22,21 +20,19 @@ const getUserByEmail = async (email: string): Promise<User> => {
     return user;
 };
 
-const registerUser = async (userInput: UserInput): Promise<AuthenticationResponse> => {
+const registerUser = async (userInput: UserInput): Promise<void> => {
+    const e = {email: userInput.email.toLowerCase()}
+    console.log(e);
     const existingUser = await userDB.getUserByEmail({ email: userInput.email.toLowerCase() });
     if (existingUser) {
         throw new Error(`User with email ${userInput.email} already exists`);
     }
 
-    const user = new User(userInput);
+    const user = new User({
+        ...userInput,
+        email: userInput.email.toLowerCase(),
+    });
     await userDB.registerUser({ user });
-    const token = generateJwtToken(userInput.email);
-    console.log(token)
-    return {
-        token,
-        email: userInput.email,
-        name: `${userInput.name}`,
-    };
 };
 
 const authenticate = async (loginCredentials: LoginCredentials): Promise<AuthenticationResponse> => {
