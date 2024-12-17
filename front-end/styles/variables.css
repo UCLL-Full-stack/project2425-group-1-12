@@ -1,0 +1,44 @@
+/* LIGHT THEME */
+:root {
+    --background: #ffffff;
+    --selected-nav: #F6F7F8;
+
+    --text: #1F2329;
+    --info-text: #636C76;
+
+    --border: #D0D7DE;
+
+    --button-background: #F6F8FA;
+    --button-background-hover: #EFF1F4;
+    --button-background-active: #E7EBEE;
+
+    --error-text: #B84F56;
+
+    --background-error: #ff9898;
+    --background-ok: #E4FFBB;
+
+    /* ALL THEMES */
+    --border-focus: #005AD9;
+}
+
+/* DARK THEME */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #0D1116;
+        --selected-nav: #1A1E25;
+
+        --text: #E6EDF3;
+        --info-text: #8D96A0;
+
+        --border: #30363D;
+
+        --button-background: #161B22;
+        --button-background-hover: #292E36;
+        --button-background-active: #292E36;
+
+        --error-text: #FFDCE0;
+
+        --background-error: #B84F56;
+        --background-ok: #4A6B3F;
+    }
+}
