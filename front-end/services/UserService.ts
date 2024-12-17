@@ -50,31 +50,27 @@ export const UserService = {
         }
     },
 
-    updateUser: async (user: User) => {
+    updateUser: async (updateData: {email: string, name?: string, address?: string, password?:string}) => {
         try {
             const tokenData = localStorage.getItem('loggedInUser');
-            let token: string | null = null;
-            if(tokenData){
-              token = JSON.parse(tokenData).token;
-            }
-            const res = await fetch(apiUrl + "/users/update", {
-                method: "PUT",
+            const token = tokenData ? JSON.parse(tokenData).token : null;
+    
+            const response = await fetch(apiUrl + '/users/updateUser', {
+                method: 'PUT',
                 headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
                 },
-                body: JSON.stringify(user),
+                body: JSON.stringify(updateData),
             });
-            if (!res.ok) {
-                throw new Error('Update failed');
+    
+            if (!response.ok) {
+                throw new Error(`Login failed: ${response.statusText}`);
             }
-            return await res.json();
+    
+            return await response.json();
         } catch (error) {
-            if (error instanceof Error) {
-                throw new Error(`Error: ${error.message}`);
-            } else {
-                throw new Error('It ain’t work, idk why.');
-            }
+            throw new Error(`${error}`);
         }
     },
 
