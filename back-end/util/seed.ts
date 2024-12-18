@@ -59,34 +59,34 @@ const main = async () => {
     const gpu5 = await prisma.part.create({ data: { name: 'Geforce RTX 4090', brand: 'Nvidia', type: 'GPU', price: 1200 } });
 
         // MOTHERBOARD
-    const motherboard1 = await prisma.part.create({ data: { name: 'ASUS ROG STRIX B550-F', brand: 'ASUS', type: 'Motherboard', price: 200 } });
-    const motherboard2 = await prisma.part.create({ data: { name: 'MSI MPG Z790 EDGE', brand: 'MSI', type: 'Motherboard', price: 300 } });
-    const motherboard3 = await prisma.part.create({ data: { name: 'GIGABYTE B660M AORUS', brand: 'GIGABYTE', type: 'Motherboard', price: 150 } });
-    const motherboard4 = await prisma.part.create({ data: { name: 'ASROCK X670E PG Lightning', brand: 'ASRock', type: 'Motherboard', price: 250 } });
+    const motherboard1 = await prisma.part.create({ data: { name: 'ROG STRIX B550-F', brand: 'ASUS', type: 'Motherboard', price: 200 } });
+    const motherboard2 = await prisma.part.create({ data: { name: 'MPG Z790 EDGE', brand: 'MSI', type: 'Motherboard', price: 300 } });
+    const motherboard3 = await prisma.part.create({ data: { name: 'B660M AORUS', brand: 'GIGABYTE', type: 'Motherboard', price: 150 } });
+    const motherboard4 = await prisma.part.create({ data: { name: 'X670E PG Lightning', brand: 'ASRock', type: 'Motherboard', price: 250 } });
 
         // RAM
-    const ram1 = await prisma.part.create({ data: { name: 'Corsair Vengeance LPX 16GB DDR4-3200', brand: 'Corsair', type: 'RAM', price: 70 } });
-    const ram2 = await prisma.part.create({ data: { name: 'G.SKILL Trident Z5 RGB 32GB DDR5-6000', brand: 'G.SKILL', type: 'RAM', price: 200 } });
-    const ram3 = await prisma.part.create({ data: { name: 'Kingston Fury Beast 16GB DDR4-3600', brand: 'Kingston', type: 'RAM', price: 80 } });
+    const ram1 = await prisma.part.create({ data: { name: 'Vengeance LPX 16GB DDR4-3200', brand: 'Corsair', type: 'RAM', price: 70 } });
+    const ram2 = await prisma.part.create({ data: { name: 'Trident Z5 RGB 32GB DDR5-6000', brand: 'G.SKILL', type: 'RAM', price: 200 } });
+    const ram3 = await prisma.part.create({ data: { name: 'Fury Beast 16GB DDR4-3600', brand: 'Kingston', type: 'RAM', price: 80 } });
     const ram4 = await prisma.part.create({ data: { name: 'Team T-Force Delta RGB 32GB DDR4-4000', brand: 'Team Group', type: 'RAM', price: 150 } });
 
         // CASE
-    const case1 = await prisma.part.create({ data: { name: 'NZXT H510', brand: 'NZXT', type: 'Case', price: 70 } });
-    const case2 = await prisma.part.create({ data: { name: 'Corsair 4000D Airflow', brand: 'Corsair', type: 'Case', price: 80 } });
-    const case3 = await prisma.part.create({ data: { name: 'Cooler Master MasterBox NR600', brand: 'Cooler Master', type: 'Case', price: 60 } });
-    const case4 = await prisma.part.create({ data: { name: 'Fractal Design Meshify C', brand: 'Fractal Design', type: 'Case', price: 100 } });
+    const case1 = await prisma.part.create({ data: { name: 'H510', brand: 'NZXT', type: 'Case', price: 70 } });
+    const case2 = await prisma.part.create({ data: { name: '4000D Airflow', brand: 'Corsair', type: 'Case', price: 80 } });
+    const case3 = await prisma.part.create({ data: { name: 'MasterBox NR600', brand: 'Cooler Master', type: 'Case', price: 60 } });
+    const case4 = await prisma.part.create({ data: { name: 'Meshify C', brand: 'Fractal Design', type: 'Case', price: 100 } });
 
         // PSU
-    const psu1 = await prisma.part.create({ data: { name: 'Corsair RM850x', brand: 'Corsair', type: 'PSU', price: 130 } });
-    const psu2 = await prisma.part.create({ data: { name: 'EVGA SuperNOVA 750 G5', brand: 'EVGA', type: 'PSU', price: 120 } });
-    const psu3 = await prisma.part.create({ data: { name: 'Seasonic Focus GX-650', brand: 'Seasonic', type: 'PSU', price: 110 } });
-    const psu4 = await prisma.part.create({ data: { name: 'Cooler Master V850 SFX', brand: 'Cooler Master', type: 'PSU', price: 150 } });
+    const psu1 = await prisma.part.create({ data: { name: 'RM850x', brand: 'Corsair', type: 'PSU', price: 130 } });
+    const psu2 = await prisma.part.create({ data: { name: 'SuperNOVA 750 G5', brand: 'EVGA', type: 'PSU', price: 120 } });
+    const psu3 = await prisma.part.create({ data: { name: 'Focus GX-650', brand: 'Seasonic', type: 'PSU', price: 110 } });
+    const psu4 = await prisma.part.create({ data: { name: 'V850 SFX', brand: 'Cooler Master', type: 'PSU', price: 150 } });
 
         // STORAGE
-    const storage1 = await prisma.part.create({ data: { name: 'Samsung 970 EVO Plus 1TB', brand: 'Samsung', type: 'Storage', price: 100 } });
-    const storage2 = await prisma.part.create({ data: { name: 'WD Black SN850X 2TB', brand: 'Western Digital', type: 'Storage', price: 200 } });
-    const storage3 = await prisma.part.create({ data: { name: 'Crucial MX500 1TB', brand: 'Crucial', type: 'Storage', price: 80 } });
-    const storage4 = await prisma.part.create({ data: { name: 'Seagate Barracuda 4TB HDD', brand: 'Seagate', type: 'Storage', price: 100 } });
+    const storage1 = await prisma.part.create({ data: { name: '970 EVO Plus 1TB', brand: 'Samsung', type: 'Storage', price: 100 } });
+    const storage2 = await prisma.part.create({ data: { name: 'Black SN850X 2TB', brand: 'Western Digital', type: 'Storage', price: 200 } });
+    const storage3 = await prisma.part.create({ data: { name: 'MX500 1TB', brand: 'Crucial', type: 'Storage', price: 80 } });
+    const storage4 = await prisma.part.create({ data: { name: 'Barracuda 4TB HDD', brand: 'Seagate', type: 'Storage', price: 100 } });
 
 
     // BUILDS

@@ -4,6 +4,8 @@ import { Part } from "../model/part";
 
 type Role = 'admin' | 'staff' | 'user';
 
+// TODO: change Build and Order to BuildInput and OrderInput
+
 type AuthenticationResponse = {
     token: string;
     email: string;
@@ -39,8 +41,7 @@ type OrderInput = {
 type BuildInput = {
     id?: number;
     name: string;
-    parts: Part[];
-    price: number;
+    parts: PartInput[];
     preBuild: boolean;
 }
 

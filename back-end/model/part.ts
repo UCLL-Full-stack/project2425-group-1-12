@@ -67,7 +67,7 @@ export class Part {
         return this.type;
     }
 
-    getPrice(): Number {
+    getPrice(): number {
         return this.price;
     }
 }
