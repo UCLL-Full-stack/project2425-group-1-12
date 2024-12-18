@@ -1,4 +1,4 @@
-/* LIGHT THEME */
+/* Default Light Theme Variables */
 :root {
     --background: #ffffff;
     --nav: #999999;
@@ -18,30 +18,34 @@
     --background-error: #ff9898;
     --background-ok: #E4FFBB;
 
-    /* ALL THEMES */
+    /* All Themes */
     --focus: #0c7aef;
     --border-focus: #005AD9;
 }
 
-/* DARK THEME */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --background: #0D1116;
-        --nav: #31353f;
-        --form-background: #1F2329;
+/* Dark Theme Variables */
+[data-theme="dark"] {
+    --background: #0D1116;
+    --nav: #31353f;
+    --form-background: #1F2329;
 
-        --text: #E6EDF3;
-        --info-text: #8D96A0;
+    --text: #E6EDF3;
+    --info-text: #8D96A0;
 
-        --border: #30363D;
+    --border: #30363D;
 
-        --button-background: #161B22;
-        --button-background-hover: #292E36;
-        --button-background-active: #30363f;
+    --button-background: #161B22;
+    --button-background-hover: #292E36;
+    --button-background-active: #30363f;
 
-        --error-text: #FFDCE0;
+    --error-text: #FFDCE0;
 
-        --background-error: #B84F56;
-        --background-ok: #4A6B3F;
-    }
+    --background-error: #B84F56;
+    --background-ok: #4A6B3F;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text);
+    transition: background-color 0.3s, color 0.3s;
 }
