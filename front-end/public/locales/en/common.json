@@ -1,0 +1,15 @@
+{
+    "accountForm": {
+      "informationTitle": "Account Information",
+      "inputFieldNameTitle": "Name:",
+      "inputFieldAddressTitle": "Address:"
+    },
+    "header": {
+      "Builder":"PC Builder",
+      "Orders":"Orders",
+      "Language":"Language",
+      "Logout":"Logout"
+    }
+
+  }
+  

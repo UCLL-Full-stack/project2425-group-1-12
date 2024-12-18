@@ -6,7 +6,7 @@ import { User } from '@types';
 import CustomDropdown from '@components/uiComponents/CustomDropdown';
 import CustomButton from '@components/uiComponents/CustomButton';
 import { UserService } from '@services/UserService';
-
+import { useTranslation } from 'next-i18next';
 interface AccountFormProps {
     user: User;
     setUser: React.Dispatch<React.SetStateAction<User>>;
@@ -18,7 +18,7 @@ const AccountForm: React.FC<AccountFormProps> = ({ user, setUser }) => {
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-
+    const { t } = useTranslation();
     const switchEditable = () => {
         setIsEditable((prev) => !prev);
     };
@@ -72,7 +72,7 @@ const AccountForm: React.FC<AccountFormProps> = ({ user, setUser }) => {
     return (
         <div className="accountForm">
             <div className="accountHeader">
-                <h4>Account Information</h4>
+                <h4>{ t('accountForm.informationTitle') }</h4>
                 <FontAwesomeIcon
                     className="accountEditButton"
                     icon={faUserPen}
@@ -88,7 +88,7 @@ const AccountForm: React.FC<AccountFormProps> = ({ user, setUser }) => {
                 onChange={(event) => {}}
             />
             <InputField
-                title="Name:"
+                title={ t('accountForm.inputFieldNameTitle') }
                 label={user.name}
                 editable={isEditable}
                 value={user.name}
@@ -97,7 +97,7 @@ const AccountForm: React.FC<AccountFormProps> = ({ user, setUser }) => {
                 }
             />
             <InputField
-                title="Address:"
+                title={ t('accountForm.inputFieldAddressTitle') }
                 label={user.address}
                 editable={isEditable}
                 value={user.address}

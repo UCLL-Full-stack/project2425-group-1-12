@@ -4,6 +4,8 @@ import { UserService } from '@services/UserService';
 import Header from '@components/header';
 import { Order } from '@types';
 import RegisterForm from '@components/Forms/registerForm';
+import { GetServerSidePropsContext } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const RegisterPage: React.FC = () => {
     return (
@@ -11,4 +13,13 @@ const RegisterPage: React.FC = () => {
     );
 };
 
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+  const { locale } = context;
+
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? 'en', ['common'])),
+    },
+  };
+};
 export default RegisterPage;

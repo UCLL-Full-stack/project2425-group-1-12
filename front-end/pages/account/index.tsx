@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 import { User } from '@types';
 import { UserService } from '@services/UserService';
 import AccountForm from '@components/Forms/AccountEditAndOverview';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 
 const Account: React.FC = () => {
   const [user, setUser] = useState<User>({
@@ -42,6 +44,14 @@ const Account: React.FC = () => {
       <AccountForm user={user} setUser={setUser} />
     </>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? 'en', ['common'])),
+    },
+  };
 };
 
 export default Account;

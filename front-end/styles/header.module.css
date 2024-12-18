@@ -8,12 +8,38 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+}
+
+.leftLinks {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.middleLinks {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.middleLinks > a {
+  margin: 0 1rem;
+}
+
+.rightLinks {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .logoutLink {
   all: unset;
   cursor: pointer;
+  margin-left: 1rem; /* Spacing between LanguageSwitcher and Logout button */
 }
+
 .accountLink,
 .logoutLink,
 .pcBuilderLink,
@@ -26,13 +52,4 @@
 .pcBuilderLink,
 .ordersLink {
   margin: 0 1rem;
-}
-
-.middleLinks {
-  display: flex;
-  justify-content: center;
-}
-
-.middleLinks > a {
-  margin: 0 1rem; 
 }

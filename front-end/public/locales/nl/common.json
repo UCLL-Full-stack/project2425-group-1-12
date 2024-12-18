@@ -1,0 +1,13 @@
+{
+  "accountForm": {
+    "informationTitle": "Account Informatie",
+    "inputFieldNameTitle": "Naam:",
+    "inputFieldAddressTitle": "Adres:"
+  },
+  "header": {
+    "Builder":"PC Bouwer",
+    "Orders":"Bestellingen",
+    "Language":"Taal",
+    "Logout":"Log Uit"
+  }
+}

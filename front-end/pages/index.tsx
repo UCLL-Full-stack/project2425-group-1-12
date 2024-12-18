@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import LoginForm from '@components/Forms/loginForm';
+import { GetServerSidePropsContext } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Home: React.FC = () => {
     const [user, setUser] = useState<{ name: string } | null>(null);
@@ -21,6 +23,16 @@ const Home: React.FC = () => {
     return (
         <LoginForm />
     );
+};
+
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+  const { locale } = context;
+
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? 'en', ['common'])),
+    },
+  };
 };
 
 export default Home;
