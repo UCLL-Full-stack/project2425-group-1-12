@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../../styles/loginForm.module.css';
 import { User, Order } from '@types';
+import {Role} from '@types';
 import { UserService } from '@services/UserService';
 import InputField from '@components/uiComponents/InputField';
 import CustomButton from '@components/uiComponents/CustomButton';
@@ -10,6 +11,7 @@ import LanguageSwitcher from '@components/uiComponents/languageSwitcher';
 
 const RegisterForm: React.FC = () => {
     const [name, setName] = useState('');
+    const [role, setRole] = useState<Role>('user');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [address, setAddress] = useState('');
@@ -19,7 +21,7 @@ const RegisterForm: React.FC = () => {
 
     const handleRegister = async (event: React.FormEvent) => {
         event.preventDefault();
-        const newUser: User = { name, email, password, address, orders };
+        const newUser: User = { name,role, email, password, address, orders };
         try {
             const registeredUser = await UserService.registerUser(newUser);
             router.push('/');
