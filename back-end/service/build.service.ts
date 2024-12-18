@@ -34,8 +34,8 @@ const createBuild = async ( buildInput: BuildInput ): Promise<Build> => {
         price: totalPrice,
         preBuild: buildInput.preBuild,
     });
-    await buildDB.createBuild(build);
-    return build;
+    const createdBuild = await buildDB.createBuild(build);
+    return createdBuild;
 };
 
 export default {

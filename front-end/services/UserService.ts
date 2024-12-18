@@ -54,7 +54,7 @@ export const UserService = {
         try {
             const tokenData = localStorage.getItem('loggedInUser');
             const token = tokenData ? JSON.parse(tokenData).token : null;
-    
+
             const response = await fetch(apiUrl + '/users/updateUser', {
                 method: 'PUT',
                 headers: {
@@ -63,11 +63,11 @@ export const UserService = {
                 },
                 body: JSON.stringify(updateData),
             });
-    
+
             if (!response.ok) {
                 throw new Error(`Login failed: ${response.statusText}`);
             }
-    
+
             return await response.json();
         } catch (error) {
             throw new Error(`${error}`);

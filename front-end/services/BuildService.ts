@@ -40,8 +40,20 @@ export const BuildService = {
                 },
                 body: JSON.stringify(build),
             });
+
             if (!res.ok) throw new Error(`Build could not be created`);
-            return await res.json();
+            const response = await res.json()
+
+            if (localStorage.getItem('shoppingCart')) {
+                const shoppingCart = JSON.parse(localStorage.getItem('shoppingCart') as string);
+                shoppingCart.push(response.id);
+                localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
+            } else {
+                localStorage.setItem('shoppingCart', JSON.stringify([response.id]));
+            }
+
+
+            return response;
         } catch (error) {
             if (error instanceof Error) {
                 throw new Error(`Error creating build: ${error.message}`);

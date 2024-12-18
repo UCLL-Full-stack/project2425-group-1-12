@@ -83,7 +83,7 @@ const BuildForm: React.FC = () => {
               onNameChange={(e) => setName(e.target.value)}
               onPreBuildChange={(e) => setPreBuild(e.target.checked)}
             />
-            <button className={styles.getPartsButton} onClick={addBuildToOrder}>Add to Order</button>
+            <button className={styles.getPartsButton} onClick={addBuildToOrder}>Add to Shopping Cart</button>
           </>
         )}
       </div>
