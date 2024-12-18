@@ -50,6 +50,7 @@ const LoginForm: React.FC = () => {
             title="Password:"
             label="Enter password"
             value={password}
+            secure={true}
             onChange={(e) => setPassword(e.target.value)}
             />
             <div className='buttons'>
