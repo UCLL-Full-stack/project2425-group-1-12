@@ -37,6 +37,7 @@ const createBuild = async (build: Build): Promise<Build> => {
                 },
                 price: build.getPrice(),
                 preBuild: build.getPreBuild(),
+                name: build.getName(),
             },
             include: {parts: true},
         });
