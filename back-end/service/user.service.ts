@@ -1,5 +1,5 @@
 import { User } from '../model/user';
-import { AuthenticationResponse, LoginCredentials, UserInput } from '../types';
+import { AuthenticationResponse, LoginCredentials, UpdateUserInput, UserInput } from '../types';
 import userDB from '../repository/user.db';
 import bcrypt from 'bcrypt';
 import { generateJwtToken } from '../util/jwt';
@@ -21,8 +21,6 @@ const getUserByEmail = async (email: string): Promise<User> => {
 };
 
 const registerUser = async (userInput: UserInput): Promise<void> => {
-    const e = {email: userInput.email.toLowerCase()}
-    console.log(e);
     const existingUser = await userDB.getUserByEmail({ email: userInput.email.toLowerCase() });
     if (existingUser) {
         throw new Error(`User with email ${userInput.email} already exists`);
@@ -35,6 +33,11 @@ const registerUser = async (userInput: UserInput): Promise<void> => {
     await userDB.registerUser({ user });
 };
 
+const updateUser = async (updateData: UpdateUserInput): Promise<User> => {
+    const updatedUser = await userDB.updateUser(updateData);
+    return updatedUser;
+  };
+  
 const authenticate = async (loginCredentials: LoginCredentials): Promise<AuthenticationResponse> => {
     const user = await getUserByEmail(loginCredentials.email);
 
@@ -54,4 +57,5 @@ export default {
     getUserById,
     getUserByEmail,
     registerUser,
+    updateUser,
 };

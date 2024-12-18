@@ -1,10 +1,9 @@
 .accountForm {
+    position: relative;
     margin-top: 10vh;
-    max-width: 18vw;
+    max-width: 20vw;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 15px;
     background-color: #f5f5f5;
@@ -20,7 +19,9 @@
 }
 
 .accountEditButton {
-    margin-left: 10px;
+    position: absolute;
+    top: 25px;
+    right: 10px;
     cursor: pointer;
     color: #333;
 }
