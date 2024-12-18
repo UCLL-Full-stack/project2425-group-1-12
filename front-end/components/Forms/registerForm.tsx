@@ -5,6 +5,8 @@ import { UserService } from '@services/UserService';
 import InputField from '@components/uiComponents/InputField';
 import CustomButton from '@components/uiComponents/CustomButton';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from '@components/uiComponents/languageSwitcher';
 
 const RegisterForm: React.FC = () => {
     const [name, setName] = useState('');
@@ -13,6 +15,7 @@ const RegisterForm: React.FC = () => {
     const [address, setAddress] = useState('');
     const [orders] = useState<Order[]>([]);
     const router = useRouter();
+    const { t } = useTranslation();
 
     const handleRegister = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -28,34 +31,35 @@ const RegisterForm: React.FC = () => {
 
     return (
         <div className={styles.formContainer}>
-            <h4>Register</h4>
+            <h4>{t('register.registerTitle')}</h4>
             <InputField
-                title="Name:"
-                label="Enter your name"
+                title={t('register.nameRegisterTitle')}
+                label={t('register.nameRegisterLabel')}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
             />
             <InputField
                 title="Email:"
-                label="Enter your email"
+                label={t('register.emailRegisterLabel')}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
             />
             <InputField
-                title="Password:"
-                label="Enter your password"
+                title={t('register.passwordRegisterTitle')}
+                label={t('register.passwordRegisterLabel')}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             />
             <InputField
-                title="Address:"
-                label="Enter your address"
+                title={t('register.addressRegisterTitle')}
+                label={t('register.addressRegisterLabel')}
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
             />
+            <LanguageSwitcher />
             <div className="buttons">
                 <CustomButton
-                    label="Register"
+                    label={t('register.registerButton')}
                     onPress={handleRegister}
                 />
             </div>

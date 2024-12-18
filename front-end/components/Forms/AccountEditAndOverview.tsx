@@ -105,31 +105,31 @@ const AccountForm: React.FC<AccountFormProps> = ({ user, setUser }) => {
                     setUser((prev) => ({ ...prev, address: event.target.value }))
                 }
             />
-            <CustomDropdown label="Password" onClick={handleSwitchAdvanced} />
+            <CustomDropdown label={t('accountForm.passwordDropdownLabel')} onClick={handleSwitchAdvanced} />
             {showAdvanced && (
                 <>
                     <InputField
-                        label="Enter current password"
+                        label={t('accountForm.inputFieldCurrentPassword')}
                         editable
                         value={currentPassword}
                         secure
                         onChange={(event) => setCurrentPassword(event.target.value)}
                     />
                     <InputField
-                        label="Enter new password"
+                        label={t('accountForm.inputFieldNewPassword')}
                         editable
                         value={newPassword}
                         secure
                         onChange={(event) => setNewPassword(event.target.value)}
                     />
                     <InputField
-                        label="Confirm new password"
+                        label={t('accountForm.inputFieldConfirmNewPassword')}
                         editable
                         value={confirmPassword}
                         secure
                         onChange={(event) => setConfirmPassword(event.target.value)}
                     />
-                    <CustomButton label="Update Password" onPress={handleUpdatePassword} />
+                    <CustomButton label={t('accountForm.updatePasswordButton')} onPress={handleUpdatePassword} />
                 </>
             )}
             <CustomButton label="Update Account" onPress={handleUpdateAccount} />

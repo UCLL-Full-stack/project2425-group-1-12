@@ -1,8 +1,30 @@
 {
+  "login":{
+    "emailLoginLabel":"Vul je email in",
+    "passwordLoginTitle":"Wachtwoord:",
+    "passwordLoginLabel":"Vul je wachtwoord in",
+    "registerButtonLabel":"Registreer een account"
+  },
+  "register":{
+    "registerTitle":"Registreer",
+    "nameRegisterTitle":"Naam:",
+    "nameRegisterLabel":"Vul je naam in",
+    "emailRegisterLabel":"Vul je email in",
+    "passwordRegisterTitle":"Wachtwoord:",
+    "passwordRegisterLabel":"Vul je wachtwoord in",
+    "addressRegisterTitle":"Adres:",
+    "addressRegisterLabel":"Vul je adres in",
+    "registerButton":"Registreer"
+  },
   "accountForm": {
     "informationTitle": "Account Informatie",
     "inputFieldNameTitle": "Naam:",
-    "inputFieldAddressTitle": "Adres:"
+    "inputFieldAddressTitle": "Adres:",
+    "inputFieldCurrentPassword":"Vul je huidig wachtwoord in",
+    "inputFieldNewPassword":"Vul je nieuw wachtwoord in",
+    "inputFieldConfirmNewPassword":"Bevestig nieuw wachtwoord",
+    "updatePasswordButton":"Update Wachtwoord",
+    "passwordDropdownLabel":"Wachtwoord"
   },
   "header": {
     "Builder":"PC Bouwer",
