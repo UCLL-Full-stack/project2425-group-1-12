@@ -21,7 +21,9 @@ const Home: React.FC = () => {
     }, [router]);
 
     return (
+      <div className='body'>
         <LoginForm />
+      </div>
     );
 };
 

@@ -2,6 +2,11 @@
     color: var(--text);
 }
 
+.body, html {
+    background-color: var(--background);
+    min-height: 100vh;
+}
+
 button {
     background-color: var(--button-background);
 }
@@ -37,12 +42,12 @@ button:active {
     top: 25px;
     right: 10px;
     cursor: pointer;
-    color: #333;
+    color: var(--text);
 }
 
 
 .accountEditButton:hover {
-    color: #0c7aef;
+    color: var(--focus);
 }
 /*
 Custom Dropdown code
@@ -60,7 +65,7 @@ Custom Dropdown code
 }
 
 .dropdownButton:hover {
-    color: #0c7aef;
+    color: var(--focus);
 }
 
 .dropdownIcon {
@@ -73,6 +78,7 @@ Custom Button code
     margin-top: 2vh;
     padding: 10px 20px;
     color: var(--background);
+    background-color: var(--text);
     border: none;
     border-radius: 10px;
     font-size: 16px;
@@ -81,5 +87,5 @@ Custom Button code
 }
 
 .custom-button:hover {
-    background-color: #0c7aef;
+    background-color: var(--focus);
 }
