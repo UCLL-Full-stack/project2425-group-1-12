@@ -3,6 +3,7 @@ import styles from '../styles/header.module.css';
 import Link from 'next/link';
 import LanguageSwitcher from './uiComponents/languageSwitcher';
 import { useTranslation } from 'react-i18next';
+import ThemeSwitcher from './uiComponents/themeSwitcher';
 
 const Header: React.FC = () => {
   const router = useRouter();
@@ -30,6 +31,7 @@ const Header: React.FC = () => {
         </div>
 
         <div className={styles.rightLinks}>
+          <ThemeSwitcher/>
           <LanguageSwitcher />
           <button onClick={handleLogout} className={styles.logoutLink}>{ t('header.Logout') }</button>
         </div>

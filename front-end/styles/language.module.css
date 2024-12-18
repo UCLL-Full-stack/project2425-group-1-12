@@ -1,0 +1,51 @@
+.languageSwitcher {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .languageButton {
+    background: var(--background);
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .languageButton:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .dropdownMenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--background);
+    border: 1px solid var(--background);
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    z-index: 1000;
+    width: 150px;
+  }
+  
+  .dropdownItem {
+    padding: 10px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+  
+  .flagIcon {
+    width: 20px;
+    height: 14px;
+    border-radius: 2px;
+  }
+  

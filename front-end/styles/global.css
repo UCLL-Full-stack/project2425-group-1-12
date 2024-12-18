@@ -42,13 +42,8 @@ button:active {
     top: 25px;
     right: 10px;
     cursor: pointer;
-    color: var(--text);
 }
 
-
-.accountEditButton:hover {
-    color: var(--focus);
-}
 /*
 Custom Dropdown code
 */

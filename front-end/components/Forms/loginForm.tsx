@@ -6,6 +6,7 @@ import InputField from '@components/uiComponents/InputField';
 import CustomButton from '@components/uiComponents/CustomButton';
 import LanguageSwitcher from '@components/uiComponents/languageSwitcher';
 import { useTranslation } from 'next-i18next';
+import ThemeSwitcher from '@components/uiComponents/themeSwitcher';
 
 const LoginForm: React.FC = () => {
     const [email, setEmail] = useState('');

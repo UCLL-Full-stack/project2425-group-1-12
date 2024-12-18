@@ -32,12 +32,14 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  gap: 1rem;
 }
+
 
 .logoutLink {
   all: unset;
   cursor: pointer;
-  margin-left: 1rem; /* Spacing between LanguageSwitcher and Logout button */
+  margin-left: 1rem;
 }
 
 .accountLink,
