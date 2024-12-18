@@ -1,4 +1,4 @@
-import { Build } from "@types";
+import { NewBuild } from "@types";
 
 const apiUrl = "http://localhost:3000"; //TODO: change this .env later
 
@@ -26,7 +26,7 @@ export const BuildService = {
             }
         }
     },
-    createBuild: async (build: Build) => {
+    createBuild: async (build: NewBuild) => {
         try {
             const tokenData = localStorage.getItem("loggedInUser");
             let token: string | null = null;
