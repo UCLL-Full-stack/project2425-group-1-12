@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '@components/header';
-import BuildForm from '@components/Forms/BuildsForm';
+import BuildForm from '@components/forms/BuildForm';
 import { GetServerSidePropsContext } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
