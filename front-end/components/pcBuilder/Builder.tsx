@@ -27,7 +27,7 @@ const Builder: React.FC<BuilderProps> = ({
       <h2>Nieuwe Build</h2>
 
       <div className={styles.partPickerList}>
-        {["GPU", "CPU", "RAM", "Motherboard", "Case", "PSU", "Storage"].map((partType) => (
+        {["CPU", "GPU", "Motherboard", "RAM", "Storage", "Case", "PSU"].map((partType) => (
           <PartPicker
             key={partType}
             availableParts={availableParts}

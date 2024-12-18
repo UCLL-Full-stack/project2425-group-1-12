@@ -26,6 +26,7 @@ export const BuildService = {
             }
         }
     },
+
     createBuild: async (build: NewBuild) => {
         try {
             const tokenData = localStorage.getItem("loggedInUser");
@@ -44,14 +45,13 @@ export const BuildService = {
             if (!res.ok) throw new Error(`Build could not be created`);
             const response = await res.json()
 
-            if (localStorage.getItem('shoppingCart')) {
-                const shoppingCart = JSON.parse(localStorage.getItem('shoppingCart') as string);
+            if (sessionStorage.getItem('shoppingCart')) {
+                const shoppingCart = JSON.parse(sessionStorage.getItem('shoppingCart') as string);
                 shoppingCart.push(response.id);
-                localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
+                sessionStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
             } else {
-                localStorage.setItem('shoppingCart', JSON.stringify([response.id]));
+                sessionStorage.setItem('shoppingCart', JSON.stringify([response.id]));
             }
-
 
             return response;
         } catch (error) {
@@ -62,6 +62,7 @@ export const BuildService = {
             }
         }
     },
+
     getBuildsFromUser: async () => {
         try {
             const tokenData = localStorage.getItem("loggedInUser");
@@ -84,6 +85,30 @@ export const BuildService = {
                 throw new Error('An unknown error occurred while fetching builds.');
             }
         }
-    }
+    },
+
+    getBuildFromId: async (id: number) => {
+        try {
+            const tokenData = localStorage.getItem("loggedInUser");
+            let token: string | null = null;
+            if (tokenData) token = JSON.parse(tokenData).token;
+
+            const res = await fetch(apiUrl + "/builds/" + id, {
+                method: "GET",
+                headers: {
+                    "Accept": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+            });
+            if (!res.ok) throw new Error(`Build could not be fetched`);
+            return await res.json();
+        } catch (error) {
+            if (error instanceof Error) {
+                throw new Error(`Error fetching build: ${error.message}`);
+            } else {
+                throw new Error('An unknown error occurred while fetching build.');
+            }
+        }
+    },
 }
 

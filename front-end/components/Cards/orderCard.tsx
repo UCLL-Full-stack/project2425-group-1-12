@@ -12,10 +12,10 @@ const OrderCard: React.FC<Order> = ({ builds, price, orderStatus, orderDate }) =
 
       <div className={styles.orderCardContent}>
         <ul className={styles.orderCardDetails}>
-          <li>Total Price: € {price}</li>
+          <li>Total Price: €{price}</li>
           <li>Status: {orderStatus}</li>
         </ul>
-        <div className={styles.orderCardBuilds}>
+        <div className={styles.buildCards}>
           {builds.length > 0 ? (
             builds.map((build) => (
               <BuildCardSmall key={build.id} {...build} />
