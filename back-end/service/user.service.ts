@@ -45,7 +45,7 @@ const authenticate = async (loginCredentials: LoginCredentials): Promise<Authent
     if (!isValidPasswd) throw new Error('Incorrect password');
 
     return {
-        token: generateJwtToken( loginCredentials.email ),
+        token: generateJwtToken(loginCredentials.email, user.getRole()),
         email: loginCredentials.email,
         name : `${user.getName()}`,
     };

@@ -42,6 +42,8 @@ const orderRouter = express.Router();
  * /orders:
  *   get:
  *     summary: Get a list of all orders.
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: A list of orders.
@@ -54,6 +56,7 @@ const orderRouter = express.Router();
  */
 orderRouter.get('/', async (req: Request, res: Response, next: NextFunction) => {
     try {
+        const role = req.params.role;
         const orders = await orderService.getAllOrders();
         res.status(200).json(orders);
     } catch (error) {
@@ -66,6 +69,8 @@ orderRouter.get('/', async (req: Request, res: Response, next: NextFunction) => 
  * /orders/{id}:
  *  get:
  *      summary: Get an order by id.
+ *     security:
+ *       - bearerAuth: []
  *      parameters:
  *          - in: path
  *            name: id
