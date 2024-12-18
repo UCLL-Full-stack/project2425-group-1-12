@@ -8,9 +8,7 @@ import CustomButton from '@components/uiComponents/CustomButton';
 const LoginForm: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
     const router = useRouter();
-
     const handleRegisterRouting = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
@@ -22,8 +20,13 @@ const LoginForm: React.FC = () => {
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            if (password !== confirmPassword) {
-                alert('Passwords do not match');
+            const userObj = await UserService.getUserByEmail(email);
+            if (!userObj) {
+                alert(`User with email: ${email} does not exist!`)
+                return;
+            }
+            if (password != userObj.password) {
+                alert('Password is not right')
                 return;
             }
             const userInput = { email, password };
@@ -47,13 +50,8 @@ const LoginForm: React.FC = () => {
             title="Password:"
             label="Enter password"
             value={password}
+            secure={true}
             onChange={(e) => setPassword(e.target.value)}
-            />
-            <InputField
-            title="Confirm password:"
-            label="Re-enter password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
             />
             <div className='buttons'>
             <CustomButton
