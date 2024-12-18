@@ -51,7 +51,14 @@ model User {
     updatedAt       DateTime        @updatedAt
     email           String          @unique
     name            String
+    role            Role
     password        String
     address         String
     orders          Order[]         @relation("UserOrders")
 }
+enum Role {
+    admin
+    staff
+    user
+}
+

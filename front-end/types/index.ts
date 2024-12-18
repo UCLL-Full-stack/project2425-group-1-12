@@ -1,5 +1,9 @@
+
+export type Role = 'admin' | 'staff' | 'user';
+
 export type User = {
     id?: number;
+    role : Role;
     name: string;
     email: string;
     password: string;

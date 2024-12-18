@@ -6,7 +6,13 @@ import bcrypt from 'bcrypt';
 const getAllUsers = async (): Promise<User[]> => {
     try {
         const userPrisma = await database.user.findMany({
-            include: { orders: { include: { builds: { include: { parts: true }, }, }, }, },
+            include: { 
+                orders: { 
+                    include: { 
+                        builds: { include: { parts: true }, }, 
+                    }, 
+                }, 
+            },
         });
         return userPrisma.length > 0 ? userPrisma.map(User.from) : [];
     } catch (error) {
@@ -19,7 +25,13 @@ const getUserById = async ({ id }: { id: number }): Promise<User | null> => {
     try {
         const userPrisma = await database.user.findUnique({
             where: { id },
-            include: { orders: { include: { builds: { include: { parts: true }, }, }, }, },
+            include: { 
+                orders: { 
+                    include: { 
+                        builds: { include: { parts: true }, }, 
+                    }, 
+                }, 
+            },
         });
         return userPrisma ? User.from(userPrisma) : null;
     } catch (error) {
@@ -32,7 +44,13 @@ const getUserByEmail = async ({ email }: { email: string }): Promise<User | null
     try {
         const userPrisma = await database.user.findUnique({
             where: { email },
-            include: { orders: { include: { builds: { include: { parts: true }, }, }, }, },
+            include: { 
+                orders: { 
+                    include: { 
+                        builds: { include: { parts: true }, }, 
+                    }, 
+                }, 
+            },
         });
         return userPrisma ? User.from(userPrisma) : null;
     } catch (error) {
@@ -49,9 +67,16 @@ const registerUser = async ({ user }: { user: User }): Promise<User> => {
                 email: user.getEmail(),
                 password: await bcrypt.hash(user.getPassword(), 12),
                 address: user.getAddress(),
+                role: user.getRole(),
                 orders: { create: [] },
             },
-            include: { orders: { include: { builds: { include: { parts: true }, }, }, }, },
+            include: { 
+                orders: { 
+                    include: { 
+                        builds: { include: { parts: true }, }, 
+                    }, 
+                }, 
+            },
         });
 
         return User.from(userPrisma);
@@ -66,6 +91,11 @@ const updateUser = async (updateData: UpdateUserInput): Promise<User> => {
         const currentUser = await database.user.findUnique({
             where: { email: updateData.email.toLowerCase() },
         });
+
+        if (!currentUser) {
+            throw new Error('User not found');
+        }
+
         const updatedUserData: any = {};
         if (updateData.name) {
             updatedUserData.name = updateData.name;
@@ -76,13 +106,18 @@ const updateUser = async (updateData: UpdateUserInput): Promise<User> => {
         if (updateData.password) {
             updatedUserData.password = await bcrypt.hash(updateData.password, 12);
         }
-
+        
         const updatedUserPrisma = await database.user.update({
-            where: {email: updateData.email.toLowerCase()},
+            where: { email: updateData.email.toLowerCase() },
             data: updatedUserData,
-            include: { orders: { include: { builds: { include: { parts: true }, }, }, }, },
-        })
-
+            include: { 
+                orders: { 
+                    include: { 
+                        builds: { include: { parts: true }, }, 
+                    }, 
+                }, 
+            },
+        });
 
         return User.from(updatedUserPrisma);
     } catch (error) {
