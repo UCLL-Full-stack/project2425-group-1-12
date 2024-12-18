@@ -1,6 +1,6 @@
-import BuildCard from "@components/cards/BuildCard";
 import { Build } from "@types";
 import styles from "@styles/BuildForm.module.css";
+import BuildCard from "@components/Cards/BuildCard";
 
 interface BuildsListProps {
   builds: Build[];
