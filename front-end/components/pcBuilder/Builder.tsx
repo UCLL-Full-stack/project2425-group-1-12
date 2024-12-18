@@ -3,6 +3,7 @@ import { Part } from "@types";
 import styles from "@styles/BuildForm.module.css";
 
 interface BuilderProps {
+  onPreBuildChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onNameChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   availableParts: Part[];
   selectedParts: Part[];
@@ -10,6 +11,7 @@ interface BuilderProps {
 };
 
 const Builder: React.FC<BuilderProps> = ({
+  onPreBuildChange,
   onNameChange,
   availableParts,
   selectedParts,
@@ -40,6 +42,15 @@ const Builder: React.FC<BuilderProps> = ({
           <input
             placeholder="Name"
             onChange={onNameChange}
+          />
+        </div>
+
+        <div>
+          <h3>Pre build?</h3>
+          <input
+            className={styles.checkbox}
+            type="checkbox"
+            onChange={onPreBuildChange}
           />
         </div>
 

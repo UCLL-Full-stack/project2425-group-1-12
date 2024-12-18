@@ -12,6 +12,7 @@ const BuildForm: React.FC = () => {
   const [selectedParts, setSelectedParts] = useState<Part[]>([]);
   const [availableParts, setAvailableParts] = useState<Part[]>([]);
   const [name, setName] = useState<string>("");
+  const [preBuild, setPreBuild] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchBuilds = async () => {
@@ -44,8 +45,6 @@ const BuildForm: React.FC = () => {
       (type) => !selectedParts.some((part) => part.type === type)
     );
 
-    console.log(selectedParts)
-
     if (missingParts.length > 0) {
       alert(`Error: Missing the following part types: ${missingParts.join(", ")}`);
       return;
@@ -53,7 +52,7 @@ const BuildForm: React.FC = () => {
 
     if (name === "") { alert('Error: Missing name'); return; }
 
-    const build = { name, preBuild: false, parts: selectedParts };
+    const build = { name, preBuild, parts: selectedParts };
     const createdBuild = await BuildService.createBuild(build);
 
     if (createdBuild.name) {
@@ -82,6 +81,7 @@ const BuildForm: React.FC = () => {
               availableParts={availableParts}
               onUpdateSelectedParts={setSelectedParts}
               onNameChange={(e) => setName(e.target.value)}
+              onPreBuildChange={(e) => setPreBuild(e.target.checked)}
             />
             <button className={styles.getPartsButton} onClick={addBuildToOrder}>Add to Order</button>
           </>
