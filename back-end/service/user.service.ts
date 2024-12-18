@@ -36,8 +36,8 @@ const registerUser = async (userInput: UserInput): Promise<void> => {
 const updateUser = async (updateData: UpdateUserInput): Promise<User> => {
     const updatedUser = await userDB.updateUser(updateData);
     return updatedUser;
-  };
-  
+};
+
 const authenticate = async (loginCredentials: LoginCredentials): Promise<AuthenticationResponse> => {
     const user = await getUserByEmail(loginCredentials.email);
 
@@ -48,6 +48,7 @@ const authenticate = async (loginCredentials: LoginCredentials): Promise<Authent
         token: generateJwtToken(loginCredentials.email, user.getRole()),
         email: loginCredentials.email,
         name : `${user.getName()}`,
+        id: user.getId(),
     };
 };
 

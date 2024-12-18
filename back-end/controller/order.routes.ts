@@ -108,4 +108,33 @@ orderRouter.get('/:id', async (req: Request, res: Response, next: NextFunction) 
 //     }
 // });
 
+/**
+ * @swagger
+ * /builds/user:
+ *   get:
+ *     security:
+ *      - bearerAuth: []
+ *     summary: Get a list of all builds from a user.
+ *     responses:
+ *       200:
+ *         description: A list of builds from a user.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                  $ref: '#/components/schemas/Build'
+ */
+orderRouter.get('/builds/user/:id', async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const userId = Number(req.params.id);
+        if (isNaN(userId)) { return res.status(400).json({ error: 'Invalid user ID. Must be a number.' })};
+
+        const builds = await orderService.getAllBuildsByUserId({ id: userId });
+        res.status(200).json(builds);
+    } catch (error) {
+        next(error);
+    }
+});
+
 export { orderRouter };

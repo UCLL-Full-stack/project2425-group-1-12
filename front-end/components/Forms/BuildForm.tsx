@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "@styles/BuildForm.module.css";
 import { Build, Part } from "@types";
 import { BuildService } from "@services/BuildService";
+import { OrderService } from "@services/OrderService";
 import { PartService } from "@services/PartService";
 import BuildsList from "@components/pcBuilder/BuildsList";
 import Builder from "@components/pcBuilder/Builder";
@@ -17,7 +18,7 @@ const BuildForm: React.FC = () => {
   useEffect(() => {
     const fetchBuilds = async () => {
       try {
-        const fetchedBuilds = await BuildService.getAllBuilds();
+        const fetchedBuilds = await OrderService.getAllBuildsByUserId();
         setBuilds(fetchedBuilds);
       } catch (error) {
         if (error instanceof Error) console.error(error.message);

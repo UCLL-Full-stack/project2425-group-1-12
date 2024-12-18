@@ -22,6 +22,14 @@ export type Part = {
 export type Build = {
     id?: number;
     name: string;
+    price: number;
+    parts: Part[];
+    preBuild: boolean;
+}
+
+export type NewBuild = {
+    id?: number;
+    name: string;
     parts: Part[];
     preBuild: boolean;
 }

@@ -7,6 +7,10 @@ const getAllOrders = async (): Promise<Order[]> => {
     return await orderDB.getAllOrders();
 }
 
+const getAllBuildsByUserId = async ({ id }: { id: any }): Promise<any> => {
+    return await orderDB.getAllBuildsByUserId(id);
+};
+
 const getOrderById = async (id: number): Promise<Order> => {
     const order = await orderDB.getOrderById({ id });
     if (!order) throw new Error(`Order with id ${id} does not exist`);
@@ -32,4 +36,5 @@ export default {
     getAllOrders,
     getOrderById,
     createOrder,
+    getAllBuildsByUserId,
 };
