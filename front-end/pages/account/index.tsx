@@ -3,14 +3,15 @@ import Header from '@components/header';
 import { useRouter } from 'next/router';
 import { User } from '@types';
 import { UserService } from '@services/UserService';
-import AccountForm from '@components/forms/AccountEditAndOverview';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetServerSideProps } from 'next';
+import AccountForm from '@components/Forms/AccountEditAndOverview';
 
 const Account: React.FC = () => {
   const [user, setUser] = useState<User>({
     name: '',
     email: '',
+    role:'user',
     password: '',
     address: '',
     orders: [],
