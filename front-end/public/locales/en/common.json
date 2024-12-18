@@ -1,0 +1,37 @@
+{
+    "login":{
+      "emailLoginLabel":"Enter email",
+      "passwordLoginTitle":"Password:",
+      "passwordLoginLabel":"Enter Password",
+      "registerButtonLabel":"Register an account"
+    },
+    "register":{
+      "registerTitle":"Register",
+      "nameRegisterTitle":"Name:",
+      "nameRegisterLabel":"Enter your name",
+      "emailRegisterLabel":"Enter your email",
+      "passwordRegisterTitle":"Password:",
+      "passwordRegisterLabel":"Enter your password",
+      "addressRegisterTitle":"Address:",
+      "addressRegisterLabel":"Enter your address",
+      "registerButton":"Register"
+    },
+    "accountForm": {
+      "informationTitle": "Account Information",
+      "inputFieldNameTitle": "Name:",
+      "inputFieldAddressTitle": "Address:",
+      "inputFieldCurrentPassword":"Enter current password",
+      "inputFieldNewPassword":"Enter new password",
+      "inputFieldConfirmNewPassword":"Confirm new password",
+      "updatePasswordButton":"Update Password",
+      "passwordDropdownLabel":"Password"
+    },
+    "header": {
+      "Builder":"PC Builder",
+      "Orders":"Orders",
+      "Language":"Language",
+      "Logout":"Logout"
+    }
+
+  }
+  

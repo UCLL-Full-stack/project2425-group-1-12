@@ -6,7 +6,7 @@ import { User } from '@types';
 import CustomDropdown from '@components/uiComponents/CustomDropdown';
 import CustomButton from '@components/uiComponents/CustomButton';
 import { UserService } from '@services/UserService';
-
+import { useTranslation } from 'next-i18next';
 interface AccountFormProps {
     user: User;
     setUser: React.Dispatch<React.SetStateAction<User>>;
@@ -18,7 +18,7 @@ const AccountForm: React.FC<AccountFormProps> = ({ user, setUser }) => {
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-
+    const { t } = useTranslation();
     const switchEditable = () => {
         setIsEditable((prev) => !prev);
     };
@@ -72,7 +72,7 @@ const AccountForm: React.FC<AccountFormProps> = ({ user, setUser }) => {
     return (
         <div className="accountForm">
             <div className="accountHeader">
-                <h4>Account Information</h4>
+                <h4>{ t('accountForm.informationTitle') }</h4>
                 <FontAwesomeIcon
                     className="accountEditButton"
                     icon={faUserPen}
@@ -88,7 +88,7 @@ const AccountForm: React.FC<AccountFormProps> = ({ user, setUser }) => {
                 onChange={(event) => {}}
             />
             <InputField
-                title="Name:"
+                title={ t('accountForm.inputFieldNameTitle') }
                 label={user.name}
                 editable={isEditable}
                 value={user.name}
@@ -97,7 +97,7 @@ const AccountForm: React.FC<AccountFormProps> = ({ user, setUser }) => {
                 }
             />
             <InputField
-                title="Address:"
+                title={ t('accountForm.inputFieldAddressTitle') }
                 label={user.address}
                 editable={isEditable}
                 value={user.address}
@@ -105,31 +105,31 @@ const AccountForm: React.FC<AccountFormProps> = ({ user, setUser }) => {
                     setUser((prev) => ({ ...prev, address: event.target.value }))
                 }
             />
-            <CustomDropdown label="Password" onClick={handleSwitchAdvanced} />
+            <CustomDropdown label={t('accountForm.passwordDropdownLabel')} onClick={handleSwitchAdvanced} />
             {showAdvanced && (
                 <>
                     <InputField
-                        label="Enter current password"
+                        label={t('accountForm.inputFieldCurrentPassword')}
                         editable
                         value={currentPassword}
                         secure
                         onChange={(event) => setCurrentPassword(event.target.value)}
                     />
                     <InputField
-                        label="Enter new password"
+                        label={t('accountForm.inputFieldNewPassword')}
                         editable
                         value={newPassword}
                         secure
                         onChange={(event) => setNewPassword(event.target.value)}
                     />
                     <InputField
-                        label="Confirm new password"
+                        label={t('accountForm.inputFieldConfirmNewPassword')}
                         editable
                         value={confirmPassword}
                         secure
                         onChange={(event) => setConfirmPassword(event.target.value)}
                     />
-                    <CustomButton label="Update Password" onPress={handleUpdatePassword} />
+                    <CustomButton label={t('accountForm.updatePasswordButton')} onPress={handleUpdatePassword} />
                 </>
             )}
             <CustomButton label="Update Account" onPress={handleUpdateAccount} />

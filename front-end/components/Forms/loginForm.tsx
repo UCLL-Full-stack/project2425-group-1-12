@@ -4,11 +4,14 @@ import { UserService } from '@services/UserService';
 import styles from '../../styles/loginForm.module.css';
 import InputField from '@components/uiComponents/InputField';
 import CustomButton from '@components/uiComponents/CustomButton';
+import LanguageSwitcher from '@components/uiComponents/languageSwitcher';
+import { useTranslation } from 'next-i18next';
 
 const LoginForm: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const router = useRouter();
+    const { t } = useTranslation()
     const handleRegisterRouting = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
@@ -33,24 +36,25 @@ const LoginForm: React.FC = () => {
             <h4>Login</h4>
             <InputField
             title="Email:"
-            label="Enter email"
+            label={t('login.emailLoginLabel')}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             />
             <InputField
-            title="Password:"
-            label="Enter password"
+            title={t("login.passwordLoginTitle")}
+            label={t("login.passwordLoginLabel")}
             value={password}
             secure={true}
             onChange={(e) => setPassword(e.target.value)}
             />
+            <LanguageSwitcher />
             <div className='buttons'>
             <CustomButton
              label='Login'
              onPress={handleLogin}/>
 
              <CustomButton
-             label='Register An Account'
+             label={t('login.registerButtonLabel')}
              onPress={handleRegisterRouting}
              />
             </div>
