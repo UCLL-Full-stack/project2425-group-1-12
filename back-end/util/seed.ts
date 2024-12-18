@@ -79,6 +79,7 @@ const main = async () => {
     const gpu3 = await prisma.part.create({ data: { name: 'Geforce RTX 4060', brand: 'Nvidia', type: 'GPU', price: 300 } });
     const gpu4 = await prisma.part.create({ data: { name: 'Geforce RTX 4080', brand: 'Nvidia', type: 'GPU', price: 1000 } });
     const gpu5 = await prisma.part.create({ data: { name: 'Geforce RTX 4090', brand: 'Nvidia', type: 'GPU', price: 1200 } });
+    const gpu6 = await prisma.part.create({ data: { name: 'Radeon RX 7700 XT', brand: 'AMD', type: 'GPU', price: 400 } });
 
         // MOTHERBOARD
     const motherboard1 = await prisma.part.create({ data: { name: 'ROG STRIX B550-F', brand: 'ASUS', type: 'Motherboard', price: 200 } });
@@ -87,10 +88,10 @@ const main = async () => {
     const motherboard4 = await prisma.part.create({ data: { name: 'X670E PG Lightning', brand: 'ASRock', type: 'Motherboard', price: 250 } });
 
         // RAM
-    const ram1 = await prisma.part.create({ data: { name: 'Vengeance LPX 16GB DDR4-3200', brand: 'Corsair', type: 'RAM', price: 70 } });
-    const ram2 = await prisma.part.create({ data: { name: 'Trident Z5 RGB 32GB DDR5-6000', brand: 'G.SKILL', type: 'RAM', price: 200 } });
-    const ram3 = await prisma.part.create({ data: { name: 'Fury Beast 16GB DDR4-3600', brand: 'Kingston', type: 'RAM', price: 80 } });
-    const ram4 = await prisma.part.create({ data: { name: 'Team T-Force Delta RGB 32GB DDR4-4000', brand: 'Team Group', type: 'RAM', price: 150 } });
+    const ram1 = await prisma.part.create({ data: { name: 'Vengeance LPX 16GB DDR4-3200', brand: 'Corsair', type: 'RAM', price: 60 } });
+    const ram2 = await prisma.part.create({ data: { name: 'Trident Z5 RGB 32GB DDR5-6000', brand: 'G.SKILL', type: 'RAM', price: 120 } });
+    const ram3 = await prisma.part.create({ data: { name: 'Fury Beast 16GB DDR5-3600', brand: 'Kingston', type: 'RAM', price: 50 } });
+    const ram4 = await prisma.part.create({ data: { name: 'Team T-Force Delta RGB 32GB DDR4-4000', brand: 'Team Group', type: 'RAM', price: 90 } });
 
         // CASE
     const case1 = await prisma.part.create({ data: { name: 'H510', brand: 'NZXT', type: 'Case', price: 70 } });
@@ -113,25 +114,43 @@ const main = async () => {
 
     // BUILDS
 
+    const build1Parts = [ cpu1, gpu3, motherboard1, ram1, case1, psu3, storage1]
     const build1 = await prisma.build.create({
         data: {
             name: 'Budget Gaming PC',
-            price: 700,
+            price: build1Parts.reduce((sum, part) => sum + part.price, 0),
             preBuild: true,
-            parts: {
-                connect: [{ id: cpu1.id }, { id: gpu3.id }, { id: motherboard1.id }, { id: ram1.id }, { id: case1.id }, { id: psu3.id }, { id: storage1.id }],
-            },
+            parts: { connect: build1Parts.map(part => ({ id: part.id })) },
         },
     });
 
+    const build2Parts = [ cpu4 , gpu2, motherboard2, ram2, case2, psu2, storage2, storage4 ]
     const build2 = await prisma.build.create({
         data: {
             name: 'AMD Powerhouse',
-            price: 2050,
+            price: build2Parts.reduce((sum, part) => sum + part.price, 0),
             preBuild: false,
-            parts: {
-                connect: [{ id: cpu4.id }, { id: gpu1.id }, { id: motherboard2.id }, { id: ram2.id }, { id: case2.id }, { id: psu1.id }, { id: storage2.id }, { id: storage4.id }],
-            },
+            parts: { connect: build2Parts.map(part => ({ id: part.id })) },
+        },
+    });
+
+    const build3Parts = [cpu2, gpu6, motherboard2, ram2, case2, psu3, storage2];
+    const build3 = await prisma.build.create({
+        data: {
+            name: 'AMD Mid-Range',
+            price: build3Parts.reduce((sum, part) => sum + part.price, 0),
+            preBuild: false,
+            parts: { connect: build3Parts.map(part => ({ id: part.id })) },
+        },
+    });
+
+    const build4Parts = [cpu4, gpu5, motherboard2, ram2, case3, psu1, storage3];
+    const build4 = await prisma.build.create({
+        data: {
+            name: 'Nvidia x AMD',
+            price: build4Parts.reduce((sum, part) => sum + part.price, 0),
+            preBuild: false,
+            parts: { connect: build4Parts.map(part => ({ id: part.id })) },
         },
     });
 
@@ -155,7 +174,17 @@ const main = async () => {
             orderStatus: 'preparing',
             orderDate: new Date(),
             builds: {connect: [{ id: build2.id }]},
-            user: {connect: { id: user2.id }},
+            user: {connect: { id: user1.id }},
+        },
+    });
+
+    await prisma.order.create({
+        data: {
+            price: 2050,
+            orderStatus: 'preparing',
+            orderDate: new Date(),
+            builds: {connect: [{ id: build3.id }, { id: build4.id }]},
+            user: {connect: { id: user1.id }},
         },
     });
 };

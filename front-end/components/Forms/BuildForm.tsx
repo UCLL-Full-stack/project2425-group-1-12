@@ -34,7 +34,7 @@ const BuildForm: React.FC = () => {
         if (error instanceof Error) console.error(error.message);
         else console.error("An unknown error occurred.");
       }
-    }
+    };
 
     fetchParts();
     fetchBuilds();
@@ -75,7 +75,7 @@ const BuildForm: React.FC = () => {
 
       <div className={styles.content}>
         {activeContent === 'builds' && <BuildsList builds={builds} />}
-        {activeContent === 'new' && (
+        {activeContent === 'new' && ( availableParts.length ? (
           <>
             <Builder
               selectedParts={selectedParts}
@@ -86,7 +86,7 @@ const BuildForm: React.FC = () => {
             />
             <button className={styles.getPartsButton} onClick={addBuildToOrder}>Add to Shopping Cart</button>
           </>
-        )}
+        ) : (<>Loading parts...</>))}
       </div>
 
     </div>
