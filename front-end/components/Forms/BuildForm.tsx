@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import styles from "@styles/BuildForm.module.css";
-import BuildCard from "@components/cards/BuildCard";
-import { Build } from "@types";
+import { Build, Part } from "@types";
 import { BuildService } from "@services/BuildService";
-
-// import { faPlus } from '@fortawesome/free-solid-svg-icons';
-// import { faDesktop } from '@fortawesome/free-solid-svg-icons';
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { PartService } from "@services/PartService";
+import BuildsList from "@components/pcBuilder/BuildsList";
+import Builder from "@components/pcBuilder/Builder";
 
 const BuildForm: React.FC = () => {
   const [builds, setBuilds] = useState<Build[]>([]);
+  const [activeContent, setActiveContent] = useState('builds');
+  const [selectedParts, setSelectedParts] = useState<Part[]>([]);
+  const [availableParts, setAvailableParts] = useState<Part[]>([]);
+  const [name, setName] = useState<string>("");
 
   useEffect(() => {
     const fetchBuilds = async () => {
@@ -17,39 +19,75 @@ const BuildForm: React.FC = () => {
         const fetchedBuilds = await BuildService.getAllBuilds();
         setBuilds(fetchedBuilds);
       } catch (error) {
-        if (error instanceof Error) {
-          console.error(error.message);
-        } else {
-          console.error("An unknown error occurred.");
-        }
+        if (error instanceof Error) console.error(error.message);
+        else console.error("An unknown error occurred.");
       }
     };
+
+    const fetchParts = async () => {
+      try {
+        const fetchedParts = await PartService.getAllParts();
+        setAvailableParts(fetchedParts);
+      } catch (error) {
+        if (error instanceof Error) console.error(error.message);
+        else console.error("An unknown error occurred.");
+      }
+    }
+
+    fetchParts();
     fetchBuilds();
   }, []);
 
-  console.log(builds);
+  const addBuildToOrder = async () => {
+    const requiredPartTypes = ["GPU", "CPU", "RAM", "Motherboard", "Case", "PSU", "Storage"];
+    const missingParts = requiredPartTypes.filter(
+      (type) => !selectedParts.some((part) => part.type === type)
+    );
+
+    console.log(selectedParts)
+
+    if (missingParts.length > 0) {
+      alert(`Error: Missing the following part types: ${missingParts.join(", ")}`);
+      return;
+    }
+
+    if (name === "") { alert('Error: Missing name'); return; }
+
+    const build = { name, preBuild: false, parts: selectedParts };
+    const createdBuild = await BuildService.createBuild(build);
+
+    if (createdBuild.name) {
+      alert(`Successfully created build ${createdBuild.name}!`);
+      setName("");
+    }
+  };
 
   return (
     <div className={styles.container}>
-
-      <div className={styles.labels}>
-          <button onClick={() => console.log('clicked button!')}>Mijn builds</button>
-          <button onClick={() => console.log('clicked button!')}>Maak een build</button>
+      <div className={styles.buttons}>
+        <button onClick={() => setActiveContent('builds')}>
+          Mijn Builds
+        </button>
+        <button onClick={() => setActiveContent('new')}>
+          Maak een Build
+        </button>
       </div>
 
-      {/* <div className={styles.buildCards}>
-        <BuildCard />
-      </div> */}
-
-      <div className={styles.builds}>
-        {builds.length > 0 ? (
-          builds.map((build) => (
-            <BuildCard key={build.id} {...build} />
-          ))
-        ) : (
-          <p>Loading builds...</p>
+      <div className={styles.content}>
+        {activeContent === 'builds' && <BuildsList builds={builds} />}
+        {activeContent === 'new' && (
+          <>
+            <Builder
+              selectedParts={selectedParts}
+              availableParts={availableParts}
+              onUpdateSelectedParts={setSelectedParts}
+              onNameChange={(e) => setName(e.target.value)}
+            />
+            <button className={styles.getPartsButton} onClick={addBuildToOrder}>Add to Order</button>
+          </>
         )}
       </div>
+
     </div>
   );
 };

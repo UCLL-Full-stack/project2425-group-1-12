@@ -26,5 +26,29 @@ export const BuildService = {
             }
         }
     },
+    createBuild: async (build: Build) => {
+        try {
+            const tokenData = localStorage.getItem("loggedInUser");
+            let token: string | null = null;
+            if (tokenData) token = JSON.parse(tokenData).token;
+
+            const res = await fetch(apiUrl + `/builds`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify(build),
+            });
+            if (!res.ok) throw new Error(`Build could not be created`);
+            return await res.json();
+        } catch (error) {
+            if (error instanceof Error) {
+                throw new Error(`Error creating build: ${error.message}`);
+            } else {
+                throw new Error('An unknown error occurred while creating a build.');
+            }
+        }
+    },
 }
 

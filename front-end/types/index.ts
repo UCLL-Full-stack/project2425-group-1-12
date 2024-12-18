@@ -19,7 +19,6 @@ export type Build = {
     id?: number;
     name: string;
     parts: Part[];
-    price: number;
     preBuild: boolean;
 }
 
