@@ -10,6 +10,7 @@ type AuthenticationResponse = {
     token: string;
     email: string;
     name: string;
+    id?: number;
 }
 
 type UserInput = {
