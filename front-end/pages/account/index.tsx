@@ -3,9 +3,9 @@ import Header from '@components/header';
 import { useRouter } from 'next/router';
 import { User } from '@types';
 import { UserService } from '@services/UserService';
-import AccountForm from '@components/Forms/AccountEditAndOverview';
+import AccountForm from '@components/forms/AccountEditAndOverview';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { GetServerSideProps, GetServerSidePropsContext } from 'next';
+import { GetServerSideProps } from 'next';
 
 const Account: React.FC = () => {
   const [user, setUser] = useState<User>({
@@ -39,10 +39,10 @@ const Account: React.FC = () => {
   }, []);
 
   return (
-    <>
+    <div className="body">
       <Header />
       <AccountForm user={user} setUser={setUser} />
-    </>
+    </div>
   );
 };
 

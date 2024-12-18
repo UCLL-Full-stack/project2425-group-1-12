@@ -1,7 +1,8 @@
 /* LIGHT THEME */
 :root {
     --background: #ffffff;
-    --selected-nav: #F6F7F8;
+    --nav: #999999;
+    --form-background: #f5f5f5;
 
     --text: #1F2329;
     --info-text: #636C76;
@@ -18,17 +19,16 @@
     --background-ok: #E4FFBB;
 
     /* ALL THEMES */
+    --focus: #0c7aef;
     --border-focus: #005AD9;
-
-    /* FORMS */
-    --form-background: #f5f5f5;
 }
 
 /* DARK THEME */
 @media (prefers-color-scheme: dark) {
     :root {
         --background: #0D1116;
-        --selected-nav: #1A1E25;
+        --nav: #31353f;
+        --form-background: #1F2329;
 
         --text: #E6EDF3;
         --info-text: #8D96A0;

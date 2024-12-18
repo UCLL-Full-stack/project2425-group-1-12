@@ -9,7 +9,7 @@
 .inputFieldTitle {
   font-size: 16px;
   margin-bottom: 0;
-  color: #333;
+  color: var(text);
 }
 
 .iconAndInputWrapper {
@@ -24,9 +24,9 @@
   font-size: 16px;
   padding: 5px 0;
   border: none;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid var(--background);
   outline: none;
-  color: #333;
+  color: var(--text);
   background: transparent;
   transition: border-color 0.3s ease;
 }
@@ -40,7 +40,7 @@
 }
 
 .focused {
-  border-bottom-color: #0c7aef;
+  border-bottom-color: var(--focus);
 }
 
 .editable {

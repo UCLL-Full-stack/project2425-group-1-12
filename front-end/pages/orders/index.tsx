@@ -5,8 +5,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Orders: React.FC = () => {
   return (
-    <div>
-    <Header />
+    <div className="body">
+      <Header />
       <h1>OrdersPage</h1>
     </div>
   );

@@ -6,7 +6,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const PcBuilder: React.FC = () => {
   return (
-    <div>
+    <div className="body">
       <Header />
       <BuildForm />
     </div>

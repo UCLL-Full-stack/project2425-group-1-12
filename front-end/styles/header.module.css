@@ -1,6 +1,6 @@
 .headerContainer {
   width: 100%;
-  background-color: lightgray;
+  background-color: var(--nav);
   padding: 1rem 2rem;
 }
 
@@ -46,7 +46,7 @@
 .ordersLink {
   margin: 0 1rem;
   text-decoration: none;
-  color: black;
+  color: var(--text);
 }
 
 .pcBuilderLink,
