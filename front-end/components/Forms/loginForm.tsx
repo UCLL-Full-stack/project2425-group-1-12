@@ -20,15 +20,6 @@ const LoginForm: React.FC = () => {
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const userObj = await UserService.getUserByEmail(email);
-            if (!userObj) {
-                alert(`User with email: ${email} does not exist!`)
-                return;
-            }
-            if (password != userObj.password) {
-                alert('Password is not right')
-                return;
-            }
             const userInput = { email, password };
             const user = await UserService.login(userInput);
             router.push('/account');
