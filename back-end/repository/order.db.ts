@@ -62,6 +62,20 @@ const createOrder = async (order: Order): Promise<Order> => {
     }
 };
 
+const getAllBuildsByUserId = async (userId: number) => {
+    try {
+        const userOrdersWithBuilds = await database.order.findMany({
+            where: { userId },
+            include: { builds: { include: { parts: true } } },
+        });
+
+        return userOrdersWithBuilds.flatMap(order => order.builds);
+    } catch (error) {
+        console.error("Error fetching builds for user:", error);
+        throw new Error("Failed to fetch builds for the user.");
+    }
+};
+
 // const createOrder = async (order: Order, user: User): Promise<Order> => {
 //     try {
 //         const orderPrisma = await database.order.create({
@@ -90,4 +104,5 @@ export default {
     getAllOrders,
     getOrderById,
     createOrder,
+    getAllBuildsByUserId,
 };
