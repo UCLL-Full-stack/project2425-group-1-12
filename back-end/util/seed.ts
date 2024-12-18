@@ -11,10 +11,30 @@ const main = async () => {
     await prisma.user.deleteMany();
 
     // USERS
+    const admin = await prisma.user.create({
+        data: {
+            name: "joe",
+            role: 'admin',
+            email: "joe.biden@us.gov",
+            password: await bcrypt.hash('CannotRemember',12),
+            address: 'Admin Street',
+        },
+    });
+
+    const staff = await prisma.user.create({
+        data: {
+            name:'staff',
+            role:'staff',
+            email:'staff@staff.staff',
+            password: await bcrypt.hash('staff',12),
+            address:'Staff Street',
+        },
+    });
 
     const user1 = await prisma.user.create({
         data: {
             name: 'Barack Obama',
+            role: 'user',
             email: 'barack.obama@gmail.com',
             password: await bcrypt.hash('YesYouCan', 12),
             address: '1600 Pennsylvania Ave NW, Washington, DC',
@@ -24,6 +44,7 @@ const main = async () => {
     const user2 = await prisma.user.create({
         data: {
             name: 'Neil Armstrong',
+            role: 'user',
             email: 'neil.armstrong@nasamail.gov',
             password: await bcrypt.hash('OneSmallStep', 12),
             address: 'Apollo Blvd, Wapakoneta, OH'
@@ -33,6 +54,7 @@ const main = async () => {
     const user3 = await prisma.user.create({
         data: {
             name: 'Stephen Hawking',
+            role: 'user',
             email: 'stephen.hawking@cambridge.ac.uk',
             password: await bcrypt.hash('BigBang42', 12),
             address: 'University of Cambridge, Cambridge, UK'
