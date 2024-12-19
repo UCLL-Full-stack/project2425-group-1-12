@@ -36,9 +36,9 @@ test('given a valid build, when build is created, then build is created with tho
 
     // when
     await buildService.createBuild({
-            parts: [partInput],
-            name: "Test Build",
-            preBuild: false,
+        parts: [partInput],
+        name: "Test Build",
+        preBuild: false,
     });
 
     // then

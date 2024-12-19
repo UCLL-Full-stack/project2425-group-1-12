@@ -32,17 +32,17 @@
   - [x] Domein
   - [x] Services
   - [x] Controllers
-- [ ] Validatie:
+- [x] Validatie:
   - [x] Controllers bevatten geen validatie.
-  - [ ] Services bevatten overkoepelende validatieregels.
-  - [ ] Domeinobjecten bevatten input validatie en business validatie die specifiek zijn voor dat domeinobject.
+  - [x] Services bevatten overkoepelende validatieregels.
+  - [x] Domeinobjecten bevatten input validatie en business validatie die specifiek zijn voor dat domeinobject.
 - [ ] Testen:
-  - [ ] Alle domeinobjecten zijn volledig getest met Jest, inclusief validatie.
+  - [x] Alle domeinobjecten zijn volledig getest met Jest, inclusief validatie.
   - [ ] Alle services zijn volledig getest met Jest.
-  - [ ] Controllers worden getest via swagger (handmatig), geen aparte tests nodig.
-- [ ] De gegevens die binnenkomen via requests in de router worden ingekapseld in Data Transfer Objects. DezeDTO's zijn gedefinieerd in een bestand index.ts in de map types.
-- [ ] Alle routes zijn volledig gedocumenteerd en uitvoerbaar met Swagger via de url /api-docs.
-- [ ] Voor elk type is er een volledig uitgewerkt componentenschema gedefinieerd bovenaan de controller zelf.
+  - [x] Controllers worden getest via swagger (handmatig), geen aparte tests nodig.
+- [x] De gegevens die binnenkomen via requests in de router worden ingekapseld in Data Transfer Objects. DezeDTO's zijn gedefinieerd in een bestand index.ts in de map types.
+- [x] Alle routes zijn volledig gedocumenteerd en uitvoerbaar met Swagger via de url /api-docs.
+- [x] Voor elk type is er een volledig uitgewerkt componentenschema gedefinieerd bovenaan de controller zelf.
 
 
 ### Lab 3 - React & Next.js intro
