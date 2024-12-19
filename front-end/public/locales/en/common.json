@@ -36,6 +36,10 @@
       "Builder":"PC Builder",
       "Orders":"Orders",
       "Logout":"Logout"
+    },
+    "buildForm": {
+      "myBuildsButton" : "My Builds",
+      "createBuildButton": "Create a build"
     }
 
   }
