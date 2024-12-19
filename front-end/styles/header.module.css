@@ -11,6 +11,10 @@
   position: relative;
 }
 
+.navContainer div:hover {
+  columns: var(--focus);
+}
+
 .leftLinks {
   flex: 1;
   display: flex;
@@ -41,6 +45,10 @@
   cursor: pointer;
   margin-left: 1rem;
 }
+.logoutLink:hover {
+  color: var(--focus);
+  background-color: rgba(0,0,0,0);
+}
 
 .accountLink,
 .logoutLink,
@@ -54,4 +62,19 @@
 .pcBuilderLink,
 .ordersLink {
   margin: 0 1rem;
+}
+
+@media (max-width: 25cm) {
+  .headerContainer {
+    padding: .5rem;
+  }
+  .navContainer * {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 15cm) {
+  .headerContainer {
+    padding: .2rem;
+  }
 }

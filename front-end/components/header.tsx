@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import styles from '../styles/header.module.css';
+import styles from '@styles/header.module.css';
 import Link from 'next/link';
 import LanguageSwitcher from './uiComponents/languageSwitcher';
 import { useTranslation } from 'react-i18next';
