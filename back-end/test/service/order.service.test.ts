@@ -1,4 +1,4 @@
-import { BuildInput, PartInput, UserInput } from '../../types';
+import { PartInput } from '../../types';
 import { Part } from '../../model/part';
 import partDB from '../../repository/part.db';
 import buildDB from '../../repository/build.db';
@@ -7,7 +7,6 @@ import orderDB from '../../repository/order.db';
 import userService from '../../service/user.service';
 import orderService from '../../service/order.service';
 import { Build } from '../../model/build';
-import { User } from '../../model/user';
 import { UnauthorizedError } from 'express-jwt';
 
 const partInput: PartInput = {
@@ -20,36 +19,12 @@ const partInput: PartInput = {
 
 const part = new Part({ ...partInput });
 
-const buildInput: BuildInput = {
-    parts: [partInput],
-    name: "Test Build",
-    preBuild: false,
-};
-
 const build = new Build({
     id: 1,
     parts: [part],
     name: "Test Build",
     preBuild: false,
     price: 300,
-});
-
-const userInput: UserInput = {
-    role: "user",
-    name: "Test User",
-    email: "test@example.com",
-    password: "testpassword",
-    address: "test address",
-    orders: [],
-};
-
-const user = new User({
-    role: "user",
-    name: "Test User",
-    email: "test@example.com",
-    password: "testpassword",
-    address: "test address",
-    orders: [],
 });
 
 let mockPartDBGetPartById: jest.Mock;
