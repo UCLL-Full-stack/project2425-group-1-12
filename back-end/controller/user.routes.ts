@@ -52,6 +52,7 @@
 import express, { NextFunction, Request, Response } from 'express';
 import userService from '../service/user.service';
 import { LoginCredentials, UpdateUserInput, UserInput } from '../types';
+import { extractRoleFromToken } from '../util/jwt';
 
 const userRouter = express.Router();
 
@@ -74,7 +75,13 @@ const userRouter = express.Router();
  */
 userRouter.get('/', async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const users = await userService.getAllUsers();
+        const authHeader = req.headers.authorization;
+        if(!authHeader) {
+            return;
+        }
+        const token = authHeader.split(' ')[1];
+        const role = extractRoleFromToken(token);
+        const users = await userService.getAllUsers(role);
         res.status(200).json(users);
     } catch (error) {
         next(error);
