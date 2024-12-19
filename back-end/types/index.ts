@@ -1,10 +1,4 @@
-import { Build } from "../model/build";
-import { Order } from "../model/order";
-import { Part } from "../model/part";
-
 type Role = 'admin' | 'staff' | 'user';
-
-// TODO: change Build and Order to BuildInput and OrderInput
 
 type AuthenticationResponse = {
     token: string;
@@ -21,7 +15,7 @@ type UserInput = {
     email: string;
     password: string;
     address: string;
-    orders: Order[];
+    orders: OrderInput[];
 }
 
 type PartInput = {

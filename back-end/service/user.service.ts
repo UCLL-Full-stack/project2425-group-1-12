@@ -20,7 +20,7 @@ const getUserByEmail = async (email: string): Promise<User> => {
     return user;
 };
 
-const registerUser = async (userInput: UserInput): Promise<void> => {
+const registerUser = async (userInput: UserInput): Promise<User> => {
     const existingUser = await userDB.getUserByEmail({ email: userInput.email.toLowerCase() });
     if (existingUser) {
         throw new Error(`User with email ${userInput.email} already exists`);
@@ -29,8 +29,9 @@ const registerUser = async (userInput: UserInput): Promise<void> => {
     const user = new User({
         ...userInput,
         email: userInput.email.toLowerCase(),
+        orders: [],
     });
-    await userDB.registerUser({ user });
+    return await userDB.registerUser({ user });
 };
 
 const updateUser = async (updateData: UpdateUserInput): Promise<User> => {
