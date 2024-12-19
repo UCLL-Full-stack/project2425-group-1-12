@@ -29,10 +29,12 @@ button:active {
     font-weight: bold;
     color: var(--text);
     cursor: pointer;
+    background-color: rgba(0,0,0,0);
 }
 
 .dropdownButton:hover {
     color: var(--focus);
+    background-color: rgba(0,0,0,0);
 }
 
 .dropdownIcon {
