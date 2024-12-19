@@ -7,7 +7,6 @@ import { UnauthorizedError } from "express-jwt";
 import buildDB from "../repository/build.db";
 
 const getAllOrders = async (role: Role): Promise<Order[]> => {
-    console.log('Role', role)
     if (role === 'staff' || role === 'admin') {
         return await orderDB.getAllOrders();
     } else {
