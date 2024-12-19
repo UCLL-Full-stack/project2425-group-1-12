@@ -38,7 +38,15 @@
     "Logout":"Log Uit"
   },
   "buildForm": {
+    "title": "Nieuwe Build",
     "myBuildsButton" : "Mijn Builds",
-    "createBuildButton": "Maak een build"
+    "createBuildButton": "Maak een build",
+    "selectMotherboardTitle":"Moederbord",
+    "selectStorageTitle":"Opslag",
+    "selectCaseTitle":"Behuizing",
+    "selectNameTitle":"Naam",
+    "selectPrebuildTitle":"Voorgebouwd?",
+    "addShopingCartButton":"Voeg toe aan winkelwagen",
+    "selectPart":"Selecteer een "
   }
 }

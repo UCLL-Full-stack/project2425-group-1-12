@@ -38,8 +38,25 @@
       "Logout":"Logout"
     },
     "buildForm": {
+      "title": "New Build",
       "myBuildsButton" : "My Builds",
-      "createBuildButton": "Create a build"
+      "createBuildButton": "Create a build",
+      "selectCPU":"Select a CPU",
+      "selectGPU":"Select a GPU",
+      "selectMotherboard":"Select a Motherboard",
+      "selectRAM":"Select a RAM-kit ",
+      "selectStorage":"Select a hdd/ssd",
+      "selectCase":"Select a case",
+      "selectPSU":"Select a PSU",
+      "selectName":"Enter a name for your build",
+      "selectMotherboardTitle":"Motherboard",
+      "selectStorageTitle":"Storage",
+      "selectCaseTitle":"Case",
+      "selectNameTitle":"Name",
+      "selectPrebuildTitle":"Pre-Build?",
+      "addShopingCartButton":"Add to Shopping Cart",
+      "selectPart":"Select a "
+
     }
 
   }

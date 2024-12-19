@@ -1,6 +1,7 @@
 import PartPicker from "@components/pcBuilder/PartPicker";
 import { Part } from "@types";
 import styles from "@styles/BuildForm.module.css";
+import { useTranslation } from "react-i18next";
 
 interface BuilderProps {
   onPreBuildChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -22,12 +23,24 @@ const Builder: React.FC<BuilderProps> = ({
     onUpdateSelectedParts(updatedParts);
   };
 
+  const { t } = useTranslation();
+
+  const partTypes = [
+    "CPU",
+    "GPU",
+    t("buildForm.selectMotherboardTitle"),
+    "RAM",
+    t("buildForm.selectStorageTitle"),
+    t("buildForm.selectCaseTitle"),
+    "PSU",
+  ];
+
   return (
     <div className={styles.builder}>
-      <h2>Nieuwe Build</h2>
+      <h2>{t('buildForm.title')}</h2>
 
       <div className={styles.partPickerList}>
-        {["CPU", "GPU", "Motherboard", "RAM", "Storage", "Case", "PSU"].map((partType) => (
+        {partTypes.map((partType) => (
           <PartPicker
             key={partType}
             availableParts={availableParts}
@@ -38,15 +51,15 @@ const Builder: React.FC<BuilderProps> = ({
         ))}
 
         <div>
-          <h3>Name</h3>
+          <h3>{t('buildForm.selectNameTitle')}</h3>
           <input
-            placeholder="Name"
+            placeholder={t('buildForm.selectNameTitle')}
             onChange={onNameChange}
           />
         </div>
 
         <div>
-          <h3>Pre build?</h3>
+          <h3>{t('buildForm.selectPrebuildTitle')}</h3>
           <input
             className={styles.checkbox}
             type="checkbox"
