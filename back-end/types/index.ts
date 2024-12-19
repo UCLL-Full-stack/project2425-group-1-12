@@ -11,6 +11,7 @@ type AuthenticationResponse = {
     email: string;
     name: string;
     id?: number;
+    role: Role;
 }
 
 type UserInput = {

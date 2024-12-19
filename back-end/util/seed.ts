@@ -17,7 +17,7 @@ const main = async () => {
             role: 'admin',
             email: "joe.biden@us.gov",
             password: await bcrypt.hash('CannotRemember',12),
-            address: 'Admin Street',
+            address: 'Where am i',
         },
     });
 

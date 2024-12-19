@@ -11,4 +11,14 @@ const generateJwtToken = (email:string, role:Role) => {
     }
 };
 
-export { generateJwtToken };
+const extractRoleFromToken = (token: string): Role => {
+    try {
+        const decoded = jwt.verify(token, `${process.env.JWT_SECRET}`) as { role: Role };
+        return decoded.role;
+    } catch (error) {
+        console.error('Error verifying token:', error);
+        throw new Error('Invalid or expired token');
+    }
+};
+
+export { generateJwtToken, extractRoleFromToken };

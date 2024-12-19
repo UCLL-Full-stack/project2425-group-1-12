@@ -2,9 +2,16 @@ import { Order } from "../model/order";
 import { OrderInput } from "../types";
 import orderDB from "../repository/order.db";
 import userDB from "../repository/user.db";
+import { Role } from "@prisma/client";
+import { UnauthorizedError } from "express-jwt";
 
-const getAllOrders = async (): Promise<Order[]> => {
-    return await orderDB.getAllOrders();
+const getAllOrders = async (role: Role): Promise<Order[]> => {
+    console.log('Role', role)
+    if (role === 'staff' || role === 'admin') {
+        return await orderDB.getAllOrders();
+    } else {
+        throw new UnauthorizedError("credentials_required", { message:`${role}` });
+    }
 }
 
 const getAllBuildsByUserId = async ({ id }: { id: any }): Promise<any> => {
