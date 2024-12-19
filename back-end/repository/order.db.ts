@@ -39,15 +39,11 @@ const createOrder = async (order: Order): Promise<Order> => {
 
         const orderPrisma = await database.order.create({
             data: {
-                builds: {
-                    connect: order.getBuilds().map((build) => ({ id: build.getId() })),
-                },
+                builds: { connect: order.getBuilds().map((build) => ({ id: build.getId() })) },
                 price: order.getPrice(),
                 orderStatus: order.getOrderStatus(),
                 orderDate: order.getOrderDate(),
-                user: {
-                    connect: { id: user.getId() },
-                },
+                user: { connect: { id: user.getId() } },
             },
             include: {
                 builds: { include: { parts: true } },
@@ -75,30 +71,6 @@ const getAllBuildsByUserId = async (userId: number) => {
         throw new Error("Failed to fetch builds for the user.");
     }
 };
-
-// const createOrder = async (order: Order, user: User): Promise<Order> => {
-//     try {
-//         const orderPrisma = await database.order.create({
-//             data: {
-//                 builds: {
-//                     connect: order.getBuilds().map((build) => ({ id: build.getId() })),
-//                 },
-//                 price: order.getPrice(),
-//                 orderStatus: order.getOrderStatus(),
-//                 orderDate: order.getOrderDate(),
-//                 user: {
-//                     connect: { id: user.getId() },
-//                 },
-//             },
-//             include: { user: true, builds: true },
-//         });
-
-//         return Order.from(orderPrisma);
-//     } catch (error) {
-//         console.error(error);
-//         throw new Error('Database error. See server log for details.');
-//     }
-// };
 
 export default {
     getAllOrders,

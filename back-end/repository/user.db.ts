@@ -6,12 +6,12 @@ import bcrypt from 'bcrypt';
 const getAllUsers = async (): Promise<User[]> => {
     try {
         const userPrisma = await database.user.findMany({
-            include: { 
-                orders: { 
-                    include: { 
-                        builds: { include: { parts: true }, }, 
-                    }, 
-                }, 
+            include: {
+                orders: {
+                    include: {
+                        builds: { include: { parts: true }, },
+                    },
+                },
             },
         });
         return userPrisma.length > 0 ? userPrisma.map(User.from) : [];
@@ -23,14 +23,16 @@ const getAllUsers = async (): Promise<User[]> => {
 
 const getUserById = async ({ id }: { id: number }): Promise<User | null> => {
     try {
+        if (id === undefined) {throw new Error("User ID is required")};
+
         const userPrisma = await database.user.findUnique({
             where: { id },
-            include: { 
-                orders: { 
-                    include: { 
-                        builds: { include: { parts: true }, }, 
-                    }, 
-                }, 
+            include: {
+                orders: {
+                    include: {
+                        builds: { include: { parts: true }, },
+                    },
+                },
             },
         });
         return userPrisma ? User.from(userPrisma) : null;
@@ -44,12 +46,12 @@ const getUserByEmail = async ({ email }: { email: string }): Promise<User | null
     try {
         const userPrisma = await database.user.findUnique({
             where: { email },
-            include: { 
-                orders: { 
-                    include: { 
-                        builds: { include: { parts: true }, }, 
-                    }, 
-                }, 
+            include: {
+                orders: {
+                    include: {
+                        builds: { include: { parts: true }, },
+                    },
+                },
             },
         });
         return userPrisma ? User.from(userPrisma) : null;
@@ -70,12 +72,12 @@ const registerUser = async ({ user }: { user: User }): Promise<User> => {
                 role: user.getRole(),
                 orders: { create: [] },
             },
-            include: { 
-                orders: { 
-                    include: { 
-                        builds: { include: { parts: true }, }, 
-                    }, 
-                }, 
+            include: {
+                orders: {
+                    include: {
+                        builds: { include: { parts: true }, },
+                    },
+                },
             },
         });
 
@@ -106,16 +108,16 @@ const updateUser = async (updateData: UpdateUserInput): Promise<User> => {
         if (updateData.password) {
             updatedUserData.password = await bcrypt.hash(updateData.password, 12);
         }
-        
+
         const updatedUserPrisma = await database.user.update({
             where: { email: updateData.email.toLowerCase() },
             data: updatedUserData,
-            include: { 
-                orders: { 
-                    include: { 
-                        builds: { include: { parts: true }, }, 
-                    }, 
-                }, 
+            include: {
+                orders: {
+                    include: {
+                        builds: { include: { parts: true }, },
+                    },
+                },
             },
         });
 

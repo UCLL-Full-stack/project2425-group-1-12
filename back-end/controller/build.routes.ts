@@ -12,16 +12,12 @@
  *          properties:
  *            name:
  *              type: string
- *              description: Build price
- *              example: 800
+ *              description: Build name
+ *              example: cool build
  *            preBuild:
  *              type: boolean
  *              description: Prebuilt
  *              example: false
- *            price:
- *              type: number
- *              description: Build price
- *              example: 800
  *            parts:
  *              type: array
  *              description: List of parts in build

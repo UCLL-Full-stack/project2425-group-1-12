@@ -7,6 +7,27 @@
  *         scheme: bearer
  *         bearerFormat: JWT
  *     schemas:
+ *       OrderInput:
+ *           type: object
+ *           properties:
+ *             orderStatus:
+ *               type: string
+ *               description: Order status
+ *               example: processing
+ *             userId:
+ *               type: number
+ *               format: int64
+ *               description: id for the user to be connected to this order
+ *             builds:
+ *               type: array
+ *               description: List of parts in build
+ *               items:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: number
+ *                       description: id of the build
+ *                       format: int64
  *       Order:
  *         type: object
  *         properties:
@@ -34,8 +55,8 @@
  */
 import express, { NextFunction, Request, Response } from 'express';
 import orderService from '../service/order.service';
-import { Role } from '@prisma/client';
 import { extractRoleFromToken } from '../util/jwt';
+import { OrderInput } from '../types';
 
 const orderRouter = express.Router();
 
@@ -102,18 +123,36 @@ orderRouter.get('/:id', async (req: Request, res: Response, next: NextFunction) 
     }
 });
 
-// /**
-//  * @swagger
-//  */
-// orderRouter.post('/create', async (req: Request, res: Response, next: NextFunction) => {
-//     try {
-//         const orderInput = <OrderInput>req.body;
-//         const order = await orderService.createOrder(orderInput);
-//         res.status(201).json(order);
-//     } catch (error) {
-//         next(error);
-//     }
-// });
+/**
+ * @swagger
+ * /orders:
+ *  post:
+ *      security:
+ *       - bearerAuth: []
+ *      summary: Create a new order.
+ *      requestBody:
+ *        required: true
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/OrderInput'
+ *      responses:
+ *          201:
+ *              description: Created an order object.
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          $ref: '#/components/schemas/Order'
+ */
+orderRouter.post('/', async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const orderInput = <OrderInput>req.body;
+        const order = await orderService.createOrder(orderInput);
+        res.status(201).json(order);
+    } catch (error) {
+        next(error);
+    }
+});
 
 /**
  * @swagger

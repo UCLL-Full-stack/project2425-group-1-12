@@ -34,10 +34,8 @@ type PartInput = {
 
 type OrderInput = {
     id?: number;
-    builds: Build[];
-    price: number;
+    builds: BuildInput[];
     orderStatus: string;
-    orderDate: Date;
     userId: number;
 }
 
