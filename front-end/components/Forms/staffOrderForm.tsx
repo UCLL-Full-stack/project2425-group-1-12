@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { OrderService } from "@services/OrderService";
 import styles from "@styles/OrderForm.module.css";
 import { Order } from "@types";
-import OrderCard from "@components/Cards/orderCard";
+import OrderCard from "@components/cards/orderCard";
 
 const StaffOrderForm: React.FC = () => {
   const [orders, setOrders] = useState<Order[]>([]);

@@ -5,7 +5,7 @@ import { User } from '@types';
 import { UserService } from '@services/UserService';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetServerSideProps } from 'next';
-import AccountForm from '@components/Forms/AccountEditAndOverview';
+import AccountForm from '@components/forms/AccountEditAndOverview';
 
 const Account: React.FC = () => {
   const [user, setUser] = useState<User>({

@@ -1,7 +1,7 @@
 import React from 'react';
 import { GetServerSidePropsContext } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import RegisterForm from '@components/Forms/registerForm';
+import RegisterForm from '@components/forms/registerForm';
 
 const RegisterPage: React.FC = () => {
     return (

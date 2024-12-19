@@ -4,9 +4,9 @@ import { BuildService } from "@services/BuildService";
 import styles from "@styles/OrderForm.module.css";
 import { Build, Order } from "@types";
 import React, { useEffect, useState } from "react";
-import ShoppingCartCard from "@components/Cards/ShoppingCartCard";
-import OrderCard from "@components/Cards/orderCard";
 import { OrderService } from "@services/OrderService";
+import ShoppingCartCard from "@components/cards/ShoppingCartCard";
+import OrderCard from "@components/cards/orderCard";
 
 const OrderForm: React.FC = () => {
   const [orders, setOrders] = useState<Order[]>([]);

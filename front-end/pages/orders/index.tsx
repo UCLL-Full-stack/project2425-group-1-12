@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import Header from '@components/header';
 import { GetServerSidePropsContext } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import OrderForm from '@components/Forms/OrderForm';
-import StaffOrderForm from '@components/Forms/staffOrderForm';
 import { User } from '@types';
 import { useRouter } from 'next/router';
 import { UserService } from '@services/UserService';
+import StaffOrderForm from '@components/forms/staffOrderForm';
+import OrderForm from '@components/forms/OrderForm';
 
 const Orders: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
