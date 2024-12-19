@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from '../../styles/loginForm.module.css';
+import styles from '@styles/loginForm.module.css';
 import { User, Order } from '@types';
 import {Role} from '@types';
 import { UserService } from '@services/UserService';

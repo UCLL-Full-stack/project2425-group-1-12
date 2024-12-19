@@ -6,7 +6,6 @@ import InputField from '@components/uiComponents/InputField';
 import CustomButton from '@components/uiComponents/CustomButton';
 import LanguageSwitcher from '@components/uiComponents/languageSwitcher';
 import { useTranslation } from 'next-i18next';
-import ThemeSwitcher from '@components/uiComponents/themeSwitcher';
 
 const LoginForm: React.FC = () => {
     const [email, setEmail] = useState('');
@@ -36,28 +35,28 @@ const LoginForm: React.FC = () => {
         <div className={styles.formContainer}>
             <h4>Login</h4>
             <InputField
-            title="Email:"
-            label={t('login.emailLoginLabel')}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+                title="Email:"
+                label={t('login.emailLoginLabel')}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
             />
             <InputField
-            title={t("login.passwordLoginTitle")}
-            label={t("login.passwordLoginLabel")}
-            value={password}
-            secure={true}
-            onChange={(e) => setPassword(e.target.value)}
+                title={t("login.passwordLoginTitle")}
+                label={t("login.passwordLoginLabel")}
+                value={password}
+                secure={true}
+                onChange={(e) => setPassword(e.target.value)}
             />
             <LanguageSwitcher />
             <div className='buttons'>
             <CustomButton
-             label='Login'
-             onPress={handleLogin}/>
+                label='Login'
+                onPress={handleLogin}/>
 
-             <CustomButton
-             label={t('login.registerButtonLabel')}
-             onPress={handleRegisterRouting}
-             />
+            <CustomButton
+                label={t('login.registerButtonLabel')}
+                onPress={handleRegisterRouting}
+            />
             </div>
         </div>
     );
