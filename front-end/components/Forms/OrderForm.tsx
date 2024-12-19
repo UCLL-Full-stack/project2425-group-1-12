@@ -6,6 +6,7 @@ import { Build, Order } from "@types";
 import React, { useEffect, useState } from "react";
 import ShoppingCartCard from "@components/Cards/ShoppingCartCard";
 import OrderCard from "@components/Cards/orderCard";
+import { OrderService } from "@services/OrderService";
 
 const OrderForm: React.FC = () => {
   const [orders, setOrders] = useState<Order[]>([]);
@@ -36,8 +37,13 @@ const OrderForm: React.FC = () => {
     };
     const fetchOrders = async () => {
       try {
-        const fetchedBuilds = await UserService.getUserDetails();
-        setOrders(fetchedBuilds.orders);
+        const userDetails = await UserService.getUserDetails();
+        const sortedOrders = userDetails.orders.sort((
+          a: { orderDate: string | number | Date; },
+          b: { orderDate: string | number | Date; }) => {
+            new Date(b.orderDate).getTime() - new Date(a.orderDate).getTime()
+          });
+        setOrders(sortedOrders);
       } catch (error) {
         if (error instanceof Error) console.error(error.message);
         else console.error("An unknown error occurred.");
@@ -48,10 +54,11 @@ const OrderForm: React.FC = () => {
     fetchOrders();
   }, []);
 
-  const handleConfirmOrder = () => {
+  const handleConfirmOrder = async () => {
     if (!confirm("Are you sure you want to order?")) return;
-
-
+    if (await OrderService.createOrder()) { // Wait for order post to go through before reloading
+      location.reload();
+    }
   }
 
   const handleCancelOrder = () => {
@@ -77,7 +84,7 @@ const OrderForm: React.FC = () => {
             <OrderCard key={order.id} {...order} />
           ))
         ) : (
-          <p>Loading orders...</p>
+          <p>No builds ordered yet, try ordering some.</p>
         )}
       </div>
     </>

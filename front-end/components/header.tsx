@@ -11,7 +11,8 @@ const Header: React.FC = () => {
 
   const handleLogout = async () => {
     try {
-      await localStorage.removeItem('loggedInUser');
+      localStorage.removeItem('loggedInUser');
+      sessionStorage.removeItem('shoppingCart');
       router.push('/');
     } catch (error) {
       console.error('Failed to logout', error);

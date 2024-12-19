@@ -8,9 +8,9 @@
 - [x] User-login
 - [x] User-register
 - [x] User-logout
-- [ ] Adding-PC-to-Cart
-- [ ] Ordering
-- [ ] Order-history
+- [x] Adding-PC-to-Cart
+- [x] Ordering
+- [x] Order-history
 - [x] Account-page
 - [ ] Administrator-page
 
@@ -32,10 +32,10 @@
   - [x] Domein
   - [x] Services
   - [x] Controllers
-- [ ] Validatie:
+- [x] Validatie:
   - [x] Controllers bevatten geen validatie.
-  - [ ] Services bevatten overkoepelende validatieregels.
-  - [ ] Domeinobjecten bevatten input validatie en business validatie die specifiek zijn voor dat domeinobject.
+  - [x] Services bevatten overkoepelende validatieregels.
+  - [x] Domeinobjecten bevatten input validatie en business validatie die specifiek zijn voor dat domeinobject.
 - [ ] Testen:
   - [ ] Alle domeinobjecten zijn volledig getest met Jest, inclusief validatie.
   - [ ] Alle services zijn volledig getest met Jest.

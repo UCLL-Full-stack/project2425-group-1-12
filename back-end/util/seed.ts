@@ -158,32 +158,35 @@ const main = async () => {
 
     // ORDERS
 
-    await prisma.order.create({
+    const order1Builds = [build1];
+    const order1 = await prisma.order.create({
         data: {
-            price: 700,
+            price: order1Builds.reduce((sum, build) => sum + build.price, 0),
             orderStatus: 'shipping',
             orderDate: new Date(),
-            builds: {connect: [{ id: build1.id }]},
+            builds: {connect: order1Builds.map(build => ({ id: build.id })) },
             user: {connect: { id: user1.id }},
         },
     });
 
-    await prisma.order.create({
+    const order2Builds = [build2];
+    const order2 = await prisma.order.create({
         data: {
-            price: 2050,
+            price: order2Builds.reduce((sum, build) => sum + build.price, 0),
             orderStatus: 'preparing',
             orderDate: new Date(),
-            builds: {connect: [{ id: build2.id }]},
+            builds: {connect: order2Builds.map(build => ({ id: build.id })) },
             user: {connect: { id: user1.id }},
         },
     });
 
-    await prisma.order.create({
+    const order3Builds = [build3, build4];
+    const order3 = await prisma.order.create({
         data: {
-            price: 2050,
+            price: order3Builds.reduce((sum, build) => sum + build.price, 0),
             orderStatus: 'preparing',
             orderDate: new Date(),
-            builds: {connect: [{ id: build3.id }, { id: build4.id }]},
+            builds: {connect: order3Builds.map(build => ({ id: build.id })) },
             user: {connect: { id: user1.id }},
         },
     });
