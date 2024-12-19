@@ -7,11 +7,12 @@ import React, { useEffect, useState } from "react";
 import { OrderService } from "@services/OrderService";
 import ShoppingCartCard from "@components/Cards/ShoppingCartCard";
 import OrderCard from "@components/Cards/orderCard";
+import { useTranslation } from "next-i18next";
 
 const OrderForm: React.FC = () => {
   const [orders, setOrders] = useState<Order[]>([]);
   const [shoppingCartBuilds, setShoppingCartBuilds] = useState<Build[]>([]);
-
+  const { t } = useTranslation();
   useEffect(() => {
     const fetchShoppingCartContent = async () => {
       try {
@@ -78,13 +79,13 @@ const OrderForm: React.FC = () => {
       </div>
 
       <div className={styles.container}>
-        <h2>Orders</h2>
+        <h2>{t('orders.title')}</h2>
         {orders.length > 0 ? (
           orders.map((order) => (
             <OrderCard key={order.id} {...order} />
           ))
         ) : (
-          <p>No builds ordered yet, try ordering some.</p>
+          <p>{t('orders.noOrders')}</p>
         )}
       </div>
     </>

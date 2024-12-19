@@ -6,6 +6,7 @@ import { OrderService } from "@services/OrderService";
 import { PartService } from "@services/PartService";
 import BuildsList from "@components/pcBuilder/BuildsList";
 import Builder from "@components/pcBuilder/Builder";
+import { useTranslation } from "next-i18next";
 
 const BuildForm: React.FC = () => {
   const [builds, setBuilds] = useState<Build[]>([]);
@@ -14,6 +15,7 @@ const BuildForm: React.FC = () => {
   const [availableParts, setAvailableParts] = useState<Part[]>([]);
   const [name, setName] = useState<string>("");
   const [preBuild, setPreBuild] = useState<boolean>(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchBuilds = async () => {
@@ -66,10 +68,10 @@ const BuildForm: React.FC = () => {
     <div className={styles.container}>
       <div className={styles.buttons}>
         <button onClick={() => setActiveContent('builds')}>
-          Mijn Builds
+          { t('buildForm.myBuildsButton') }       
         </button>
         <button onClick={() => setActiveContent('new')}>
-          Maak een Build
+          { t('buildForm.createBuildButton')}
         </button>
       </div>
 
@@ -84,7 +86,7 @@ const BuildForm: React.FC = () => {
               onNameChange={(e) => setName(e.target.value)}
               onPreBuildChange={(e) => setPreBuild(e.target.checked)}
             />
-            <button className={styles.getPartsButton} onClick={addBuildToOrder}>Add to Shopping Cart</button>
+            <button className={styles.getPartsButton} onClick={addBuildToOrder}>{t('buildForm.addShopingCartButton')}</button>
           </>
         ) : (<>Loading parts...</>))}
       </div>

@@ -6,7 +6,7 @@ import { User } from '@types';
 import { useRouter } from 'next/router';
 import { UserService } from '@services/UserService';
 import OrderForm from '@components/Forms/OrderForm';
-import StaffOrderForm from '@components/Forms/StaffOrderForm';
+import StaffOrderForm from '@components/Forms/staffOrderForm';
 
 const Orders: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);

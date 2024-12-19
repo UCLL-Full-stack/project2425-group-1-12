@@ -1,5 +1,6 @@
 import { Part } from "@types";
 import styles from "@styles/BuildForm.module.css";
+import { useTranslation } from "react-i18next";
 
 interface PartPickerProps {
   availableParts: Part[];
@@ -10,6 +11,7 @@ interface PartPickerProps {
 
 const PartPicker: React.FC<PartPickerProps> = ({ availableParts, selectedParts, partType, onPartSelect  }) => {
   const filteredParts = availableParts.filter((part) => part.type === partType);
+  const { t } = useTranslation();
 
   return (
     <div className={styles.partPicker}>
@@ -21,7 +23,7 @@ const PartPicker: React.FC<PartPickerProps> = ({ availableParts, selectedParts, 
           if (selectedPart) {onPartSelect(selectedPart)};
         }}
       >
-        <option value="">Select a {partType}</option>
+        <option value="">{t('buildForm.selectPart')}{partType}</option>
         {filteredParts && filteredParts.map((part) => (
           <option key={part.name} value={part.name}>
             {part.brand} {part.name} €{part.price}
