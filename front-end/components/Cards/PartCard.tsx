@@ -11,7 +11,7 @@ const PartCard: React.FC<Part> = ({ name, brand, type, price }) => {
       <div>
         €{price}
       </div>
-      <div>
+      <div className={styles.partCardName}>
         {brand} {name}
       </div>
     </div>
