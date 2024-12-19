@@ -5,8 +5,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { User } from '@types';
 import { useRouter } from 'next/router';
 import { UserService } from '@services/UserService';
-import StaffOrderForm from '@components/forms/staffOrderForm';
-import OrderForm from '@components/forms/OrderForm';
+import OrderForm from '@components/Forms/OrderForm';
+import StaffOrderForm from '@components/Forms/StaffOrderForm';
 
 const Orders: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);

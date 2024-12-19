@@ -5,7 +5,8 @@ import { User } from '@types';
 import { UserService } from '@services/UserService';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetServerSideProps } from 'next';
-import AccountForm from '@components/forms/AccountEditAndOverview';
+import AccountForm from '@components/Forms/AccountEditAndOverview';
+import AdminAccountForm from '@components/Forms/AdminAccountForm';
 
 const Account: React.FC = () => {
   const [user, setUser] = useState<User>({
@@ -42,7 +43,7 @@ const Account: React.FC = () => {
   return (
     <div className="body">
       <Header />
-      <AccountForm user={user} setUser={setUser} />
+      {user.role === 'admin' || user.role === 'staff' ? <AdminAccountForm/> : <AccountForm user={user} setUser={setUser}/> }
     </div>
   );
 };

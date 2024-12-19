@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { GetServerSidePropsContext } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import LoginForm from '@components/forms/loginForm';
+import LoginForm from '@components/Forms/loginForm';
 
 const Home: React.FC = () => {
     const [user, setUser] = useState<{ name: string } | null>(null);

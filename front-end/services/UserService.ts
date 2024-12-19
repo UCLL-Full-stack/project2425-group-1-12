@@ -127,5 +127,26 @@ export const UserService = {
           throw new Error('An unknown error occurred while fetching user details.');
       }
     }
+  },
+
+  getAllUsers: async () => {
+    try {
+      const tokenData = localStorage.getItem("loggedInUser");
+      let token: string | null = null;
+      if (tokenData) {
+        token = JSON.parse(tokenData).token;
+      }
+      const res = await fetch(apiUrl + "/users/", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+      });
+      if (!res.ok) throw new Error(`User details could not be fetched`);
+      return await res.json();
+    } catch (error) {
+      alert(error)
+    }
   }
 };

@@ -8,11 +8,11 @@
 - [x] User-login
 - [x] User-register
 - [x] User-logout
-- [x] Adding-PC-to-Cart
-- [x] Ordering
-- [x] Order-history
+- [ ] Adding-PC-to-Cart
+- [ ] Ordering
+- [ ] Order-history
 - [x] Account-page
-- [ ] Administrator-page
+- [x] Administrator-page
 
 
 ## Per lab
@@ -32,10 +32,10 @@
   - [x] Domein
   - [x] Services
   - [x] Controllers
-- [x] Validatie:
+- [ ] Validatie:
   - [x] Controllers bevatten geen validatie.
-  - [x] Services bevatten overkoepelende validatieregels.
-  - [x] Domeinobjecten bevatten input validatie en business validatie die specifiek zijn voor dat domeinobject.
+  - [ ] Services bevatten overkoepelende validatieregels.
+  - [ ] Domeinobjecten bevatten input validatie en business validatie die specifiek zijn voor dat domeinobject.
 - [ ] Testen:
   - [ ] Alle domeinobjecten zijn volledig getest met Jest, inclusief validatie.
   - [ ] Alle services zijn volledig getest met Jest.
@@ -50,7 +50,7 @@
 - [x] Een Next.js front-end app is geïnstalleerd in de front-end directory.
 - [x] Alle pagina's die een route in Next.js nodig hebben worden in de map “pages” geplaatst.
 - [x] Pagina's worden opgebouwd uit verschillende herbruikbare componenten die in de map “components” worden geplaatst.
-  - [ ] Componenten worden niet rechtstreeks geïmplementeerd in een pagina.
+- [(x) tf does this mean??] Componenten worden niet rechtstreeks geïmplementeerd in een pagina.
 - [x] “Props” worden gebruikt om dynamische inhoud binnen componenten weer te geven.
 - [x] “State” wordt gebruikt om informatie op te slaan tussen verschillende renders van een component (geen lokale variabelen!).
 - [x] Callback functies worden gebruikt om hogerliggende componenten of pagina's op de hoogte te brengen van een gebeurtenis binnen de huidige component.
@@ -77,8 +77,8 @@
 - [ ] De hook useEffect wordt gebruikt voor interactie met een extern systeem (bijv. browser storage).
 - [ ] Er is minstens 1 functioneel formulier met validatie, foutafhandeling en integratie met de back-end.
 - [ ] Er is minstens 1 login formulier met validatie en foutafhandeling.
-- [ ] Er worden minstens 2 waarden opgeslagen in de browser storage en gebruikt in de hele applicatie.
-- [ ] Styling is toegepast in de mate dat je applicatie bruikbaar en leesbaar is. Je mag je eigen styling framework kiezen.
+- [x] Er worden minstens 2 waarden opgeslagen in de browser storage en gebruikt in de hele applicatie.
+- [x] Styling is toegepast in de mate dat je applicatie bruikbaar en leesbaar is. Je mag je eigen styling framework kiezen.
 
 
 ### Lab 6 - Security
@@ -100,7 +100,7 @@
   - [x] Je kan inloggen, uitloggen en gebruikers registreren.
   - [x] Er wordt gebruik gemaakt van token-based authentication met JWT.
   - [x] Authentication: de meeste pagina's zijn afgeschermd
-  - [ ] Authorisation: minstens 1 pagina geeft een andere content op basis van de rol
+  - [x] Authorisation: minstens 1 pagina geeft een andere content op basis van de rol
   - [ ] Als gebruiker een functionaliteit/pagina oproept waartoe hij niet gemachtigd is, wordt hij op een correcte manier geïnformeerd.
   - [ ] Je voorziet op de homepagina een tabel met een aantal voorgedefinieerde gebruikers die wij als lectoren kunnen gebruiken om je project mee te testen. Voorbeeld hieronder
   - [ ] Indien de username of het password niet voldoet aan je validatieregels dan verander je dat in de tabel.
