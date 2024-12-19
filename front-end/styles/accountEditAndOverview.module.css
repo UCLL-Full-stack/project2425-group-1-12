@@ -1,0 +1,28 @@
+.container {
+    position: relative;
+    margin-top: 5rem;
+    max-width: 20vw;
+    min-width: 20rem;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    background-color: var(--form-background);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.accountHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.accountEditButton {
+    position: absolute;
+    top: 25px;
+    right: 10px;
+    cursor: pointer;
+}

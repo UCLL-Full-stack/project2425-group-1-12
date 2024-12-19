@@ -7,6 +7,8 @@ import CustomDropdown from '@components/uiComponents/CustomDropdown';
 import CustomButton from '@components/uiComponents/CustomButton';
 import { UserService } from '@services/UserService';
 import { useTranslation } from 'next-i18next';
+import styles from "@styles/accountEditAndOverview.module.css";
+
 interface AccountFormProps {
     user: User;
     setUser: React.Dispatch<React.SetStateAction<User>>;
@@ -70,11 +72,11 @@ const AccountForm: React.FC<AccountFormProps> = ({ user, setUser }) => {
     };
 
     return (
-        <div className="accountForm">
-            <div className="accountHeader">
+        <div className={styles.container}>
+            <div className={styles.accountHeader}>
                 <h4>{ t('accountForm.informationTitle') }</h4>
                 <FontAwesomeIcon
-                    className="accountEditButton"
+                    className={styles.accountEditButton}
                     icon={faUserPen}
                     onClick={switchEditable}
                     color={!isEditable ? 'black' : 'green'}
