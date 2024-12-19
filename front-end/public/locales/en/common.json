@@ -31,6 +31,10 @@
       "Orders":"Orders",
       "Language":"Language",
       "Logout":"Logout"
+    },
+    "buildForm": {
+      "myBuildsButton" : "My Builds",
+      "createBuildButton": "Create a build"
     }
 
   }

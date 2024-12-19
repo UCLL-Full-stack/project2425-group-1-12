@@ -31,5 +31,9 @@
     "Orders":"Bestellingen",
     "Language":"Taal",
     "Logout":"Log Uit"
+  },
+  "buildForm": {
+    "myBuildsButton" : "Mijn Builds",
+    "createBuildButton": "Maak een build"
   }
 }
