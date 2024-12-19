@@ -1,16 +1,18 @@
 import React from "react";
 import styles from "@styles/OrderForm.module.css";
 import { Build } from "@types";
+import { useTranslation } from "next-i18next";
 
 const BuildCardSmall: React.FC<Build> = ({ name, parts, price, preBuild }) => {
+  const { t } = useTranslation();
   return (
     <div className={styles.buildCard}>
       <h3 className={styles.buildTitle}>{name}</h3>
 
       <div className={styles.buildDetails}>
         <div className={styles.buildTotalPrice}>
-          <div>Totale Prijs: <b>€{price}</b></div>
-          <div>Is Prebuilt: <b>{preBuild ? <>Ja</> : <>Nee</>}</b></div>
+          <div>{t('orders.totalPriceCart')}<b>€{price}</b></div>
+          <div>{t('orders.isPrebuildCart')}<b>{preBuild ? <>Ja</> : <>Nee</>}</b></div>
         </div>
 
         <div className={styles.buildCoreSpecs}>

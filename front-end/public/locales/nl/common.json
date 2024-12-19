@@ -48,5 +48,17 @@
     "selectPrebuildTitle":"Voorgebouwd?",
     "addShopingCartButton":"Voeg toe aan winkelwagen",
     "selectPart":"Selecteer een "
+  },
+  "orders": {
+    "title":"Bestellingen",
+    "shoppingCart":"Winkelwagen",
+    "emptyCart":"Nog geen builds in de winkelwagen.",
+    "orderButton":"Bestel",
+    "cancelButton":"Annuleer",
+    "totalPriceCart":"Totale Prijs: ",
+    "isPrebuildCart":"Is Prebuild:",
+    "noOrders":"Nog geen builds besteld.",
+    "orderOn":"Besteld op ",
+    "totalPriceOrder":"Totale Prijs: "
   }
 }

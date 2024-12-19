@@ -57,6 +57,19 @@
       "addShopingCartButton":"Add to Shopping Cart",
       "selectPart":"Select a "
 
+    },
+    "orders": {
+      "title":"Orders",
+      "shoppingCart":"Shopping Cart",
+      "emptyCart":"No builds in cart.",
+      "orderButton":"Order",
+      "cancelButton":"Cancel",
+      "totalPriceCart":"Total Price: ",
+      "isPrebuildCart":"Is Prebuild:",
+      "noOrders":"No builds ordered.",
+      "orderOn":"Ordered on ",
+      "totalPriceOrder":"Total Price: "
+
     }
 
   }

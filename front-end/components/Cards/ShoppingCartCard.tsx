@@ -1,7 +1,7 @@
-import React from "react";
 import styles from "@styles/OrderForm.module.css";
 import { Build } from "@types";
 import BuildCardSmall from "./BuildCardSmall";
+import { useTranslation } from "next-i18next";
 
 interface ShoppingCartCardProps {
   onConfirmOrder: () => void;
@@ -10,20 +10,21 @@ interface ShoppingCartCardProps {
 }
 
 const ShoppingCartCard: React.FC<ShoppingCartCardProps> = ({ onConfirmOrder, onCancelOrder, builds }) => {
+  const { t } = useTranslation();
   return (
     <div className={styles.orderCartCard}>
-      <h2>Shopping Cart</h2>
+      <h2>{t('orders.shoppingCart')}</h2>
       <div className={styles.buildCards}>
         {builds.length > 0 ? (
           <>
             {builds.map((build) => (<BuildCardSmall key={build.id} {...build} />))}
             <div className={styles.orderCartButtons}>
-              <button onClick={onConfirmOrder}>Order</button>
-              <button onClick={onCancelOrder}>Cancel</button>
+              <button onClick={onConfirmOrder}>{t('orders.orderButton')}</button>
+              <button onClick={onCancelOrder}>{t('orders.cancelButton')}</button>
             </div>
           </>
         ) : (
-          <p>No builds in cart, try making some builds.</p>
+          <p>{t('orders.emptyCart')}</p>
         )}
       </div>
 
