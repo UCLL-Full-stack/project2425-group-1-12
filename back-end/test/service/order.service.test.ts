@@ -122,7 +122,7 @@ test('given a staff role, when fetching all orders, then all orders are returned
 
 test('given a non-staff role, when fetching all orders, then an UnauthorizedError is thrown', async () => {
     // when & then
-    await expect(orderService.getAllOrders('user')).rejects.toThrowError(
+    await expect(orderService.getAllOrders('user')).rejects.toThrow(
         new UnauthorizedError("credentials_required", { message: "user" })
     );
 });
@@ -171,7 +171,7 @@ test('given an invalid order ID, when fetching an order by ID, then an error is 
     // when
 
     // then
-    await expect(orderService.getOrderById(orderId)).rejects.toThrowError(
+    await expect(orderService.getOrderById(orderId)).rejects.toThrow(
         `Order with id ${orderId} does not exist`
     );
 });

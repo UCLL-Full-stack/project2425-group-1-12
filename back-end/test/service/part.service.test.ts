@@ -42,7 +42,7 @@ test('given an invalid part ID, when fetching a part by ID, then an error is thr
     // when
 
     // then
-    await expect(partService.getPartById(partId)).rejects.toThrowError(
+    await expect(partService.getPartById(partId)).rejects.toThrow(
         `Part with id ${partId} not found`
     );
 });
@@ -71,7 +71,7 @@ test('given an invalid part name, when fetching a part by name, then an error is
     // when
 
     // then
-    await expect(partService.getPartByName(partName)).rejects.toThrowError(
+    await expect(partService.getPartByName(partName)).rejects.toThrow(
         `Part with name ${partName} not found`
     );
 });
