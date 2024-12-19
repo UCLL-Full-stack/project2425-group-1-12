@@ -67,3 +67,28 @@
 .orderCartButtons button:active {
     background-color: var(--button-background-active);
 }
+
+
+@media (max-width: 25cm) {
+    .container {
+        flex-direction: column;
+        margin-top: 1rem;
+        max-width: 95vw;
+        padding: .75rem;
+        margin: .75rem;
+    }
+    .buildCard {
+        padding: .3rem;
+    }
+}
+
+@media (max-width: 15cm) {
+    .orderCardDetails {
+        display: flex;
+        flex-direction: column;
+    }
+    .buildDetails {
+        display: flex;
+        flex-direction: column;
+    }
+}
