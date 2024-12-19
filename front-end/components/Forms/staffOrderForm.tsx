@@ -14,7 +14,7 @@ const StaffOrderForm: React.FC = () => {
         setOrders(fetchedOrders);
       } catch (error) {
         console.error(
-          error instanceof Error ? error.message : "An unknown error occurred."
+          alert(error)
         );
       }
     };
