@@ -3,9 +3,15 @@ import { AuthenticationResponse, LoginCredentials, UpdateUserInput, UserInput } 
 import userDB from '../repository/user.db';
 import bcrypt from 'bcrypt';
 import { generateJwtToken } from '../util/jwt';
+import { Role } from '@prisma/client';
+import { UnauthorizedError } from 'express-jwt';
 
-const getAllUsers = async (): Promise<User[]> => {
-    return await userDB.getAllUsers();
+const getAllUsers = async (role: Role): Promise<User[]> => {
+    if (role === 'admin') {
+        return await userDB.getAllUsers();
+    } else {
+        throw new UnauthorizedError("credentials_required", { message:`${role}` });
+    }
 };
 
 const getUserById = async (id: number): Promise<User> => {
