@@ -26,10 +26,15 @@
       "updatePasswordButton":"Update Password",
       "passwordDropdownLabel":"Password"
     },
+    "adminAccountForm": {
+      "informationTitle":"Adminpanel: Account Management"
+    },
+    "userCard": {
+      "address":"Address: "
+    },
     "header": {
       "Builder":"PC Builder",
       "Orders":"Orders",
-      "Language":"Language",
       "Logout":"Logout"
     }
 

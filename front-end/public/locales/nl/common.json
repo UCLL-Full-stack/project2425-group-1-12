@@ -26,10 +26,15 @@
     "updatePasswordButton":"Update Wachtwoord",
     "passwordDropdownLabel":"Wachtwoord"
   },
+  "adminAccountForm": {
+    "informationTitle":"Adminpaneel: Account beheer"
+  },
+  "userCard": {
+    "address":"Adres: "
+  },
   "header": {
     "Builder":"PC Bouwer",
     "Orders":"Bestellingen",
-    "Language":"Taal",
     "Logout":"Log Uit"
   }
 }
