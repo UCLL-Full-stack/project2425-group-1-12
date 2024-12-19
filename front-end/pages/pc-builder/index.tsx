@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '@components/header';
 import { GetServerSidePropsContext } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import BuildForm from '@components/forms/BuildForm';
+import BuildForm from '@components/Forms/BuildForm';
 
 const PcBuilder: React.FC = () => {
   return (
