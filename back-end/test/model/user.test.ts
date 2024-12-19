@@ -4,12 +4,13 @@ const name = 'John Doe';
 const email = 'john.doe@example.com';
 const password = 'Password123';
 const address = '123 Main St';
+const role = 'user';
 
 test('given: valid values for user, when: user is created, then: user is created with those values', () => {
     // given
 
     // when
-    const user = new User({ name, email, password, address });
+    const user = new User({ name, email, password, address, role });
 
     // then
     expect(user.getName()).toEqual(name);
@@ -23,7 +24,7 @@ test('given: empty name, when: user is created, then: an error is thrown', () =>
     const invalidName = '';
 
     // when
-    const user = () => new User({ name: invalidName, email, password, address })
+    const user = () => new User({ name: invalidName, email, password, address, role })
 
     // then
     expect(user).toThrow('Name cannot be empty');
@@ -34,7 +35,7 @@ test('given: empty email, when: user is created, then: an error is thrown', () =
     const invalidEmail = '';
 
     // when
-    const user = () => new User({ name, email: invalidEmail, password, address })
+    const user = () => new User({ name, email: invalidEmail, password, address, role })
 
     // then
     expect(user).toThrow('Email cannot be empty');
@@ -45,7 +46,7 @@ test('given: empty address, when: user is created, then: an error is thrown', ()
     const emptyAddress = '';
 
     // when
-    const user = () => new User({ name, email, password, address: emptyAddress })
+    const user = () => new User({ name, email, password, address: emptyAddress, role })
 
     // then
     expect(user).toThrow('Address cannot be empty');
@@ -56,7 +57,7 @@ test('given: empty password, when: user is created, then: an error is thrown', (
     const emptyPassword = '';
 
     // when
-    const user = () => new User({ name, email, password: emptyPassword, address })
+    const user = () => new User({ name, email, password: emptyPassword, address, role })
 
     // then
     expect(user).toThrow('Password cannot be empty');
@@ -67,7 +68,7 @@ test('given: invalid email, when: user is created, then: an error is thrown', ()
     const invalidEmail = 'invalid-email';
 
     // when
-    const user = () => new User({ name, email: invalidEmail, password, address })
+    const user = () => new User({ name, email: invalidEmail, password, address, role })
 
     // then
     expect(user).toThrow('Invalid email format');
@@ -79,7 +80,7 @@ test('given: password shorter than 8 characters, when: user is created, then: an
     const shortPassword = 'short';
 
     // when
-    const user = () => new User({ name, email, password: shortPassword, address })
+    const user = () => new User({ name, email, password: shortPassword, address, role })
 
     // then
     expect(user).toThrow('Password must be at least 8 characters');

@@ -17,8 +17,7 @@ const price = 1100;
 const orderStatus = 'preparing';
 const orderDate = new Date();
 
-const user = new User({ name: 'John Doe', email: 'john.doe@example.com', password: 'password', address: 'John Doe Avenue 76' });
-
+const user = new User({ name: 'John Doe', email: 'john.doe@example.com', password: 'password', role: 'user', address: 'John Doe Avenue 76' });
 test('given: valid values for order, when: order is created, then: order is created with those values', () => {
     // given
 
