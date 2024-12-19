@@ -39,5 +39,5 @@ export type Order = {
     builds: Build[];
     price: number;
     orderStatus: string;
-    orderDate: Date;
+    orderDate: string;
 }
