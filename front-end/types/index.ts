@@ -35,6 +35,7 @@ export type NewBuild = {
 }
 
 export type Order = {
+    user: User;
     id?: number;
     builds: Build[];
     price: number;
