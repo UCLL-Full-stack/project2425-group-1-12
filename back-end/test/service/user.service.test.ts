@@ -87,7 +87,7 @@ test('when fetching all users, then all users are returned', async () => {
     userDB.getAllUsers = jest.fn().mockResolvedValue(mockUsers);
 
     // when
-    const users = await userService.getAllUsers();
+    const users = await userService.getAllUsers("admin");
 
     // then
     expect(userDB.getAllUsers).toHaveBeenCalledTimes(1);
