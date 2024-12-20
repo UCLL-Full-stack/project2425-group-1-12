@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styles from '../../styles/adminAccountForm.module.css';
 import { User } from '../../types/index';
 import { UserService } from '@services/UserService';

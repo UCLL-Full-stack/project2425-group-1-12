@@ -2,8 +2,8 @@
 import { UserService } from "@services/UserService";
 import { BuildService } from "@services/BuildService";
 import styles from "@styles/OrderForm.module.css";
-import { Build, Order } from "@types";
-import React, { useEffect, useState } from "react";
+import { Build } from "@types";
+import React from "react";
 import { OrderService } from "@services/OrderService";
 import ShoppingCartCard from "@components/Cards/ShoppingCartCard";
 import OrderCard from "@components/Cards/orderCard";

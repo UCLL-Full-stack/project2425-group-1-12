@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "@styles/BuildForm.module.css";
-import { Build, Part } from "@types";
+import { Part } from "@types";
 import { BuildService } from "@services/BuildService";
 import { OrderService } from "@services/OrderService";
 import { PartService } from "@services/PartService";
