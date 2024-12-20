@@ -72,7 +72,7 @@
 
 ### Lab 5 - Front-end advanced
 
-- [ ] De hook useSWR wordt gebruikt voor API-requests.
+- [x] De hook useSWR wordt gebruikt voor API-requests.
 - [x] De hook useEffect wordt gebruikt voor interactie met een extern systeem (bijv. browser storage).
 - [x] Er is minstens 1 functioneel formulier met validatie, foutafhandeling en integratie met de back-end.
 - [x] Er is minstens 1 login formulier met validatie en foutafhandeling.
