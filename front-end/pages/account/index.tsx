@@ -43,7 +43,7 @@ const Account: React.FC = () => {
   return (
     <div className="body">
       <Header />
-      {user.role === 'admin' || user.role === 'staff' ? <AdminAccountForm/> : <AccountForm user={user} setUser={setUser}/> }
+      {user.role === 'admin' ? <AdminAccountForm/> : <AccountForm user={user} setUser={setUser}/> }
     </div>
   );
 };
