@@ -7,7 +7,7 @@ const getAllBuilds = async (): Promise<Build[]> => {
     return await buildDB.getAllBuilds();
 };
 
-const getBuildById = async ({ id }: {id: number}): Promise<Build | null> => {
+const getBuildById = async ({ id }: { id: number }): Promise<Build | null> => {
     const build = await buildDB.getBuildById({ id });
     if (!build) throw new Error(`Build with id ${id} does not exist`);
     return build;
@@ -38,8 +38,17 @@ const createBuild = async ( buildInput: BuildInput ): Promise<Build> => {
     return createdBuild;
 };
 
+const deleteBuild = async ({ id }: { id: number }): Promise<String> => {
+    const build = await buildDB.getBuildById({ id });
+    if (!build) throw new Error(`Build with id ${id} does not exist`);
+
+    buildDB.deleteBuild({ id });
+    return 'Build deleted successfully';
+}
+
 export default {
     getAllBuilds,
     getBuildById,
     createBuild,
+    deleteBuild,
 };

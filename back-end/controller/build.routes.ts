@@ -141,4 +141,37 @@ buildRouter.post('/', async (req: Request, res: Response, next: NextFunction) =>
     }
 });
 
+/**
+ * @swagger
+ * /builds/{id}:
+ *  delete:
+ *      security:
+ *       - bearerAuth: []
+ *      summary: Delete a specific build
+ *      description: Deletes a build resource by its ID.
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            schema:
+ *              type: integer
+ *              required: true
+ *              description: The build id.
+ *      responses:
+ *        200:
+ *          description: Successfully deleted the build.
+ *          content:
+ *            application/json:
+ *              schema:
+ *                type: string
+ *                description: A message providing information.
+ */
+buildRouter.delete('/:id', async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const response = await buildService.deleteBuild({ id: Number(req.params.id) });
+        res.status(200).json(response);
+    } catch (error) {
+        next(error);
+    }
+});
+
 export { buildRouter };

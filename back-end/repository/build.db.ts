@@ -49,8 +49,18 @@ const createBuild = async (build: Build): Promise<Build> => {
     }
 }
 
+const deleteBuild = async ({ id }: { id: number }) => {
+    try {
+        await database.build.delete({ where: { id } });
+    } catch (error) {
+        console.error(error);
+        throw new Error('Database error. See server log for details.');
+    }
+}
+
 export default {
     getAllBuilds,
     getBuildById,
     createBuild,
+    deleteBuild,
 }
