@@ -75,8 +75,8 @@
 - [ ] De hook useSWR wordt gebruikt voor API-requests.
   - [ ] SSR en SSG kunnen optioneel worden toegepast.
 - [x] De hook useEffect wordt gebruikt voor interactie met een extern systeem (bijv. browser storage).
-- [ ] Er is minstens 1 functioneel formulier met validatie, foutafhandeling en integratie met de back-end.
-- [ ] Er is minstens 1 login formulier met validatie en foutafhandeling.
+- [x] Er is minstens 1 functioneel formulier met validatie, foutafhandeling en integratie met de back-end.
+- [x] Er is minstens 1 login formulier met validatie en foutafhandeling.
 - [x] Er worden minstens 2 waarden opgeslagen in de browser storage en gebruikt in de hele applicatie.
 - [x] Styling is toegepast in de mate dat je applicatie bruikbaar en leesbaar is. Je mag je eigen styling framework kiezen.
 
@@ -102,8 +102,8 @@
   - [x] Authentication: de meeste pagina's zijn afgeschermd
   - [x] Authorisation: minstens 1 pagina geeft een andere content op basis van de rol
   - [x] Als gebruiker een functionaliteit/pagina oproept waartoe hij niet gemachtigd is, wordt hij op een correcte manier geïnformeerd.
-  - [ ] Je voorziet op de homepagina een tabel met een aantal voorgedefinieerde gebruikers die wij als lectoren kunnen gebruiken om je project mee te testen. Voorbeeld hieronder
-  - [ ] Indien de username of het password niet voldoet aan je validatieregels dan verander je dat in de tabel.
+  - [x] Je voorziet op de homepagina een tabel met een aantal voorgedefinieerde gebruikers die wij als lectoren kunnen gebruiken om je project mee te testen. Voorbeeld hieronder
+  - [x] Indien de username of het password niet voldoet aan je validatieregels dan verander je dat in de tabel.
 
 | username | password | role                                        |
 |----------|----------|---------------------------------------------|
@@ -132,7 +132,7 @@
   - Back-end: npm install; npx prisma migrate dev; npm start
   - Front-end: npm install; npm start
 - [ ] Create a movie (max. 4 minutes) to demo the project.
-- [ ] The login page contains a table of predefined users that can be used for testing, e.g.
+- [x] The login page contains a table of predefined users that can be used for testing, e.g.
 
 | username | password | role                                        |
 |----------|----------|---------------------------------------------|
@@ -150,7 +150,6 @@
 
 - [x] The domain model contains at least 4 entities and reflects the domain model in the analysis.
 - [x] There is at least 1 one-to-many and 1 many-to-many relationship in the database.
-- [ ] Many-to-many relationships in the database are not bi-directionally mapped in the domain.
 - [x] The database schema is modelled by means of a Prisma schema (in repository/prisma).
 - [x] A local postgres database is used, connection configuration is stored in a separate .env file.
 - [x] CRUD operations are executed via Prisma client objects.
@@ -166,7 +165,7 @@
 
 - [x] Services only do orchestration and do not contain domain specific business logic.
 - [x] Services only contain overarching validation rules that can't be handled by the domain.
-- [ ] Updates on existing entities are first validated using the domain model before calling the database layer.
+- [x] Updates on existing entities are first validated using the domain model before calling the database layer.
 - [x] Layered architecture: services only delegate to the domain or other services, not to controllers.
 - [x] Testing: all services are fully tested with Jest. Mock objects (jest.fn()) are used to ensure isolated testing.
 
@@ -186,7 +185,7 @@
 - [x] All routes in the front-end that a user can navigate to have a page in the “pages” folder.
 - [ ] There is at least 1 dynamic route.
 - [x] A page only contains a skeleton and is composed of reusable React components.
-- [ ] Fetching logic for calling the backend API is encapsulated in separate reusable services.
+- [x] Fetching logic for calling the backend API is encapsulated in separate reusable services.
 - [x] At least one form with a minimum of 2 fields (besides the user login form) exists.
 - [x] A user login form exists.
 - [x] Every form contains validation, error handling and event handling.
