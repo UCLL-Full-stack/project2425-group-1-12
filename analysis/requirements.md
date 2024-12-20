@@ -189,7 +189,11 @@
 - [x] At least one form with a minimum of 2 fields (besides the user login form) exists.
 - [x] A user login form exists.
 - [x] Every form contains validation, error handling and event handling.
-- [ ] There are at least 1 GET, 2 POST, 1 PUT and 1 DELETE requests to the back-end API which are fully implemented in the back-end.
+- [x] There are at least 1 GET, 2 POST, 1 PUT and 1 DELETE requests to the back-end API which are fully implemented in the back-end.
+  - [x] 1 GET
+  - [x] 2 POST
+  - [x] 1 PUT
+  - [x] 1 DELETE
 - [x] At least two values are stored in browser session storage and used across the application.
 - [x] Hooks are used in the correct way: useSWR for API requests, useEffect for interaction with external systems, useInterval for polling.
 - [x] I18n:
