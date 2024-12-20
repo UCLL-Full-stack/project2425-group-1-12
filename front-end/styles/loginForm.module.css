@@ -1,4 +1,4 @@
-.formContainer {
+.formContainer, .usersTable {
     margin-top: 5rem;
     max-width: 20vw;
     min-width: 20rem;
@@ -25,4 +25,26 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+}
+
+.usersTable {
+    min-width: 30rem;
+    gap: .1rem;
+    background-color: var(--form-background);
+}
+
+.usersTable tr {
+    display: grid;
+    gap: .1rem;
+    grid-template-columns: 1fr .7fr .4fr;
+}
+
+.usersTable td {
+    background-color: var(--background);
+    border-radius: .2rem;
+    padding: .2rem .4rem;
+}
+
+.usersTable pre {
+    margin: 0;
 }

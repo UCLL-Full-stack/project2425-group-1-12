@@ -13,7 +13,7 @@ const main = async () => {
     // USERS
     const admin = await prisma.user.create({
         data: {
-            name: "joe",
+            name: "Joe Biden",
             role: 'admin',
             email: "joe.biden@us.gov",
             password: await bcrypt.hash('CannotRemember',12),
@@ -23,11 +23,11 @@ const main = async () => {
 
     const staff = await prisma.user.create({
         data: {
-            name:'staff',
+            name:'Bernie Sanders',
             role:'staff',
-            email:'staff@staff.staff',
-            password: await bcrypt.hash('staff',12),
-            address:'Staff Street',
+            email:'bernie.sanders@yahoo.com',
+            password: await bcrypt.hash('FeelTheBern',12),
+            address: 'Somewhere in Vermont',
         },
     });
 
