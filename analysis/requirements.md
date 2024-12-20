@@ -123,14 +123,14 @@
 ### General
 
 - [x] The project is versioned in a GitHub repository which is initialized via GitHub classroom.
-- [ ] A release tag with the name “FINAL” is created before the deadline of the assignment. This tag will be reviewed.
+- [x] A release tag with the name “FINAL” is created before the deadline of the assignment. This tag will be reviewed.
 - [x] The project consists of an "analysis", "front-end" and "back-end" folder.
 - [x] The project follows the same structure as the provided start template.
 - [x] Your project contains a seed.ts containing test data that we can use to test your stories. This script must be executable via "npx ts-node util/seed.ts".
 - [x]  We need to be able to start your project immediately with our own database configuration by using the steps:
   - Back-end: npm install; npx prisma migrate dev; npm start
   - Front-end: npm install; npm start
-- [ ] Create a movie (max. 4 minutes) to demo the project.
+- [x] Create a movie (max. 4 minutes) to demo the project.
 - [x] The login page contains a table of predefined users that can be used for testing, e.g.
 
 | username | password | role                                        |
