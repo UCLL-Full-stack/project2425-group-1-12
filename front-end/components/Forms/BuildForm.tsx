@@ -7,40 +7,27 @@ import { PartService } from "@services/PartService";
 import BuildsList from "@components/pcBuilder/BuildsList";
 import Builder from "@components/pcBuilder/Builder";
 import { useTranslation } from "next-i18next";
+import useSWR from "swr";
 
 const BuildForm: React.FC = () => {
-  const [builds, setBuilds] = useState<Build[]>([]);
   const [activeContent, setActiveContent] = useState('builds');
   const [selectedParts, setSelectedParts] = useState<Part[]>([]);
-  const [availableParts, setAvailableParts] = useState<Part[]>([]);
   const [name, setName] = useState<string>("");
   const [preBuild, setPreBuild] = useState<boolean>(false);
   const { t } = useTranslation();
 
-  useEffect(() => {
-    const fetchBuilds = async () => {
-      try {
-        const fetchedBuilds = await OrderService.getAllBuildsByUserId();
-        setBuilds(fetchedBuilds);
-      } catch (error) {
-        if (error instanceof Error) console.error(error.message);
-        else console.error("An unknown error occurred.");
-      }
-    };
+  const fetchBuilds = async () => {
+    const builds = await OrderService.getAllBuildsByUserId();
+    return builds;
+  };
 
-    const fetchParts = async () => {
-      try {
-        const fetchedParts = await PartService.getAllParts();
-        setAvailableParts(fetchedParts);
-      } catch (error) {
-        if (error instanceof Error) console.error(error.message);
-        else console.error("An unknown error occurred.");
-      }
-    };
+  const fetchParts = async () => {
+    const parts = await PartService.getAllParts();
+    return parts;
+  };
 
-    fetchParts();
-    fetchBuilds();
-  }, []);
+  const { data: builds, error: buildsError } = useSWR('/orders/builds/user/', fetchBuilds);
+  const { data: availableParts, error: partsError } = useSWR('/parts/', fetchParts);
 
   const addBuildToOrder = async () => {
     const requiredPartTypes = ["GPU", "CPU", "RAM", "Motherboard", "Case", "PSU", "Storage"];
@@ -64,11 +51,14 @@ const BuildForm: React.FC = () => {
     }
   };
 
+  if (!builds || !availableParts) return <div>Loading...</div>;
+  if (buildsError || partsError) return <div>Error: {buildsError?.message || partsError?.message || 'Error loading'}</div>;
+
   return (
     <div className={styles.container}>
       <div className={styles.buttons}>
         <button onClick={() => setActiveContent('builds')}>
-          { t('buildForm.myBuildsButton') }       
+          { t('buildForm.myBuildsButton') }
         </button>
         <button onClick={() => setActiveContent('new')}>
           { t('buildForm.createBuildButton')}
