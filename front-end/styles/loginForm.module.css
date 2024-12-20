@@ -36,7 +36,7 @@
 .usersTable tr {
     display: grid;
     gap: .1rem;
-    grid-template-columns: 1fr .7fr .4fr;
+    grid-template-columns: 1fr .6fr .25fr;
 }
 
 .usersTable td {
