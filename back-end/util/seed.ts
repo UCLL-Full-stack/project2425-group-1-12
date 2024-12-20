@@ -165,7 +165,7 @@ const main = async () => {
             orderStatus: 'shipping',
             orderDate: new Date(),
             builds: {connect: order1Builds.map(build => ({ id: build.id })) },
-            user: {connect: { id: user1.id }},
+            user: {connect: { id: user2.id }},
         },
     });
 
@@ -176,7 +176,7 @@ const main = async () => {
             orderStatus: 'preparing',
             orderDate: new Date(),
             builds: {connect: order2Builds.map(build => ({ id: build.id })) },
-            user: {connect: { id: user1.id }},
+            user: {connect: { id: user3.id }},
         },
     });
 
