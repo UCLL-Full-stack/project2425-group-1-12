@@ -22,7 +22,7 @@ const Account: React.FC = () => {
 
   const fetchUserData = async () => {
     try {
-      const loggedInUser = localStorage.getItem('loggedInUser');
+      const loggedInUser = sessionStorage.getItem('loggedInUser');
       if (loggedInUser) {
         const { email } = JSON.parse(loggedInUser);
         const userObj = await UserService.getUserByEmail(email);

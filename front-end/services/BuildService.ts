@@ -5,7 +5,7 @@ const apiUrl = "http://localhost:3000";
 export const BuildService = {
     getAllBuilds: async () => {
         try {
-            const tokenData = localStorage.getItem("loggedInUser");
+            const tokenData = sessionStorage.getItem("loggedInUser");
             let token: string | null = null;
             if (tokenData) token = JSON.parse(tokenData).token;
 
@@ -29,7 +29,7 @@ export const BuildService = {
 
     createBuild: async (build: NewBuild) => {
         try {
-            const tokenData = localStorage.getItem("loggedInUser");
+            const tokenData = sessionStorage.getItem("loggedInUser");
             let token: string | null = null;
             if (tokenData) token = JSON.parse(tokenData).token;
 
@@ -65,7 +65,7 @@ export const BuildService = {
 
     getBuildsFromUser: async () => {
         try {
-            const tokenData = localStorage.getItem("loggedInUser");
+            const tokenData = sessionStorage.getItem("loggedInUser");
             let token: string | null = null;
             if (tokenData) token = JSON.parse(tokenData).token;
 
@@ -89,7 +89,7 @@ export const BuildService = {
 
     getBuildFromId: async (id: number) => {
         try {
-            const tokenData = localStorage.getItem("loggedInUser");
+            const tokenData = sessionStorage.getItem("loggedInUser");
             let token: string | null = null;
             if (tokenData) token = JSON.parse(tokenData).token;
 

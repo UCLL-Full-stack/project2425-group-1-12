@@ -3,7 +3,7 @@ const apiUrl = "http://localhost:3000";
 export const OrderService = {
     getAllBuildsByUserId: async () => {
         try {
-            const tokenData = localStorage.getItem("loggedInUser");
+            const tokenData = sessionStorage.getItem("loggedInUser");
             let token: string | null = null;
             let userId: number = -1;
             if (tokenData) {
@@ -31,7 +31,7 @@ export const OrderService = {
 
     getAllOrders: async () => {
         try {
-            const tokenData = localStorage.getItem("loggedInUser");
+            const tokenData = sessionStorage.getItem("loggedInUser");
             let token: string | null = null;
             if (tokenData) {
                 token = JSON.parse(tokenData).token;
@@ -57,7 +57,7 @@ export const OrderService = {
 
     createOrder: async () => {
         try {
-            const tokenData = localStorage.getItem("loggedInUser");
+            const tokenData = sessionStorage.getItem("loggedInUser");
             let token: string | null = null;
             let userId: number = -1;
             if (tokenData) {

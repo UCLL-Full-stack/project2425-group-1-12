@@ -20,7 +20,7 @@ const Orders: React.FC = () => {
     return user;
   };;
 
-  const loggedInUser = localStorage.getItem('loggedInUser');
+  const loggedInUser = sessionStorage.getItem('loggedInUser');
   const email = loggedInUser ? JSON.parse(loggedInUser).email : null;
 
   const { data: user, error, isLoading } = useSWR<User | null>(email ? `user-${email}` : null, () => fetchUserByEmail(email), {

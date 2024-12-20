@@ -5,7 +5,7 @@ const apiUrl = "http://localhost:3000";
 export const UserService = {
   getUserByEmail: async (email: string) => {
     try {
-      const tokenData = localStorage.getItem('loggedInUser');
+      const tokenData = sessionStorage.getItem('loggedInUser');
       let token: string | null = null;
       let email: string | null = null;
       if(tokenData){
@@ -52,7 +52,7 @@ export const UserService = {
 
   updateUser: async (updateData: {email: string, name?: string, address?: string, password?:string}) => {
     try {
-      const tokenData = localStorage.getItem('loggedInUser');
+      const tokenData = sessionStorage.getItem('loggedInUser');
       const token = tokenData ? JSON.parse(tokenData).token : null;
 
       const response = await fetch(apiUrl + '/users/updateUser', {
@@ -89,7 +89,7 @@ export const UserService = {
       }
 
       const jsonResponse = await res.json();
-      localStorage.setItem('loggedInUser', JSON.stringify(jsonResponse));
+      sessionStorage.setItem('loggedInUser', JSON.stringify(jsonResponse));
       return jsonResponse;
     } catch (error) {
       if (error instanceof Error) {
@@ -102,7 +102,7 @@ export const UserService = {
 
   getUserDetails: async () => {
     try {
-      const tokenData = localStorage.getItem("loggedInUser");
+      const tokenData = sessionStorage.getItem("loggedInUser");
       let token: string | null = null;
       let userId: number = -1;
       if (tokenData) {
@@ -131,7 +131,7 @@ export const UserService = {
 
   getAllUsers: async () => {
     try {
-      const tokenData = localStorage.getItem("loggedInUser");
+      const tokenData = sessionStorage.getItem("loggedInUser");
       let token: string | null = null;
       if (tokenData) {
         token = JSON.parse(tokenData).token;

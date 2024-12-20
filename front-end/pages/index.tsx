@@ -10,7 +10,7 @@ const Home: React.FC = () => {
 
     useEffect(() => {
         const fetchLoggedInUser = async () => {
-            const loggedInUser = localStorage.getItem('loggedInUser');
+            const loggedInUser = sessionStorage.getItem('loggedInUser');
             if (loggedInUser) {
                 setUser(JSON.parse(loggedInUser));
                 router.push('/account');
