@@ -73,7 +73,6 @@
 ### Lab 5 - Front-end advanced
 
 - [ ] De hook useSWR wordt gebruikt voor API-requests.
-  - [ ] SSR en SSG kunnen optioneel worden toegepast.
 - [x] De hook useEffect wordt gebruikt voor interactie met een extern systeem (bijv. browser storage).
 - [x] Er is minstens 1 functioneel formulier met validatie, foutafhandeling en integratie met de back-end.
 - [x] Er is minstens 1 login formulier met validatie en foutafhandeling.
@@ -183,7 +182,6 @@
 ### Front-end
 
 - [x] All routes in the front-end that a user can navigate to have a page in the “pages” folder.
-- [ ] There is at least 1 dynamic route.
 - [x] A page only contains a skeleton and is composed of reusable React components.
 - [x] Fetching logic for calling the backend API is encapsulated in separate reusable services.
 - [x] At least one form with a minimum of 2 fields (besides the user login form) exists.
@@ -212,4 +210,4 @@
 - [x] Back-end: at least 1 route shows different behavior depending on the role.
 - [x] Front-end: at least 1 page shows different behavior/data depending on the role.
 - [x] Authentication/authorization errors are correctly displayed in the front-end.
-- [ ] HTTP traffic is protected using Helmet.
+- [x] HTTP traffic is protected using Helmet.
