@@ -1,4 +1,4 @@
-const apiUrl = "http://localhost:3000"; //TODO: change this .env later
+const apiUrl = "http://localhost:3000";
 
 export const PartService = {
     getAllParts: async () => {

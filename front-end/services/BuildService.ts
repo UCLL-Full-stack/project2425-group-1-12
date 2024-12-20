@@ -1,6 +1,6 @@
 import { NewBuild } from "@types";
 
-const apiUrl = "http://localhost:3000"; //TODO: change this .env later
+const apiUrl = "http://localhost:3000";
 
 export const BuildService = {
     getAllBuilds: async () => {
